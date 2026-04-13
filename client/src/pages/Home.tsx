@@ -58,10 +58,10 @@ function RankBadge({ rank }: { rank: number }) {
 }
 
 export default function Home() {
-  const [mode, setMode] = useState<"alltime" | "weekly">("alltime");
+  const [period, setPeriod] = useState<"alltime" | "week">("alltime");
   const { isAuthenticated } = useAuth();
 
-  const { data: nominees, isLoading, refetch } = trpc.nominees.list.useQuery({ mode });
+  const { data: nominees, isLoading, refetch } = trpc.nominees.list.useQuery({ period });
   const { data: myVotes } = trpc.votes.myVotes.useQuery(undefined, { enabled: isAuthenticated });
 
   const castVote = trpc.votes.cast.useMutation({
@@ -90,15 +90,15 @@ export default function Home() {
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-0 jester-border p-0.5">
             <button
-              onClick={() => setMode("alltime")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold transition-colors ${mode === "alltime" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
+              onClick={() => setPeriod("alltime")}
+              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold transition-colors ${period === "alltime" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
             >
               <Trophy size={11} />
               ALL TIME
             </button>
             <button
-              onClick={() => setMode("weekly")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold transition-colors ${mode === "weekly" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
+              onClick={() => setPeriod("week")}
+              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold transition-colors ${period === "week" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
             >
               <Clock size={11} />
               THIS WEEK

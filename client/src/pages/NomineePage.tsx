@@ -5,8 +5,9 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { getLoginUrl } from "@/const";
 import { toast } from "sonner";
 import Header from "@/components/Header";
+import SocialShareButtons from "@/components/SocialShareButtons";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend } from "recharts";
-import { ThumbsUp, ThumbsDown, ArrowLeft, Send } from "lucide-react";
+import { ThumbsUp, ThumbsDown, ArrowLeft, Send, ExternalLink, AlertTriangle, Newspaper, Link as LinkIcon } from "lucide-react";
 
 export default function NomineePage() {
   const params = useParams<{ id: string }>();
@@ -16,6 +17,7 @@ export default function NomineePage() {
 
   const { data: nominee, isLoading, error } = trpc.nominees.getById.useQuery({ id }, { enabled: !!id });
   const { data: comments, refetch: refetchComments } = trpc.comments.list.useQuery({ nomineeId: id }, { enabled: !!id });
+  const { data: richData } = trpc.profile.getRichData.useQuery({ id }, { enabled: !!id });
   const { data: myVotes } = trpc.votes.myVotes.useQuery(undefined, { enabled: isAuthenticated });
 
   const castVote = trpc.votes.cast.useMutation({
@@ -70,6 +72,11 @@ export default function NomineePage() {
             <ArrowLeft size={12} /> BACK TO RANKINGS
           </span>
         </Link>
+
+        {/* Social sharing */}
+        <div className="jester-border-subtle bg-card p-2 mb-4">
+          <SocialShareButtons nomineeName={nominee.name} nomineeId={id} description={nominee.description ?? undefined} />
+        </div>
 
         {/* Profile card */}
         <div className="jester-border bg-card p-4 mb-4">
@@ -135,6 +142,108 @@ export default function NomineePage() {
                 <Bar dataKey="downvotes" fill="oklch(0.55 0.22 25)" name="Downvotes" />
               </BarChart>
             </ResponsiveContainer>
+          </div>
+        )}
+
+        {/* Controversies */}
+        {richData?.controversies && richData.controversies.length > 0 && (
+          <div className="jester-border-subtle bg-card p-4 mb-4">
+            <h2 className="text-xs font-bold text-destructive mb-3 tracking-widest flex items-center gap-2">
+              <AlertTriangle size={12} /> CONTROVERSIES
+            </h2>
+            <div className="space-y-2">
+              {richData.controversies.map((c) => (
+                <div key={c.id} className="jester-border-subtle p-2 text-xs">
+                  <div className="font-bold text-foreground mb-1">{c.title}</div>
+                  <p className="text-muted-foreground mb-1">{c.description}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] text-muted-foreground">{c.date}</span>
+                    {c.sourceUrl && (
+                      <a href={c.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-[10px] text-[oklch(0.75_0.25_140)] hover:underline flex items-center gap-1">
+                        Source <ExternalLink size={8} />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Notable Moments */}
+        {richData?.moments && richData.moments.length > 0 && (
+          <div className="jester-border-subtle bg-card p-4 mb-4">
+            <h2 className="text-xs font-bold text-[oklch(0.75_0.25_140)] mb-3 tracking-widest">NOTABLE MOMENTS</h2>
+            <div className="space-y-3">
+              {richData.moments.map((m) => (
+                <div key={m.id} className="jester-border-subtle p-2">
+                  <div className="font-bold text-sm text-foreground mb-1">{m.title}</div>
+                  {m.description && <p className="text-xs text-muted-foreground mb-2">{m.description}</p>}
+                  {m.videoUrl && (
+                    <div className="mb-2">
+                      <iframe
+                        width="100%"
+                        height="180"
+                        src={m.videoUrl}
+                        title={m.title}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="rounded"
+                      />
+                    </div>
+                  )}
+                  {m.timestamp && <div className="text-[10px] text-muted-foreground">{m.timestamp}</div>}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* News */}
+        {richData?.news && richData.news.length > 0 && (
+          <div className="jester-border-subtle bg-card p-4 mb-4">
+            <h2 className="text-xs font-bold text-[oklch(0.75_0.25_140)] mb-3 tracking-widest flex items-center gap-2">
+              <Newspaper size={12} /> RECENT NEWS
+            </h2>
+            <div className="space-y-2">
+              {richData.news.map((n) => (
+                <div key={n.id} className="jester-border-subtle p-2 text-xs">
+                  <div className="font-bold text-foreground mb-1">{n.title}</div>
+                  <p className="text-muted-foreground mb-1">{n.content}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] text-muted-foreground">{n.date}</span>
+                    {n.sourceUrl && (
+                      <a href={n.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-[10px] text-[oklch(0.75_0.25_140)] hover:underline flex items-center gap-1">
+                        Source <ExternalLink size={8} />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* External Links */}
+        {richData?.links && richData.links.length > 0 && (
+          <div className="jester-border-subtle bg-card p-4 mb-4">
+            <h2 className="text-xs font-bold text-[oklch(0.75_0.25_140)] mb-3 tracking-widest flex items-center gap-2">
+              <LinkIcon size={12} /> LEARN MORE
+            </h2>
+            <div className="space-y-1">
+              {richData.links.map((l) => (
+                <a
+                  key={l.id}
+                  href={l.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-xs text-[oklch(0.75_0.25_140)] hover:underline p-1 jester-border-subtle"
+                >
+                  {l.label} <ExternalLink size={10} className="inline ml-1" />
+                </a>
+              ))}
+            </div>
           </div>
         )}
 

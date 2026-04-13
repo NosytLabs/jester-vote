@@ -1,39 +1,28 @@
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
+import { sql } from "drizzle-orm";
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
-import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
+import { publicProcedure, protectedProcedure, adminProcedure, router } from "./_core/trpc";
 import {
-  listApprovedNominees,
   getNomineeById,
-  insertNominee,
-  updateNomineeStatus,
-  listPendingNominees,
   getVoteTotals,
-  getUserVoteForNominee,
-  getUserVoteMap,
+  insertNominee,
+  listPendingNominees,
+  updateNomineeStatus,
   castVote,
-  getNomineeVoteHistory,
+  getUserVoteMap,
   listComments,
   insertComment,
-  getCurrentWeekKey,
-  seedNominees,
+  getNomineeVoteHistory,
 } from "./db";
-
-// Admin guard middleware
-const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
-  if (ctx.user.role !== "admin") {
-    throw new TRPCError({ code: "FORBIDDEN", message: "Admin access required" });
-  }
-  return next({ ctx });
-});
 
 export const appRouter = router({
   system: systemRouter,
 
   auth: router({
-    me: publicProcedure.query(opts => opts.ctx.user),
+    me: publicProcedure.query((opts) => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {
       const cookieOptions = getSessionCookieOptions(ctx.req);
       ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });
@@ -42,28 +31,29 @@ export const appRouter = router({
   }),
 
   nominees: router({
-    /** Public: list approved nominees with vote totals, sorted by score */
+    /** Public: list nominees (weekly or all-time) */
     list: publicProcedure
-      .input(z.object({ mode: z.enum(["weekly", "alltime"]).default("alltime") }))
+      .input(
+        z.object({
+          period: z.enum(["week", "alltime"]).default("alltime"),
+        })
+      )
       .query(async ({ input }) => {
-        await seedNominees();
-        const weekKey = input.mode === "weekly" ? getCurrentWeekKey() : undefined;
+        const weekKey = input.period === "week" ? getISOWeek(new Date()) : undefined;
         return getVoteTotals(weekKey);
       }),
 
-    /** Public: get single nominee with vote history */
+    /** Public: get nominee by ID with vote history */
     getById: publicProcedure
       .input(z.object({ id: z.number() }))
       .query(async ({ input }) => {
         const nominee = await getNomineeById(input.id);
-        if (!nominee || nominee.status !== "approved") {
-          throw new TRPCError({ code: "NOT_FOUND", message: "Nominee not found" });
-        }
+        if (!nominee) return null;
         const voteHistory = await getNomineeVoteHistory(input.id);
         return { ...nominee, voteHistory };
       }),
 
-    /** Protected: submit a new nominee for admin review */
+    /** Protected: submit a new nominee (pending approval) */
     submit: protectedProcedure
       .input(
         z.object({
@@ -98,16 +88,17 @@ export const appRouter = router({
         if (!nominee || nominee.status !== "approved") {
           throw new TRPCError({ code: "NOT_FOUND", message: "Nominee not found" });
         }
+        const weekKey = getISOWeek(new Date());
         await castVote({
           nomineeId: input.nomineeId,
           userId: ctx.user.id,
           voteType: input.voteType,
-          weekKey: getCurrentWeekKey(),
+          weekKey,
         });
         return { success: true };
       }),
 
-    /** Protected: get the current user's vote map (nomineeId -> voteType) */
+    /** Protected: get current user's votes */
     myVotes: protectedProcedure.query(async ({ ctx }) => {
       return getUserVoteMap(ctx.user.id);
     }),
@@ -130,10 +121,6 @@ export const appRouter = router({
         })
       )
       .mutation(async ({ input, ctx }) => {
-        const nominee = await getNomineeById(input.nomineeId);
-        if (!nominee || nominee.status !== "approved") {
-          throw new TRPCError({ code: "NOT_FOUND", message: "Nominee not found" });
-        }
         await insertComment({
           nomineeId: input.nomineeId,
           userId: ctx.user.id,
@@ -165,6 +152,32 @@ export const appRouter = router({
         return { success: true };
       }),
   }),
+
+  profile: router({
+    /** Public: get rich profile data (moments, controversies, news, links) */
+    getRichData: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        const { listNotableMoments, listControversies, listNewsItems, listExternalLinks } = await import("./db-rich");
+        const [moments, controversies, news, links] = await Promise.all([
+          listNotableMoments(input.id),
+          listControversies(input.id),
+          listNewsItems(input.id),
+          listExternalLinks(input.id),
+        ]);
+        return { moments, controversies, news, links };
+      }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;
+
+// Helper: get ISO week key (e.g. "2025-W15")
+function getISOWeek(date: Date): string {
+  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const dayNum = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  const weekNum = Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
+  return `${d.getUTCFullYear()}-W${String(weekNum).padStart(2, "0")}`;
+}

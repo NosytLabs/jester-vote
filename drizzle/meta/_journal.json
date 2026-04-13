@@ -22,6 +22,13 @@
       "when": 1776121637676,
       "tag": "0002_ambiguous_jasper_sitwell",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1776121939506,
+      "tag": "0003_normal_energizer",
+      "breakpoints": true
     }
   ]
 }

@@ -33,3 +33,49 @@
 - [x] Vitest: admin approve/reject procedure
 - [x] Responsive design check
 - [x] Final checkpoint and delivery
+
+
+## Phase 2: Content & Research Enhancements
+- [ ] Research top lolcows and jester culture (DONE - see research_findings.md)
+- [ ] Extend database schema: add notableMoments, controversies, newsItems, externalLinks tables
+- [ ] Create backend endpoints for rich profile data (timeline, clips, news)
+- [ ] Populate all 10 nominees with real data: arcs, descriptions, links
+- [ ] Add YouTube/Kick embed support for clips
+- [ ] Build timeline/arc visualization component
+
+## Phase 3: Profile Page Enhancements
+- [ ] Add "The Arc" timeline section to nominee profiles
+- [ ] Add "Notable Clips" section with embedded videos
+- [ ] Add "Recent News" section with community updates
+- [ ] Add "Controversies" section with documented incidents
+- [ ] Add "Know Your Meme" and external links
+- [ ] Add community evidence submission form
+- [ ] Add prediction/discussion section
+
+## Phase 4: Social Sharing & Virality
+- [ ] Add Twitter/X share button
+- [ ] Add Reddit share button
+- [ ] Add Discord share button
+- [ ] Add TikTok share button
+- [ ] Create shareable nominee cards with custom images
+- [ ] Build embed widget for other sites
+- [ ] Add "Weekly Jester" banner and share feature
+- [ ] Add trending/upset alerts
+
+## Phase 5: UI/UX Improvements
+- [ ] Improve mobile responsiveness (stacked cards, touch-friendly)
+- [ ] Add animated rank transitions
+- [ ] Add trending/controversial badges
+- [ ] Improve typography and readability
+- [ ] Add search and filter functionality
+- [ ] Optimize header and navigation
+- [ ] Add loading states and skeleton screens
+- [ ] Test on mobile, tablet, desktop
+
+## Phase 6: Final Polish & Testing
+- [ ] Populate all nominees with rich data
+- [ ] Test all social sharing features
+- [ ] Test embeds and clips
+- [ ] Mobile QA across devices
+- [ ] Performance optimization
+- [ ] Final checkpoint and delivery

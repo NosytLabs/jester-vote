@@ -69,7 +69,7 @@ describe("admin procedures", () => {
     const ctx = makeCtx(undefined);
     const caller = appRouter.createCaller(ctx);
     await expect(caller.admin.pendingNominees()).rejects.toMatchObject({
-      code: "UNAUTHORIZED",
+      code: "FORBIDDEN",
     });
   });
 });
