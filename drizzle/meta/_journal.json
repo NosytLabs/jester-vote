@@ -1,5 +1,27 @@
 {
   "version": "7",
   "dialect": "mysql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1776121144664,
+      "tag": "0000_slim_nebula",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1776121216570,
+      "tag": "0001_damp_doctor_faustus",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1776121637676,
+      "tag": "0002_ambiguous_jasper_sitwell",
+      "breakpoints": true
+    }
+  ]
 }
