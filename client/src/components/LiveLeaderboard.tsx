@@ -37,13 +37,13 @@ function RankBadge({
 
   return (
     <motion.div
-      className="relative flex flex-col items-center"
+      className="relative flex flex-col items-center justify-center h-12 sm:h-14"
       animate={isAnimating ? { scale: [1, 1.1, 1] } : {}}
       transition={{ duration: 0.4 }}
     >
-      {/* Rank number */}
+      {/* Rank number - fixed height for alignment */}
       <div
-        className="w-10 h-10 flex items-center justify-center font-black text-lg"
+        className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center font-black text-lg sm:text-xl"
         style={{
           fontFamily: "'Orbitron', monospace",
           background: bgColor,
@@ -91,7 +91,7 @@ function ScoreDisplay({ score }: { score: number }) {
     score > 0 ? "oklch(0.75 0.25 140)" : score < 0 ? "oklch(0.65 0.22 25)" : "oklch(0.6 0 0)";
 
   return (
-    <div className="hidden sm:flex flex-col items-center min-w-[60px]">
+    <div className="hidden sm:flex flex-col items-center justify-center min-w-[60px] h-12">
       <AnimatePresence mode="wait">
         <motion.span
           key={score}
@@ -166,8 +166,8 @@ function LeaderboardRow({
       </AnimatePresence>
 
       <div className="flex items-center gap-2 sm:gap-4 p-2 sm:p-4 min-h-[72px] sm:min-h-[80px]">
-        {/* Rank */}
-        <div className="shrink-0">
+        {/* Rank - fixed height for alignment */}
+        <div className="shrink-0 h-12 sm:h-14 flex items-center">
           <RankBadge
             rank={entry.currentRank}
             rankChange={entry.rankChange}
@@ -175,8 +175,8 @@ function LeaderboardRow({
           />
         </div>
 
-        {/* Avatar */}
-        <div className="shrink-0 relative">
+        {/* Avatar - fixed height for alignment */}
+        <div className="shrink-0 relative h-12 sm:h-14 flex items-center">
           {entry.imageUrl ? (
             <motion.img
               src={entry.imageUrl}
@@ -232,8 +232,8 @@ function LeaderboardRow({
           )}
         </div>
 
-        {/* Name + description */}
-        <div className="flex-1 min-w-0 flex flex-col justify-center">
+        {/* Name + description - centered with avatar */}
+        <div className="flex-1 min-w-0 flex flex-col justify-center h-12 sm:h-14">
           <Link href={`/nominee/${entry.nomineeId}`}>
             <motion.span
               className="text-sm sm:text-base font-bold text-foreground hover:text-[oklch(0.75_0.25_140)] cursor-pointer transition-colors truncate block leading-tight"
@@ -272,8 +272,8 @@ function LeaderboardRow({
           <ScoreDisplay score={entry.score} />
         </div>
 
-        {/* Vote buttons - fixed alignment */}
-        <div className="flex items-center shrink-0">
+        {/* Vote buttons - aligned center with content */}
+        <div className="flex items-center justify-center shrink-0 h-12 sm:h-14">
           <VoteButtonPair
             nomineeId={entry.nomineeId}
             upvotes={entry.upvotes}
@@ -322,19 +322,49 @@ function EmptyState() {
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="jester-border p-8 text-center"
+      className="jester-border p-8 sm:p-12 text-center bg-gradient-to-b from-card to-background"
     >
-      <Trophy
-        size={48}
-        className="mx-auto mb-4"
-        style={{ color: "oklch(0.75 0.25 140)" }}
-      />
-      <h3 className="text-lg font-bold mb-2" style={{ fontFamily: "'Orbitron', monospace" }}>
-        No Nominees Yet
+      <motion.div
+        initial={{ y: 0 }}
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <Trophy
+          size={64}
+          className="mx-auto mb-6"
+          style={{ color: "oklch(0.75 0.25 140)" }}
+        />
+      </motion.div>
+      <h3 
+        className="text-xl sm:text-2xl font-bold mb-3" 
+        style={{ fontFamily: "'Orbitron', monospace", color: "oklch(0.92 0 0)" }}
+      >
+        The Court is Empty
       </h3>
-      <p className="text-sm text-muted-foreground">
-        Be the first to submit a lolcow or jester to the rankings!
+      <p className="text-sm sm:text-base text-muted-foreground max-w-md mx-auto mb-6">
+        No jesters have been crowned yet. Be the first to submit a streamer 
+        with documented controversies to the rankings!
       </p>
+      <div className="flex flex-col sm:flex-row gap-3 justify-center">
+        <Link href="/submit">
+          <motion.button
+            className="jester-btn px-6 py-3 rounded-lg font-bold"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Submit a Jester
+          </motion.button>
+        </Link>
+        <Link href="/about">
+          <motion.button
+            className="px-6 py-3 rounded-lg font-bold border border-[oklch(0.75_0.25_140)] text-[oklch(0.75_0.25_140)] hover:bg-[oklch(0.75_0.25_140)]/10 transition-colors"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Learn More
+          </motion.button>
+        </Link>
+      </div>
     </motion.div>
   );
 }
