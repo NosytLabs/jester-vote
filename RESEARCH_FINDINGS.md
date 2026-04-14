@@ -4,6 +4,8 @@
 **Researcher:** Ralph Mode Subagent
 **Project:** TopJester Streaming Rankings
 
+⚠️ **NOTE: This document is for RESEARCH PURPOSES ONLY.** None of these features are implemented. They represent potential future directions for the platform.
+
 ---
 
 ## 1. Pump.fun Integration
