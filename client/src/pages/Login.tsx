@@ -98,22 +98,6 @@ export default function LoginPage() {
             </div>
           )}
 
-          {/* Development login for testing */}
-          {import.meta.env.DEV && (
-            <div className="pt-4 border-t border-border">
-              <p className="text-xs text-center text-muted-foreground mb-2">
-                Development Mode
-              </p>
-              <Button
-                onClick={() => window.location.href = "/api/oauth/dev-login?username=dev_jester"}
-                className="w-full h-10 justify-center gap-2 font-semibold"
-                variant="outline"
-              >
-                <span>🎭</span> Quick Dev Login
-              </Button>
-            </div>
-          )}
-
           <p className="text-xs text-center text-muted-foreground pt-4">
             By entering the Court, you swear allegiance to chaos. <span className="text-[oklch(0.75_0.25_140)]">🤡</span>
             <br />
