@@ -8,9 +8,9 @@ interface SocialShareButtonsProps {
 }
 
 export default function SocialShareButtons({ nomineeName, nomineeId, description }: SocialShareButtonsProps) {
-  const baseUrl = typeof window !== "undefined" ? window.location.origin : "https://jestervote.com";
+  const baseUrl = typeof window !== "undefined" ? window.location.origin : "https://topjester.com";
   const nomineeUrl = `${baseUrl}/nominee/${nomineeId}`;
-  const shareText = `I just voted for ${nomineeName} on JesterVote! 🃏 Top lolcow rankings.`;
+  const shareText = `I just voted for ${nomineeName} on TopJester! 🃏 Top lolcow rankings.`;
 
   const handleShare = (platform: string) => {
     let url = "";
@@ -19,7 +19,7 @@ export default function SocialShareButtons({ nomineeName, nomineeId, description
         url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(nomineeUrl)}`;
         break;
       case "reddit":
-        url = `https://reddit.com/submit?url=${encodeURIComponent(nomineeUrl)}&title=${encodeURIComponent(`${nomineeName} - JesterVote`)}`;
+        url = `https://reddit.com/submit?url=${encodeURIComponent(nomineeUrl)}&title=${encodeURIComponent(`${nomineeName} - TopJester`)}`;
         break;
       case "discord":
         // Discord doesn't have a direct share URL, so we copy to clipboard

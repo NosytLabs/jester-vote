@@ -167,6 +167,17 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor': ['react', 'react-dom'],
+          'ui': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-tooltip'],
+          'charts': ['recharts'],
+          'motion': ['framer-motion'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 500,
   },
   server: {
     host: true,

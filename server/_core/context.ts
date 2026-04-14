@@ -1,6 +1,7 @@
 import type { CreateExpressContextOptions } from "@trpc/server/adapters/express";
 import type { User } from "../../drizzle/schema";
-import { sdk } from "./sdk";
+import { oauthManager } from "./oauth-providers";
+import * as db from "../db";
 
 export type TrpcContext = {
   req: CreateExpressContextOptions["req"];
@@ -14,9 +15,33 @@ export async function createContext(
   let user: User | null = null;
 
   try {
-    user = await sdk.authenticateRequest(opts.req);
+    // Get session cookie
+    const cookieHeader = opts.req.headers.cookie;
+    if (cookieHeader) {
+      const cookies = parseCookies(cookieHeader);
+      const sessionCookie = cookies.get("app_session_id");
+
+      if (sessionCookie) {
+        const session = await oauthManager.verifySession(sessionCookie);
+
+        if (session) {
+          // Look up user in database
+          const dbUser = await db.getUserByOpenId(session.userId);
+
+          if (dbUser) {
+            user = dbUser;
+            // Update last signed in time
+            await db.upsertUser({
+              openId: session.userId,
+              lastSignedIn: new Date(),
+            });
+          }
+        }
+      }
+    }
   } catch (error) {
-    // Authentication is optional for public procedures.
+    // Authentication is optional for public procedures
+    console.warn("[Context] Authentication error:", error);
     user = null;
   }
 
@@ -25,4 +50,18 @@ export async function createContext(
     res: opts.res,
     user,
   };
+}
+
+function parseCookies(cookieHeader: string): Map<string, string> {
+  const cookies = new Map<string, string>();
+  const pairs = cookieHeader.split(";");
+
+  for (const pair of pairs) {
+    const [key, value] = pair.trim().split("=");
+    if (key && value !== undefined) {
+      cookies.set(key, decodeURIComponent(value));
+    }
+  }
+
+  return cookies;
 }

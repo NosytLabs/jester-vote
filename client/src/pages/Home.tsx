@@ -1,71 +1,50 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
-import { getLoginUrl } from "@/const";
+import { getLegacyLoginUrl } from "@/const";
 import { Link } from "wouter";
 import { toast } from "sonner";
 import Header from "@/components/Header";
-import { ThumbsUp, ThumbsDown, ChevronRight, Clock, Trophy } from "lucide-react";
-
-type RankEntry = {
-  nomineeId: number;
-  name: string;
-  description: string | null;
-  imageUrl: string | null;
-  upvotes: number;
-  downvotes: number;
-  score: number;
-};
-
-function VoteButtons({ nominee, userVote, onVote }: { nominee: RankEntry; userVote?: "up" | "down"; onVote: (type: "up" | "down") => void }) {
-  const { isAuthenticated } = useAuth();
-
-  const handleVote = (type: "up" | "down") => {
-    if (!isAuthenticated) {
-      toast.error("Login with Kick to vote!", { action: { label: "Login", onClick: () => window.location.href = getLoginUrl() } });
-      return;
-    }
-    onVote(type);
-  };
-
-  return (
-    <div className="flex items-center gap-1 shrink-0">
-      <button
-        onClick={() => handleVote("up")}
-        className={`flex items-center gap-1 px-2 py-1 text-xs border transition-all ${userVote === "up" ? "vote-up-active" : "border-border text-muted-foreground hover:border-[oklch(0.75_0.25_140)] hover:text-[oklch(0.75_0.25_140)]"}`}
-      >
-        <ThumbsUp size={11} />
-        <span>{nominee.upvotes}</span>
-      </button>
-      <button
-        onClick={() => handleVote("down")}
-        className={`flex items-center gap-1 px-2 py-1 text-xs border transition-all ${userVote === "down" ? "vote-down-active" : "border-border text-muted-foreground hover:border-[oklch(0.65_0.22_25)] hover:text-[oklch(0.65_0.22_25)]"}`}
-      >
-        <ThumbsDown size={11} />
-        <span>{nominee.downvotes}</span>
-      </button>
-    </div>
-  );
-}
-
-function RankBadge({ rank }: { rank: number }) {
-  const cls = rank === 1 ? "rank-1" : rank === 2 ? "rank-2" : rank === 3 ? "rank-3" : "text-muted-foreground";
-  return (
-    <span className={`text-sm font-black w-7 shrink-0 text-center ${cls}`} style={{ fontFamily: "'Orbitron', monospace" }}>
-      #{rank}
-    </span>
-  );
-}
+import { LiveLeaderboard } from "@/components/LiveLeaderboard";
+import { VoteStreakPanel } from "@/components/VoteStreakPanel";
+import { ConnectionStatus } from "@/components/ConnectionStatus";
+import {
+  useRealtimeVotes,
+  useVoteStreak,
+  useAnimatedLeaderboard,
+} from "@/hooks/useRealtimeVotes";
+import { Clock, Trophy, Users, TrendingUp } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const [period, setPeriod] = useState<"alltime" | "week">("alltime");
   const { isAuthenticated } = useAuth();
 
-  const { data: nominees, isLoading, refetch } = trpc.nominees.list.useQuery({ period });
-  const { data: myVotes } = trpc.votes.myVotes.useQuery(undefined, { enabled: isAuthenticated });
+  // Real-time leaderboard with animations
+  const {
+    entries,
+    isLoading,
+    animatingRanks,
+    myVotes,
+    refetch,
+  } = useAnimatedLeaderboard(period);
 
+  // Vote streak and gamification
+  const streak = useVoteStreak();
+
+  // Real-time connection status
+  const { isConnected, lastUpdate } = useRealtimeVotes({
+    enabled: true,
+    onVoteUpdate: useCallback(() => {
+      // Real-time updates are handled by useAnimatedLeaderboard
+    }, []),
+  });
+
+  // Vote mutation with optimistic updates
   const castVote = trpc.votes.cast.useMutation({
-    onSuccess: () => { refetch(); },
+    onSuccess: () => {
+      refetch();
+    },
     onError: (e) => toast.error(e.message),
   });
 
@@ -77,135 +56,264 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <Header />
 
-      <main className="container py-4">
+      <main role="main" className="container py-4 sm:py-6">
         {/* Page title */}
-        <div className="mb-4 text-center">
-          <h1 className="text-2xl font-black tracking-widest" style={{ fontFamily: "'Orbitron', monospace", color: "oklch(0.75 0.25 140)", textShadow: "0 0 20px oklch(0.75 0.25 140 / 0.4)" }}>
-            TOP LOLCOW RANKINGS
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-6 text-center"
+        >
+          <h1
+            className="text-2xl sm:text-3xl font-black tracking-widest"
+            style={{
+              fontFamily: "'Orbitron', monospace",
+              color: "oklch(0.75 0.25 140)",
+              textShadow: "0 0 20px oklch(0.75 0.25 140 / 0.4), 0 0 40px oklch(0.55 0.22 300 / 0.3)",
+            }}
+          >
+            THE COURT OF FOOLS
           </h1>
-          <p className="text-xs text-muted-foreground mt-1">Community-voted leaderboard. Login with Kick to cast your vote.</p>
-        </div>
+          <p className="text-xs sm:text-sm text-muted-foreground mt-2 max-w-md mx-auto">
+            Who's the biggest clown in streaming? You decide. Log in with Kick to cast your vote.
+          </p>
+        </motion.div>
 
-        {/* Mode toggle */}
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-0 jester-border p-0.5">
-            <button
-              onClick={() => setPeriod("alltime")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold transition-colors ${period === "alltime" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
+        {/* Stats bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6"
+        >
+          <div className="jester-border-subtle bg-card p-3 flex items-center gap-3">
+            <div
+              className="w-10 h-10 flex items-center justify-center rounded-lg"
+              style={{ background: "oklch(0.75 0.25 140 / 0.2)" }}
             >
-              <Trophy size={11} />
-              ALL TIME
-            </button>
-            <button
-              onClick={() => setPeriod("week")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold transition-colors ${period === "week" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
-            >
-              <Clock size={11} />
-              THIS WEEK
-            </button>
-          </div>
-          <span className="text-xs text-muted-foreground">
-            {nominees?.length ?? 0} nominees
-          </span>
-        </div>
-
-        {/* Leaderboard */}
-        {isLoading ? (
-          <div className="space-y-1">
-            {Array.from({ length: 10 }).map((_, i) => (
-              <div key={i} className="jester-border-subtle p-3 animate-pulse bg-card h-16" />
-            ))}
-          </div>
-        ) : nominees && nominees.length > 0 ? (
-          <div className="space-y-1">
-            {nominees.map((nominee, idx) => (
+              <Users size={18} style={{ color: "oklch(0.75 0.25 140)" }} />
+            </div>
+            <div>
               <div
-                key={nominee.nomineeId}
-                className={`jester-border-subtle bg-card hover:bg-secondary transition-colors group ${idx === 0 ? "jester-border" : ""}`}
+                className="text-lg font-black"
+                style={{ fontFamily: "'Orbitron', monospace", color: "oklch(0.92 0 0)" }}
               >
-                <div className="flex items-center gap-3 p-3">
-                  {/* Rank */}
-                  <RankBadge rank={idx + 1} />
-
-                  {/* Avatar */}
-                  <div className="shrink-0">
-                    {nominee.imageUrl ? (
-                      <img
-                        src={nominee.imageUrl}
-                        alt={nominee.name}
-                        className="w-10 h-10 object-cover"
-                        style={{ border: idx === 0 ? "2px solid oklch(0.85 0.18 85)" : "1px solid oklch(0.22 0 0)" }}
-                        onError={(e) => { (e.target as HTMLImageElement).src = `https://i.pravatar.cc/40?u=${nominee.nomineeId}`; }}
-                      />
-                    ) : (
-                      <div className="w-10 h-10 bg-muted flex items-center justify-center text-sm font-bold text-muted-foreground" style={{ border: "1px solid oklch(0.22 0 0)" }}>
-                        {nominee.name[0]?.toUpperCase()}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Name + description */}
-                  <div className="flex-1 min-w-0">
-                    <Link href={`/nominee/${nominee.nomineeId}`}>
-                      <span className="text-sm font-bold text-foreground hover:text-[oklch(0.75_0.25_140)] cursor-pointer transition-colors truncate block">
-                        {nominee.name}
-                      </span>
-                    </Link>
-                    {nominee.description && (
-                      <p className="text-xs text-muted-foreground truncate">{nominee.description}</p>
-                    )}
-                  </div>
-
-                  {/* Score */}
-                  <div className="shrink-0 text-center hidden sm:block">
-                    <div className={`text-sm font-bold ${nominee.score > 0 ? "text-[oklch(0.75_0.25_140)]" : nominee.score < 0 ? "text-destructive" : "text-muted-foreground"}`}>
-                      {nominee.score > 0 ? "+" : ""}{nominee.score}
-                    </div>
-                    <div className="text-[10px] text-muted-foreground">score</div>
-                  </div>
-
-                  {/* Vote buttons */}
-                  <VoteButtons
-                    nominee={nominee}
-                    userVote={myVotes?.[nominee.nomineeId]}
-                    onVote={(type) => handleVote(nominee.nomineeId, type)}
-                  />
-
-                  {/* Profile link */}
-                  <Link href={`/nominee/${nominee.nomineeId}`}>
-                    <ChevronRight size={14} className="text-muted-foreground hover:text-[oklch(0.75_0.25_140)] cursor-pointer transition-colors shrink-0" />
-                  </Link>
-                </div>
+                {entries.length}
               </div>
-            ))}
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wider">
+                Nominees
+              </div>
+            </div>
           </div>
-        ) : (
-          <div className="jester-border p-8 text-center text-muted-foreground text-sm">
-            No nominees yet. Be the first to submit!
-          </div>
-        )}
 
-        {/* Submit CTA */}
-        <div className="mt-6 jester-border p-4 text-center">
-          <p className="text-xs text-muted-foreground mb-2">Know a lolcow or jester who deserves a spot?</p>
-          {isAuthenticated ? (
-            <Link href="/submit">
-              <span className="inline-block px-4 py-2 text-xs font-bold bg-primary text-primary-foreground hover:bg-primary/80 transition-colors cursor-pointer">
-                + SUBMIT A NOMINEE
-              </span>
-            </Link>
-          ) : (
-            <a href={getLoginUrl()} className="inline-block px-4 py-2 text-xs font-bold bg-primary text-primary-foreground hover:bg-primary/80 transition-colors">
-              LOGIN TO SUBMIT
-            </a>
-          )}
+          <div className="jester-border-subtle bg-card p-3 flex items-center gap-3">
+            <div
+              className="w-10 h-10 flex items-center justify-center rounded-lg"
+              style={{ background: "oklch(0.85 0.18 85 / 0.2)" }}
+            >
+              <TrendingUp size={18} style={{ color: "oklch(0.85 0.18 85)" }} />
+            </div>
+            <div>
+              <div
+                className="text-lg font-black"
+                style={{ fontFamily: "'Orbitron', monospace", color: "oklch(0.92 0 0)" }}
+              >
+                Live
+              </div>
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wider">
+                Updates
+              </div>
+            </div>
+          </div>
+
+          <div className="jester-border-subtle bg-card p-3 flex items-center gap-3 sm:col-span-2">
+            <div
+              className="w-10 h-10 flex items-center justify-center rounded-lg"
+              style={{ background: "oklch(0.65 0.22 25 / 0.2)" }}
+            >
+              <Trophy size={18} style={{ color: "oklch(0.65 0.22 25)" }} />
+            </div>
+            <div className="flex-1">
+              <div
+                className="text-sm font-bold truncate"
+                style={{ fontFamily: "'Orbitron', monospace", color: "oklch(0.92 0 0)" }}
+              >
+                {isAuthenticated ? streak.rank : "Login to track stats"}
+              </div>
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wider">
+                {isAuthenticated
+                  ? `${streak.totalVotes} votes cast`
+                  : "Join the leaderboard"}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Main content grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+          {/* Leaderboard - takes 3 columns on large screens */}
+          <div className="lg:col-span-3 space-y-4">
+            {/* Mode toggle */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="flex items-center justify-between"
+            >
+              <div className="flex items-center gap-0 jester-border p-0.5">
+                <button
+                  onClick={() => setPeriod("alltime")}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold transition-colors ${
+                    period === "alltime"
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <Trophy size={11} />
+                  HALL OF SHAME
+                </button>
+                <button
+                  onClick={() => setPeriod("week")}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold transition-colors ${
+                    period === "week"
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <Clock size={11} />
+                  RECENT CLOWNERY
+                </button>
+              </div>
+
+              {/* Live indicator */}
+              <div className="flex items-center gap-2">
+                <motion.div
+                  className="relative"
+                  animate={isConnected ? { scale: [1, 1.2, 1] } : {}}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <div
+                    className="w-2 h-2 rounded-full"
+                    style={{
+                      backgroundColor: isConnected
+                        ? "oklch(0.75 0.25 140)"
+                        : "oklch(0.65 0.22 25)",
+                    }}
+                  />
+                  {isConnected && (
+                    <motion.div
+                      className="absolute inset-0 rounded-full"
+                      style={{ backgroundColor: "oklch(0.75 0.25 140)" }}
+                      animate={{ scale: [1, 2], opacity: [0.5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    />
+                  )}
+                </motion.div>
+                <span
+                  className="text-[10px] uppercase tracking-wider font-medium"
+                  style={{
+                    color: isConnected
+                      ? "oklch(0.75 0.25 140)"
+                      : "oklch(0.65 0.22 25)",
+                  }}
+                >
+                  {isConnected ? "Live" : "Offline"}
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Live leaderboard */}
+            <LiveLeaderboard
+              entries={entries}
+              animatingRanks={animatingRanks}
+              myVotes={myVotes}
+              onVote={handleVote}
+              isLoading={isLoading}
+            />
+          </div>
+
+          {/* Sidebar - takes 1 column on large screens */}
+          <div className="lg:col-span-1 space-y-4">
+            {/* Vote streak panel (only when authenticated) */}
+            {isAuthenticated && (
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                <VoteStreakPanel streak={streak} />
+              </motion.div>
+            )}
+
+            {/* Submit CTA */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4 }}
+              className="jester-border p-4 text-center bg-card"
+            >
+              <p className="text-xs text-muted-foreground mb-3">
+                Know a lolcow or jester who deserves a spot?
+              </p>
+              {isAuthenticated ? (
+                <Link href="/submit">
+                  <motion.span
+                    className="inline-block px-4 py-2 text-xs font-bold bg-primary text-primary-foreground hover:bg-primary/80 transition-colors cursor-pointer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    + SUBMIT A NOMINEE
+                  </motion.span>
+                </Link>
+              ) : (
+                <motion.a
+                  href={getLegacyLoginUrl()}
+                  className="inline-block px-4 py-2 text-xs font-bold bg-primary text-primary-foreground hover:bg-primary/80 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  LOGIN TO SUBMIT
+                </motion.a>
+              )}
+            </motion.div>
+
+            {/* About card */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5 }}
+              className="jester-border-subtle p-4 bg-card"
+            >
+              <h3
+                className="text-xs font-black uppercase tracking-wider mb-2"
+                style={{ fontFamily: "'Orbitron', monospace", color: "oklch(0.75 0.25 140)" }}
+              >
+                About TopJester
+              </h3>
+              <p className="text-[10px] text-muted-foreground leading-relaxed">
+                A community-driven ranking of the most entertaining streamers.
+                Vote for your favorite lolcows and jesters. Updated in real-time.
+              </p>
+            </motion.div>
+          </div>
         </div>
 
         {/* Footer */}
-        <div className="mt-8 text-center text-[10px] text-muted-foreground border-t border-border pt-4">
-          JesterVote — Community Rankings &bull; Login with Kick to vote
-        </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="mt-8 text-center text-[10px] text-muted-foreground border-t border-border pt-4"
+        >
+          TopJester — Community Rankings • Login with Kick to vote • Real-time updates
+        </motion.div>
       </main>
+
+      {/* Connection status indicator */}
+      <ConnectionStatus
+        isConnected={isConnected}
+        lastUpdate={lastUpdate}
+        onReconnect={() => window.location.reload()}
+      />
     </div>
   );
 }

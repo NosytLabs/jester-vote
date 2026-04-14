@@ -157,3 +157,56 @@ export const externalLinks = mysqlTable(
 
 export type ExternalLink = typeof externalLinks.$inferSelect;
 export type InsertExternalLink = typeof externalLinks.$inferInsert;
+
+/* Tweet URLs for nominees */
+export const nomineeTweets = mysqlTable(
+  "nomineeTweets",
+  {
+    id: int("id").autoincrement().primaryKey(),
+    nomineeId: int("nomineeId").notNull(),
+    tweetUrl: text("tweetUrl").notNull(), /* Twitter/X URL */
+    tweetId: varchar("tweetId", { length: 64 }), /* Extracted tweet ID */
+    description: text("description"), /* Optional description of the tweet */
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+  },
+  (t) => [index("idx_tweets_nominee").on(t.nomineeId)]
+);
+
+export type NomineeTweet = typeof nomineeTweets.$inferSelect;
+export type InsertNomineeTweet = typeof nomineeTweets.$inferInsert;
+
+/* Reddit post URLs for nominees */
+export const nomineeRedditPosts = mysqlTable(
+  "nomineeRedditPosts",
+  {
+    id: int("id").autoincrement().primaryKey(),
+    nomineeId: int("nomineeId").notNull(),
+    postUrl: text("postUrl").notNull(), /* Reddit post URL */
+    subreddit: varchar("subreddit", { length: 128 }), /* Extracted subreddit */
+    postId: varchar("postId", { length: 64 }), /* Extracted post ID */
+    description: text("description"), /* Optional description */
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+  },
+  (t) => [index("idx_reddit_nominee").on(t.nomineeId)]
+);
+
+export type NomineeRedditPost = typeof nomineeRedditPosts.$inferSelect;
+export type InsertNomineeRedditPost = typeof nomineeRedditPosts.$inferInsert;
+
+/* Kick clip URLs for nominees */
+export const nomineeKickClips = mysqlTable(
+  "nomineeKickClips",
+  {
+    id: int("id").autoincrement().primaryKey(),
+    nomineeId: int("nomineeId").notNull(),
+    clipUrl: text("clipUrl").notNull(), /* Kick clip URL */
+    clipId: varchar("clipId", { length: 128 }), /* Extracted clip ID */
+    channelName: varchar("channelName", { length: 128 }), /* Channel name */
+    description: text("description"), /* Optional description */
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+  },
+  (t) => [index("idx_kickclips_nominee").on(t.nomineeId)]
+);
+
+export type NomineeKickClip = typeof nomineeKickClips.$inferSelect;
+export type InsertNomineeKickClip = typeof nomineeKickClips.$inferInsert;

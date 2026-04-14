@@ -89,6 +89,36 @@ export async function listPendingNominees() {
   return db.select().from(nominees).where(eq(nominees.status, "pending")).orderBy(desc(nominees.createdAt));
 }
 
+/** Check for duplicate nominees by name (case-insensitive) */
+export async function findNomineeByName(name: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db
+    .select()
+    .from(nominees)
+    .where(sql`LOWER(${nominees.name}) = LOWER(${name})`)
+    .limit(1);
+  return result[0] ?? undefined;
+}
+
+/** Get user's nomination submissions */
+export async function getUserNominations(userId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select({
+      id: nominees.id,
+      name: nominees.name,
+      description: nominees.description,
+      imageUrl: nominees.imageUrl,
+      status: nominees.status,
+      createdAt: nominees.createdAt,
+    })
+    .from(nominees)
+    .where(eq(nominees.submittedByUserId, userId))
+    .orderBy(desc(nominees.createdAt));
+}
+
 // ─── Votes ────────────────────────────────────────────────────────────────────
 
 /** Returns the current ISO week key, e.g. "2025-W15" */
@@ -163,6 +193,29 @@ export async function castVote(data: InsertVote) {
     .insert(votes)
     .values(data)
     .onDuplicateKeyUpdate({ set: { voteType: data.voteType, weekKey: data.weekKey } });
+
+  // Broadcast real-time update
+  try {
+    const { broadcastVoteUpdate } = await import("./_core/index");
+    // Get updated vote totals for this nominee
+    const [nomineeVotes] = await db
+      .select({
+        upvotes: sql<number>`SUM(CASE WHEN ${votes.voteType} = 'up' THEN 1 ELSE 0 END)`,
+        downvotes: sql<number>`SUM(CASE WHEN ${votes.voteType} = 'down' THEN 1 ELSE 0 END)`,
+      })
+      .from(votes)
+      .where(eq(votes.nomineeId, data.nomineeId));
+
+    broadcastVoteUpdate({
+      nomineeId: data.nomineeId,
+      upvotes: Number(nomineeVotes?.upvotes) || 0,
+      downvotes: Number(nomineeVotes?.downvotes) || 0,
+      score: (Number(nomineeVotes?.upvotes) || 0) - (Number(nomineeVotes?.downvotes) || 0),
+    });
+  } catch (error) {
+    // Don't fail the vote if broadcast fails
+    console.warn("[SSE] Failed to broadcast vote update:", error);
+  }
 }
 
 /** Get weekly vote history for a nominee (last 8 weeks) */

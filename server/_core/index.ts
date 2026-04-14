@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express from "express";
+import cookieParser from "cookie-parser";
 import { createServer } from "http";
 import net from "net";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
@@ -7,9 +8,71 @@ import { registerOAuthRoutes } from "./oauth";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
+import { getVoteTotals } from "../db";
+
+// SSE clients store
+interface SSEClient {
+  id: string;
+  res: express.Response;
+  lastPing: number;
+}
+
+const sseClients = new Map<string, SSEClient>();
+
+// Generate unique client ID
+function generateClientId(): string {
+  return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+}
+
+// Broadcast vote update to all connected clients
+export function broadcastVoteUpdate(update: {
+  nomineeId: number;
+  upvotes: number;
+  downvotes: number;
+  score: number;
+}) {
+  const message = JSON.stringify(update);
+  const deadClients: string[] = [];
+
+  sseClients.forEach((client, id) => {
+    try {
+      client.res.write(`data: ${message}\n\n`);
+    } catch (error) {
+      deadClients.push(id);
+    }
+  });
+
+  // Clean up dead clients
+  deadClients.forEach((id) => sseClients.delete(id));
+}
+
+// Clean up stale clients periodically
+setInterval(() => {
+  const now = Date.now();
+  const staleTimeout = 60000; // 60 seconds
+  const deadClients: string[] = [];
+
+  sseClients.forEach((client, id) => {
+    if (now - client.lastPing > staleTimeout) {
+      deadClients.push(id);
+    }
+  });
+
+  deadClients.forEach((id) => {
+    const client = sseClients.get(id);
+    if (client) {
+      try {
+        client.res.end();
+      } catch {
+        // Ignore errors during cleanup
+      }
+    }
+    sseClients.delete(id);
+  });
+}, 30000); // Run every 30 seconds
 
 function isPortAvailable(port: number): Promise<boolean> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const server = net.createServer();
     server.listen(port, () => {
       server.close(() => resolve(true));
@@ -30,11 +93,84 @@ async function findAvailablePort(startPort: number = 3000): Promise<number> {
 async function startServer() {
   const app = express();
   const server = createServer(app);
+
+  // Cookie parser for OAuth state management
+  app.use(cookieParser());
+
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
+
   // OAuth callback under /api/oauth/callback
   registerOAuthRoutes(app);
+
+  // SSE endpoint for real-time vote updates
+  app.get("/api/votes/stream", (req, res) => {
+    // Set headers for SSE
+    res.writeHead(200, {
+      "Content-Type": "text/event-stream",
+      "Cache-Control": "no-cache",
+      Connection: "keep-alive",
+      "X-Accel-Buffering": "no", // Disable nginx buffering
+    });
+
+    // Send initial connection message
+    const clientId = generateClientId();
+    res.write(`data: ${JSON.stringify({ type: "connected", clientId })}\n\n`);
+
+    // Add client to store
+    const client: SSEClient = {
+      id: clientId,
+      res,
+      lastPing: Date.now(),
+    };
+    sseClients.set(clientId, client);
+
+    // Send current leaderboard data
+    getVoteTotals()
+      .then((nominees) => {
+        const leaderboardData = nominees.map((n) => ({
+          nomineeId: n.nomineeId,
+          upvotes: n.upvotes,
+          downvotes: n.downvotes,
+          score: n.score,
+        }));
+        res.write(
+          `data: ${JSON.stringify({ type: "leaderboard", data: leaderboardData })}\n\n`
+        );
+      })
+      .catch((err) => {
+        console.error("[SSE] Error fetching initial leaderboard:", err);
+      });
+
+    // Handle client disconnect
+    req.on("close", () => {
+      sseClients.delete(clientId);
+    });
+
+    // Handle errors
+    req.on("error", () => {
+      sseClients.delete(clientId);
+    });
+
+    // Send ping every 30 seconds to keep connection alive
+    const pingInterval = setInterval(() => {
+      try {
+        res.write(`:ping\n\n`);
+        client.lastPing = Date.now();
+      } catch {
+        clearInterval(pingInterval);
+        sseClients.delete(clientId);
+      }
+    }, 30000);
+
+    // Clean up on close
+    res.on("close", () => {
+      clearInterval(pingInterval);
+      sseClients.delete(clientId);
+    });
+  });
+
   // tRPC API
   app.use(
     "/api/trpc",
@@ -43,6 +179,7 @@ async function startServer() {
       createContext,
     })
   );
+
   // development mode uses Vite, production mode uses static files
   if (process.env.NODE_ENV === "development") {
     await setupVite(app, server);
@@ -59,6 +196,7 @@ async function startServer() {
 
   server.listen(port, () => {
     console.log(`Server running on http://localhost:${port}/`);
+    console.log(`SSE endpoint available at http://localhost:${port}/api/votes/stream`);
   });
 }
 

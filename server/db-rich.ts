@@ -1,7 +1,7 @@
 import { eq, desc } from "drizzle-orm";
 import { getDb } from "./db";
-import { notableMoments, controversies, newsItems, externalLinks } from "../drizzle/schema";
-import type { InsertNotableMoment, InsertControversy, InsertNewsItem, InsertExternalLink } from "../drizzle/schema";
+import { notableMoments, controversies, newsItems, externalLinks, nomineeTweets, nomineeRedditPosts, nomineeKickClips } from "../drizzle/schema";
+import type { InsertNotableMoment, InsertControversy, InsertNewsItem, InsertExternalLink, InsertNomineeTweet, InsertNomineeRedditPost, InsertNomineeKickClip } from "../drizzle/schema";
 
 // ─── Notable Moments ───────────────────────────────────────────────────────────
 
@@ -70,6 +70,62 @@ export async function insertExternalLink(data: InsertExternalLink) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   await db.insert(externalLinks).values(data);
+}
+
+// ─── Seed rich data ───────────────────────────────────────────────────────────
+
+// ─── Tweets ────────────────────────────────────────────────────────────────
+
+export async function listNomineeTweets(nomineeId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select()
+    .from(nomineeTweets)
+    .where(eq(nomineeTweets.nomineeId, nomineeId))
+    .orderBy(desc(nomineeTweets.createdAt));
+}
+
+export async function insertNomineeTweet(data: InsertNomineeTweet) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.insert(nomineeTweets).values(data);
+}
+
+// ─── Reddit Posts ────────────────────────────────────────────────────────────
+
+export async function listNomineeRedditPosts(nomineeId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select()
+    .from(nomineeRedditPosts)
+    .where(eq(nomineeRedditPosts.nomineeId, nomineeId))
+    .orderBy(desc(nomineeRedditPosts.createdAt));
+}
+
+export async function insertNomineeRedditPost(data: InsertNomineeRedditPost) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.insert(nomineeRedditPosts).values(data);
+}
+
+// ─── Kick Clips ──────────────────────────────────────────────────────────────
+
+export async function listNomineeKickClips(nomineeId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select()
+    .from(nomineeKickClips)
+    .where(eq(nomineeKickClips.nomineeId, nomineeId))
+    .orderBy(desc(nomineeKickClips.createdAt));
+}
+
+export async function insertNomineeKickClip(data: InsertNomineeKickClip) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.insert(nomineeKickClips).values(data);
 }
 
 // ─── Seed rich data ───────────────────────────────────────────────────────────
