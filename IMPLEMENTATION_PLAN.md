@@ -1,63 +1,32 @@
-# TopJester Implementation Plan - Ralph Mode
+# Ralph Mode: Fix All TopJester Issues
 
-## Project Goal
-Make TopJester an excellent, unique, fully-functional site with:
-- High audit scores (90+)
-- Unique jester/court personality
-- Real streamer data and images
-- Smooth user experience
+## Current Status (2026-04-14)
+- Server running but port keeps changing
+- OAuth fails due to port mismatches
+- 5 commits ahead of origin/main (unpushed)
+- UI/UX redesigned but needs validation
+- Cloudflare tunnel inactive
+- GitHub auth failing
 
 ## In Progress
-- [ ] Initial site audit with squirrel
+- [ ] Stabilize server on fixed port (3013)
+- [ ] Fix OAuth redirect URL matching
+- [ ] Push commits to GitHub
+- [ ] Validate UI/UX works correctly
+- [ ] Test complete login flow
 
 ## Backlog
-### Phase 1: Audit & Critical Fixes
-- [ ] Run squirrel audit on localhost:3001
-- [ ] Fix all critical SEO issues
-- [ ] Fix all broken links
-- [ ] Fix accessibility issues
-- [ ] Fix performance issues
-
-### Phase 2: UI/UX Enhancements
-- [ ] Add real streamer images (replace Imgur placeholders)
-- [ ] Enhance jester animations and interactions
-- [ ] Improve mobile responsiveness
-- [ ] Add easter eggs and fun surprises
-- [ ] Enhance baseball card flip animations
-
-### Phase 3: Content & Data
-- [ ] Verify and update all streamer social links
-- [ ] Add more Ice Poseidon crew members
-- [ ] Create compelling streamer bios
-- [ ] Add real controversy data with sources
-
-### Phase 4: Polish
-- [ ] Optimize images and assets
-- [ ] Add loading states and skeletons
-- [ ] Improve error handling
-- [ ] Add analytics tracking
-- [ ] Final audit to verify 90+ score
+- [ ] Fix Cloudflare tunnel
+- [ ] Update GitHub token
+- [ ] Add more streamers to database
+- [ ] Test admin features
+- [ ] Run full test suite
 
 ## Acceptance Criteria
-- [ ] Squirrel audit score 90+ (Grade A)
-- [ ] All pages load < 2 seconds
-- [ ] Mobile-friendly (responsive)
-- [ ] No broken links
-- [ ] Real images for all streamers
-- [ ] Unique, memorable UI
-- [ ] Smooth animations
-
-## Commands
-```bash
-# Dev server
-npm run dev
-
-# Build
-npm run build
-
-# Type check
-npx tsc --noEmit
-
-# Lint
-npm run lint
-```
+- [ ] Server runs consistently on port 3013
+- [ ] Kick OAuth login works end-to-end
+- [ ] All 5 commits pushed to GitHub
+- [ ] UI/UX renders correctly (jester theme)
+- [ ] Admin can login and manage nominees
+- [ ] No TypeScript errors
+- [ ] No console errors in browser

@@ -1,40 +1,33 @@
-# TopJester Operations Guide
+# TopJester Project Operations
 
-## Project Structure
-- `/client` - React frontend (Vite + React + TypeScript)
-- `/server` - Express backend with tRPC
-- `/shared` - Shared types and schemas
-
-## Commands
+## Build Commands
 ```bash
-# Development
-npm run dev          # Starts both client and server
-
-# Production build
-npm run build        # Build for production
-
-# Validation
-npx tsc --noEmit     # TypeScript type check
-npm run lint         # ESLint (if configured)
+npm run dev      # Development server (port auto-detects)
+npm run build    # Production build
+npm start        # Start production server
 ```
 
-## Key Files
-- `client/src/pages/Home.tsx` - Main page
-- `client/src/components/` - React components
-- `client/src/index.css` - Styles and jester theme
-- `server/seed-rich-data.ts` - Streamer data
-
-## Audit
+## Validation
 ```bash
-# Run squirrel audit
-squirrel audit http://localhost:3001 --format llm
-
-# Generate report
-squirrel report <audit-id> --format llm
+npm run typecheck    # TypeScript check
+npm run lint         # ESLint
+npm run test         # Run tests (if available)
 ```
 
-## Notes
-- Local server runs on port 3001
-- Uses SQLite for local development
-- Real-time updates via SSE
-- Kick OAuth for authentication
+## Database
+- SQLite: `local.db` (auto-created on first use)
+- Schema managed by Drizzle
+
+## OAuth Configuration
+- Kick OAuth configured in `.env`
+- Callback: `/api/oauth/callback`
+- Dev login: `/api/oauth/dev-login`
+
+## Ports
+- Preferred: 3013 (matches Kick app)
+- Fallback: auto-detects if 3013 busy
+
+## Operational Notes
+- Server must match Kick app redirect URL exactly
+- OAuth codes expire after ~10 minutes
+- Admin set via OWNER_OPEN_ID in .env
