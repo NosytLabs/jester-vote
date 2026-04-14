@@ -37,7 +37,7 @@ export default function NomineePage() {
     { id },
     { enabled: !!id }
   );
-  
+
   // Extract nominee and vote history from response
   const nominee = nomineeData;
   const voteHistory = nomineeData?.voteHistory || [];
@@ -122,11 +122,7 @@ export default function NomineePage() {
 
   const myVote = myVotes?.[id] || userVote;
   const calculatedScore = score;
-  const voteHistory = nominee?.voteHistory || [];
 
-  // Calculate rank change if we have previous data
-  const rankChange: "up" | "down" | "same" = "same";
-  
   // Get platform from nominee name or default
   const getPlatform = (name: string): string => {
     const kickStreamers = ["Adin Ross", "TrainwrecksTV", "xQc", "N3on", "Nickmercs", "BruceDropEmOff"];
@@ -218,14 +214,14 @@ export default function NomineePage() {
               >
                 {nominee.name}
               </motion.h1>
-              
+
               {/* Platform Badge */}
               <div className="flex items-center gap-2 mb-3">
-                <span 
+                <span
                   className="px-2 py-1 text-xs font-bold uppercase rounded"
                   style={{
-                    background: getPlatform(nominee.name) === "kick" 
-                      ? "#53FC18" 
+                    background: getPlatform(nominee.name) === "kick"
+                      ? "#53FC18"
                       : getPlatform(nominee.name) === "youtube"
                       ? "#FF0000"
                       : "#9146FF",
