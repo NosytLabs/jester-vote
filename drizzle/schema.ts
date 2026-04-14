@@ -42,7 +42,10 @@ export const nominees = mysqlTable(
     createdAt: timestamp("createdAt").defaultNow().notNull(),
     updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
   },
-  (t) => [index("idx_nominees_status").on(t.status)]
+  (t) => [
+    index("idx_nominees_status").on(t.status),
+    index("idx_nominees_submitted_by").on(t.submittedByUserId),
+  ]
 );
 
 export type Nominee = typeof nominees.$inferSelect;
@@ -61,6 +64,7 @@ export const votes = mysqlTable(
   },
   (t) => [
     index("idx_votes_nominee").on(t.nomineeId),
+    index("idx_votes_user").on(t.userId),
     // Unique constraint enforces one vote per user per nominee at DB level
     uniqueIndex("uniq_votes_user_nominee").on(t.userId, t.nomineeId),
     index("idx_votes_weekkey").on(t.weekKey),

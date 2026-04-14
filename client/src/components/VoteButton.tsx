@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { ThumbsUp, ThumbsDown, Sparkles, Flame } from "lucide-react";
-import { useState, useCallback } from "react";
+import { useState, useCallback, memo } from "react";
 
 interface VoteButtonProps {
   type: "up" | "down";
@@ -246,7 +246,7 @@ interface VoteButtonPairProps {
   animationType?: "up" | "down" | null;
 }
 
-export function VoteButtonPair({
+export const VoteButtonPair = memo(function VoteButtonPair({
   upvotes,
   downvotes,
   userVote,
@@ -292,7 +292,7 @@ interface LargeVoteButtonsProps {
   animationType?: "up" | "down" | null;
 }
 
-export function LargeVoteButtons({
+export const LargeVoteButtons = memo(function LargeVoteButtons({
   upvotes,
   downvotes,
   score,

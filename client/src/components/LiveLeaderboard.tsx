@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import { ChevronRight, TrendingUp, TrendingDown, Minus, Crown, Trophy, Medal, Award } from "lucide-react";
+import { memo } from "react";
 import { VoteButtonPair, VoteButton } from "./VoteButton";
 import type { LeaderboardEntry } from "@/hooks";
 
@@ -307,7 +308,7 @@ function EmptyState() {
 }
 
 // Main leaderboard component
-export function LiveLeaderboard({
+export const LiveLeaderboard = memo(function LiveLeaderboard({
   entries,
   animatingRanks,
   myVotes,
@@ -340,7 +341,7 @@ export function LiveLeaderboard({
 }
 
 // Compact leaderboard for sidebars/mobile
-export function CompactLeaderboard({
+export const CompactLeaderboard = memo(function CompactLeaderboard({
   entries,
   animatingRanks,
   myVotes,
