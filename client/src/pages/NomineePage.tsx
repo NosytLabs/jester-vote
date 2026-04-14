@@ -50,8 +50,8 @@ export default function NomineePage() {
 
   // Animated vote state with optimistic updates
   // Get initial vote counts from the nominee data or default to 0
-  const initialUpvotes = nomineeData?.upvotes || 0;
-  const initialDownvotes = nomineeData?.downvotes || 0;
+  const initialUpvotes = (nomineeData as any)?.upvotes || 0;
+  const initialDownvotes = (nomineeData as any)?.downvotes || 0;
 
   const {
     upvotes,
