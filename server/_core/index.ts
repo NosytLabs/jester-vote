@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cookieParser from "cookie-parser";
+import compression from "compression";
 import { createServer } from "http";
 import net from "net";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
@@ -93,6 +94,39 @@ async function findAvailablePort(startPort: number = 3000): Promise<number> {
 async function startServer() {
   const app = express();
   const server = createServer(app);
+
+  // Security Headers
+  app.use((req, res, next) => {
+    // Content Security Policy
+    res.setHeader(
+      "Content-Security-Policy",
+      "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' ws: wss: http: https:; media-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
+    );
+    // X-Frame-Options (Clickjacking protection)
+    res.setHeader("X-Frame-Options", "DENY");
+    // X-Content-Type-Options (MIME sniffing protection)
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    // Referrer Policy
+    res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+    // Permissions Policy
+    res.setHeader(
+      "Permissions-Policy",
+      "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    );
+    // X-XSS-Protection (legacy but still useful)
+    res.setHeader("X-XSS-Protection", "1; mode=block");
+    // Strict-Transport-Security (HSTS) - only in production
+    if (process.env.NODE_ENV === "production") {
+      res.setHeader(
+        "Strict-Transport-Security",
+        "max-age=31536000; includeSubDomains; preload"
+      );
+    }
+    next();
+  });
+
+  // Compression middleware for better performance
+  app.use(compression());
 
   // Cookie parser for OAuth state management
   app.use(cookieParser());
