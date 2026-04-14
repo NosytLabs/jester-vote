@@ -246,11 +246,11 @@ export default function NomineePage() {
 
               {!isAuthenticated && (
                 <motion.a
-                  href={getLoginUrl()}
+                  href={getLegacyLoginUrl()}
                   className="inline-block mt-3 text-xs text-muted-foreground hover:text-[oklch(0.75_0.25_140)] transition-colors"
                   whileHover={{ x: 2 }}
                 >
-                  Login with Kick to vote and track your stats →
+                  Login to vote and track your stats →
                 </motion.a>
               )}
             </motion.div>
@@ -429,10 +429,10 @@ export default function NomineePage() {
           ) : (
             <div className="mb-4 text-xs text-muted-foreground">
               <a
-                href={getLoginUrl()}
+                href={getLegacyLoginUrl()}
                 className="text-[oklch(0.75_0.25_140)] hover:underline transition-colors"
               >
-                Login with Kick
+                Login
               </a>{" "}
               to leave a reaction.
             </div>

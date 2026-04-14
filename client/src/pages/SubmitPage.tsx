@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
 import { useAuth } from "@/_core/hooks/useAuth";
-import { getLoginUrl } from "@/const";
+import { getLegacyLoginUrl } from "@/const";
 import { toast } from "sonner";
 import Header from "@/components/Header";
 import NominationForm from "@/components/NominationForm";
@@ -36,13 +36,13 @@ export default function SubmitPage() {
           <div className="jester-border p-8 text-center">
             <div className="text-4xl mb-4">🔒</div>
             <p className="text-sm text-muted-foreground mb-4">
-              Gotta log in with Kick first if you want to nominate someone.
+              Gotta log in first if you want to nominate someone.
             </p>
             <a
-              href={getLoginUrl()}
+              href={getLegacyLoginUrl()}
               className="inline-block px-4 py-2 text-xs font-bold bg-primary text-primary-foreground hover:bg-primary/80 transition-colors"
             >
-              LOGIN WITH KICK
+              LOGIN
             </a>
           </div>
         </main>
