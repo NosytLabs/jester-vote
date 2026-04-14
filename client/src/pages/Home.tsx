@@ -57,14 +57,24 @@ export default function Home() {
       <Header />
 
       <main role="main" className="container py-4 sm:py-6">
-        {/* Page title */}
+        {/* Page title - Medieval Court Theme */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-6 text-center"
         >
+          {/* Royal banner */}
+          <div className="court-banner py-2 mb-4 mx-auto max-w-lg rounded-lg">
+            <motion.div
+              animate={{ rotate: [0, 2, -2, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <span className="text-2xl">👑</span>
+            </motion.div>
+          </div>
+          
           <h1
-            className="text-2xl sm:text-3xl font-black tracking-widest"
+            className="text-2xl sm:text-4xl font-black tracking-widest jester-hat"
             style={{
               fontFamily: "'Orbitron', monospace",
               color: "oklch(0.75 0.25 140)",
@@ -73,24 +83,40 @@ export default function Home() {
           >
             THE COURT OF FOOLS
           </h1>
-          <p className="text-xs sm:text-sm text-muted-foreground mt-2 max-w-md mx-auto">
-            Who's the biggest clown in streaming? You decide. Log in with Kick to cast your vote.
-          </p>
+          
+          <motion.p 
+            className="text-xs sm:text-sm text-muted-foreground mt-3 max-w-md mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            <span className="text-[oklch(0.75_0.25_140)]">🎭</span> Who's the biggest clown in streaming? <span className="text-[oklch(0.75_0.25_140)]">🤡</span><br/>
+            Cast your vote in the Royal Court of Chaos! <span className="text-[oklch(0.85_0.18_85)]">👑</span>
+          </motion.p>
+          
+          {/* Funny tagline rotation */}
+          <motion.div
+            className="mt-2 text-[10px] text-[oklch(0.65_0.22_300)] italic"
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 3, repeat: Infinity }}
+          >
+            "Where the lolcows roam and the jesters get crowned"
+          </motion.div>
         </motion.div>
 
-        {/* Stats bar */}
+        {/* Stats bar - Royal Court Stats */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
           className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6"
         >
-          <div className="jester-border-subtle bg-card p-3 flex items-center gap-3">
+          <div className="jester-border-subtle bg-card p-3 flex items-center gap-3 hover-laugh">
             <div
               className="w-10 h-10 flex items-center justify-center rounded-lg"
               style={{ background: "oklch(0.75 0.25 140 / 0.2)" }}
             >
-              <Users size={18} style={{ color: "oklch(0.75 0.25 140)" }} />
+              <span className="text-xl">🎭</span>
             </div>
             <div>
               <div
@@ -100,17 +126,17 @@ export default function Home() {
                 {entries.length}
               </div>
               <div className="text-[10px] text-muted-foreground uppercase tracking-wider">
-                Nominees
+                Court Jesters
               </div>
             </div>
           </div>
 
-          <div className="jester-border-subtle bg-card p-3 flex items-center gap-3">
+          <div className="jester-border-subtle bg-card p-3 flex items-center gap-3 hover-laugh">
             <div
               className="w-10 h-10 flex items-center justify-center rounded-lg"
               style={{ background: "oklch(0.85 0.18 85 / 0.2)" }}
             >
-              <TrendingUp size={18} style={{ color: "oklch(0.85 0.18 85)" }} />
+              <span className="text-xl">🤡</span>
             </div>
             <div>
               <div
@@ -120,29 +146,29 @@ export default function Home() {
                 Live
               </div>
               <div className="text-[10px] text-muted-foreground uppercase tracking-wider">
-                Updates
+                Clownery
               </div>
             </div>
           </div>
 
-          <div className="jester-border-subtle bg-card p-3 flex items-center gap-3 sm:col-span-2">
+          <div className="jester-border-subtle bg-card p-3 flex items-center gap-3 sm:col-span-2 hover-laugh">
             <div
               className="w-10 h-10 flex items-center justify-center rounded-lg"
               style={{ background: "oklch(0.65 0.22 25 / 0.2)" }}
             >
-              <Trophy size={18} style={{ color: "oklch(0.65 0.22 25)" }} />
+              <span className="text-xl">👑</span>
             </div>
             <div className="flex-1">
               <div
                 className="text-sm font-bold truncate"
                 style={{ fontFamily: "'Orbitron', monospace", color: "oklch(0.92 0 0)" }}
               >
-                {isAuthenticated ? streak.rank : "Login to track stats"}
+                {isAuthenticated ? streak.rank : "Join the Royal Court"}
               </div>
               <div className="text-[10px] text-muted-foreground uppercase tracking-wider">
                 {isAuthenticated
-                  ? `${streak.totalVotes} votes cast`
-                  : "Join the leaderboard"}
+                  ? `${streak.totalVotes} royal decrees cast`
+                  : "Login to crown fools"}
               </div>
             </div>
           </div>
@@ -162,25 +188,25 @@ export default function Home() {
               <div className="flex items-center gap-0 jester-border p-0.5">
                 <button
                   onClick={() => setPeriod("alltime")}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold transition-colors ${
+                  className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold transition-colors honk-btn ${
                     period === "alltime"
                       ? "bg-primary text-primary-foreground"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  <Trophy size={11} />
+                  <span>🏛️</span>
                   HALL OF SHAME
                 </button>
                 <button
                   onClick={() => setPeriod("week")}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold transition-colors ${
+                  className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold transition-colors honk-btn ${
                     period === "week"
                       ? "bg-primary text-primary-foreground"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  <Clock size={11} />
-                  RECENT CLOWNERY
+                  <span>🎪</span>
+                  WEEKLY CLOWNERY
                 </button>
               </div>
 
@@ -244,67 +270,90 @@ export default function Home() {
               </motion.div>
             )}
 
-            {/* Submit CTA */}
+            {/* Submit CTA - Royal Nominations */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4 }}
               className="jester-border p-4 text-center bg-card"
             >
-              <p className="text-xs text-muted-foreground mb-3">
-                Know a lolcow or jester who deserves a spot?
+              <p className="text-xs text-muted-foreground mb-2">
+                <span className="text-[oklch(0.75_0.25_140)]">🎪</span> Spotted a worthy fool?
+              </p>
+              <p className="text-[10px] text-muted-foreground mb-3 italic">
+                "The Court is always seeking new entertainers..."
               </p>
               {isAuthenticated ? (
                 <Link href="/submit">
                   <motion.span
-                    className="inline-block px-4 py-2 text-xs font-bold bg-primary text-primary-foreground hover:bg-primary/80 transition-colors cursor-pointer"
+                    className="inline-block px-4 py-2 text-xs font-bold bg-primary text-primary-foreground hover:bg-primary/80 transition-colors cursor-pointer honk-btn"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    + SUBMIT A NOMINEE
+                    <span className="mr-1">👑</span> NOMINATE A JESTER
                   </motion.span>
                 </Link>
               ) : (
                 <motion.a
                   href={getLegacyLoginUrl()}
-                  className="inline-block px-4 py-2 text-xs font-bold bg-primary text-primary-foreground hover:bg-primary/80 transition-colors"
+                  className="inline-block px-4 py-2 text-xs font-bold bg-primary text-primary-foreground hover:bg-primary/80 transition-colors honk-btn"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  LOGIN TO SUBMIT
+                  <span className="mr-1">🎭</span> LOGIN TO THE COURT
                 </motion.a>
               )}
             </motion.div>
 
-            {/* About card */}
+            {/* About card - Royal Decree */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.5 }}
-              className="jester-border-subtle p-4 bg-card"
+              className="jester-border-subtle p-4 bg-card court-banner"
             >
               <h3
-                className="text-xs font-black uppercase tracking-wider mb-2"
+                className="text-xs font-black uppercase tracking-wider mb-2 flex items-center gap-1"
                 style={{ fontFamily: "'Orbitron', monospace", color: "oklch(0.75 0.25 140)" }}
               >
-                About TopJester
+                <span>📜</span> Royal Decree
               </h3>
               <p className="text-[10px] text-muted-foreground leading-relaxed">
-                A community-driven ranking of the most entertaining streamers.
-                Vote for your favorite lolcows and jesters. Updated in real-time.
+                By order of the Court of Fools, all lolcows, jesters, and clowns 
+                shall be ranked by popular vote. Long live the chaos! 
+                <span className="text-[oklch(0.75_0.25_140)]">🎭🤡👑</span>
               </p>
+              <div className="mt-2 pt-2 border-t border-[oklch(0.22_0_0)] text-[9px] text-[oklch(0.55_0.22_300)] italic">
+                "In clownery we trust, in drama we delight"
+              </div>
             </motion.div>
           </div>
         </div>
 
-        {/* Footer */}
+        {/* Footer - Royal Court Footer */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
           className="mt-8 text-center text-[10px] text-muted-foreground border-t border-border pt-4"
         >
-          TopJester — Community Rankings • Login with Kick to vote • Real-time updates
+          <div className="flex items-center justify-center gap-2 mb-1">
+            <span>🎭</span>
+            <span className="text-[oklch(0.75_0.25_140)]">TopJester</span>
+            <span>👑</span>
+            <span className="text-[oklch(0.85_0.18_85)]">Court of Fools</span>
+            <span>🤡</span>
+          </div>
+          <div className="text-[9px] opacity-60">
+            Community Rankings • Login with Kick to cast royal decrees • Real-time clownery
+          </div>
+          <motion.div 
+            className="mt-2 text-[8px] text-[oklch(0.55_0.22_300)]"
+            animate={{ opacity: [0.4, 0.8, 0.4] }}
+            transition={{ duration: 4, repeat: Infinity }}
+          >
+            "May the best clown win" 🏆
+          </motion.div>
         </motion.div>
       </main>
 

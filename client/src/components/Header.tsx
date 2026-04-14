@@ -1,6 +1,7 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Link, useLocation } from "wouter";
 import { LogOut, Shield, PlusCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Header() {
   const { user, isAuthenticated, logout } = useAuth();
@@ -11,36 +12,39 @@ export default function Header() {
     <header className="header-bg sticky top-0 z-50">
       <div className="container py-3">
         <div className="flex items-center justify-between gap-4">
-          {/* Logo */}
+          {/* Logo - Royal Court Badge */}
           <Link href="/">
-            <span
-              className="text-xl font-black tracking-widest cursor-pointer select-none"
+            <motion.span
+              className="text-xl font-black tracking-widest cursor-pointer select-none flex items-center gap-1"
               style={{ fontFamily: "'Orbitron', monospace", color: "oklch(0.92 0 0)", textShadow: "0 0 20px oklch(0.75 0.25 140 / 0.6), 0 0 40px oklch(0.55 0.22 300 / 0.4)" }}
+              whileHover={{ scale: 1.02 }}
+              animate={{ rotate: [0, 1, -1, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             >
+              <span className="text-[oklch(0.85_0.18_85)]">👑</span>
               [TOP<span style={{ color: "oklch(0.75 0.25 140)" }}>JESTER</span>]
-            </span>
+              <span className="text-[oklch(0.85_0.18_85)]">🎭</span>
+            </motion.span>
           </Link>
 
-          {/* Nav */}
+          {/* Nav - Royal Court Navigation */}
           <nav className="hidden sm:flex items-center gap-1 text-xs">
             <Link href="/">
-              <span className={`px-3 py-1 border cursor-pointer transition-colors ${location === "/" ? "border-[oklch(0.75_0.25_140)] text-[oklch(0.75_0.25_140)]" : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"}`}>
-                THE COURT
+              <span className={`px-3 py-1 border cursor-pointer transition-colors flex items-center gap-1 ${location === "/" ? "border-[oklch(0.75_0.25_140)] text-[oklch(0.75_0.25_140)]" : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"}`}>
+                <span>🏰</span> THE COURT
               </span>
             </Link>
             {isAuthenticated && (
               <Link href="/submit">
                 <span className={`px-3 py-1 border cursor-pointer transition-colors flex items-center gap-1 ${location === "/submit" ? "border-[oklch(0.75_0.25_140)] text-[oklch(0.75_0.25_140)]" : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"}`}>
-                  <PlusCircle size={12} />
-                  NOMINATE
+                  <span>👑</span> NOMINATE
                 </span>
               </Link>
             )}
             {user?.role === "admin" && (
               <Link href="/admin">
                 <span className={`px-3 py-1 border cursor-pointer transition-colors flex items-center gap-1 ${location === "/admin" ? "border-[oklch(0.75_0.25_140)] text-[oklch(0.75_0.25_140)]" : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"}`}>
-                  <Shield size={12} />
-                  ADMIN
+                  <span>⚔️</span> ROYAL GUARD
                 </span>
               </Link>
             )}
@@ -70,15 +74,15 @@ export default function Header() {
               </div>
             ) : !isLoginPage ? (
               <Link href="/login">
-                <span
-                  className="flex items-center gap-2 px-3 py-1 text-xs font-bold transition-all jester-border hover:bg-[oklch(0.75_0.25_140/0.1)] cursor-pointer"
+                <motion.span
+                  className="flex items-center gap-2 px-3 py-1 text-xs font-bold transition-all jester-border hover:bg-[oklch(0.75_0.25_140/0.1)] cursor-pointer honk-btn"
                   style={{ color: "oklch(0.75 0.25 140)" }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
-                  </svg>
-                  LOGIN
-                </span>
+                  <span className="text-lg">🎭</span>
+                  ENTER THE COURT
+                </motion.span>
               </Link>
             ) : null}
           </div>

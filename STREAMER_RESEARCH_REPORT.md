@@ -180,14 +180,23 @@ These are smaller Kick streamers with limited public documentation. Manual resea
 
 #### 17. shoovy
 - **Platform:** Kick
-- **Current Status:** ⚠️ PLACEHOLDER DATA
+- **Current Status:** ⚠️ PLACEHOLDER DATA - See SHOOVY-VERIFICATION.md
+- **Research Conducted:** 2026-04-14 by subagent (shoovy-deep-research)
+- **Research Blockers:**
+  - Kick.com access blocked by security policy
+  - Web search APIs unavailable (Brave: missing key, Exa: invalid key)
+  - Browser automation restricted (SSRF policy)
+  - Twitter/X API not configured
 - **Research Needed:**
   - Real identity verification
-  - Instagram handle verification
+  - Instagram handle verification (placeholder: instagram.com/shoovy)
   - Adin Ross collaboration verification
   - Specific car meet viral moments
+  - Twitter/X, YouTube, TikTok accounts
+  - Real profile photo (current: imgur placeholder)
 - **Current Links:** Only Kick channel verified: https://www.kick.com/shoovy
-- **Recommended Sources:** r/LivestreamFail, car community forums
+- **Verification Report:** `/home/oldpc/jester-vote/SHOOVY-VERIFICATION.md`
+- **Recommended Sources:** r/LivestreamFail, car community forums, direct Kick profile visit
 
 #### 18. Clavicur
 - **Platform:** Kick
