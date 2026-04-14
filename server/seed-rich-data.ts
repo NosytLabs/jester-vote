@@ -479,4 +479,142 @@ const nominees = [
     imageUrl: "https://i.pravatar.cc/150?img=36",
     redditUrls: ["https://www.reddit.com/r/JiDion/"],
     moments: [
-      { title: "P
+      { title: "Pokimane Hate Raid", description: "Organized hate raid against Pokimane, got banned", date: "2022-01-01", type: "controversy" },
+    ],
+    controversies: [
+      { title: "Twitch Permaban", description: "Permanently banned from Twitch for harassment", date: "2022-01-01", severity: "high" },
+      { title: "Harassment Campaigns", description: "Multiple harassment campaigns against other streamers", date: "2022-01-01", severity: "high" },
+    ],
+  },
+
+  // ========== NEW ADDITIONS (2025-2026 Lolcows) ==========
+  {
+    name: "Andrew Tate",
+    platform: "Rumble",
+    category: "Commentary",
+    bio: "The Top G. Andrew Tate became infamous for his misogynistic commentary, pyramid scheme allegations, and human trafficking arrest in Romania. Banned from virtually every major platform but maintains a loyal following on Rumble.",
+    imageUrl: "https://i.pravatar.cc/150?img=37",
+    redditUrls: ["https://www.reddit.com/r/AndrewTate/"],
+    moments: [
+      { title: "The Matrix Speech", description: "Famous rant about escaping 'the matrix'", date: "2022-01-01", type: "clip" },
+      { title: "Romania Arrest", description: "Arrested in Romania on human trafficking charges", date: "2022-12-01", type: "controversy" },
+      { title: "Platform Bans", description: "Banned from Facebook, Instagram, TikTok, YouTube", date: "2022-08-01", type: "controversy" },
+    ],
+    controversies: [
+      { title: "Human Trafficking Charges", description: "Arrested in Romania on trafficking allegations", date: "2022-12-01", severity: "high" },
+      { title: "Misogynistic Content", description: "Extensive misogynistic commentary and advice", date: "2022-01-01", severity: "high" },
+      { title: "Hustler's University", description: "Pyramid scheme allegations for his online course", date: "2021-01-01", severity: "medium" },
+    ],
+  },
+  {
+    name: "shoovy",
+    platform: "Kick",
+    category: "IRL",
+    bio: "The car meet streamer. shoovy is a Kick streamer known for IRL content at car meets, street racing culture, and confrontational content. Part of the new wave of Kick IRL streamers pushing boundaries.",
+    imageUrl: "https://i.pravatar.cc/150?img=38",
+    redditUrls: ["https://www.reddit.com/r/KickStreaming/"],
+    moments: [
+      { title: "Car Meet Streams", description: "Popular streams from street racing events", date: "2024-01-01", type: "event" },
+      { title: "Kick Partnership", description: "Achieved Kick partnership status", date: "2024-06-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Dangerous Driving", description: "Filmed reckless driving during IRL streams", date: "2024-01-01", severity: "high" },
+      { title: "Street Racing Content", description: "Promoted illegal street racing activities", date: "2024-01-01", severity: "high" },
+    ],
+  },
+  {
+    name: "DBR666",
+    platform: "Kick",
+    category: "IRL",
+    bio: "The confrontational Kick streamer. DBR666 is known for aggressive IRL content, confrontations with strangers, and pushing the boundaries of acceptable streaming content on Kick.",
+    imageUrl: "https://i.pravatar.cc/150?img=39",
+    redditUrls: ["https://www.reddit.com/r/KickStreaming/"],
+    moments: [
+      { title: "Viral Confrontations", description: "Multiple viral clips of street confrontations", date: "2024-01-01", type: "clip" },
+      { title: "Kick Growth", description: "Rapid growth through controversial content", date: "2024-01-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Street Harassment", description: "Aggressively confronting strangers for content", date: "2024-01-01", severity: "high" },
+      { title: "Provoking Altercations", description: "Deliberately provoking physical confrontations", date: "2024-01-01", severity: "high" },
+    ],
+  },
+  {
+    name: "Clavicular",
+    platform: "Kick",
+    category: "Gaming",
+    bio: "The OSRS streamer. Clavicular is a Kick streamer known for Old School RuneScape content. NOTE: Claims to have originated the 'jester' term for lolcows but NO EVIDENCE has been found to support this claim after exhaustive search.",
+    imageUrl: "https://i.pravatar.cc/150?img=40",
+    redditUrls: [],
+    moments: [
+      { title: "OSRS Streaming", description: "Regular OSRS content on Kick platform", date: "2023-01-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Unverified Claims", description: "Claims origin of 'jester' term - NO EVIDENCE FOUND", date: "2024-01-01", severity: "low" },
+    ],
+  },
+  {
+    name: "Kai Cenat",
+    platform: "Twitch/YouTube",
+    category: "IRL",
+    bio: "The AMP streamer. Kai Cenat became the most-subscribed Twitch streamer but is also known for his chaotic content, the Union Square riot incident, and various controversies surrounding his IRL streams.",
+    imageUrl: "https://i.pravatar.cc/150?img=41",
+    redditUrls: ["https://www.reddit.com/r/KaiCenat/"],
+    moments: [
+      { title: "Union Square Riot", description: "PS5 giveaway caused massive riot in NYC", date: "2023-08-01", type: "controversy" },
+      { title: "Most Subscribed", description: "Became most-subscribed Twitch streamer", date: "2023-01-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Union Square Incident", description: "Unofficial PS5 giveaway caused chaos and arrests", date: "2023-08-01", severity: "high" },
+      { title: "Banned on Twitch", description: "Multiple temporary bans for various violations", date: "2022-01-01", severity: "medium" },
+    ],
+  },
+  {
+    name: "IShowSpeed",
+    platform: "YouTube",
+    category: "IRL/Entertainment",
+    bio: "The chaotic YouTuber. Speed is one of the biggest YouTubers globally, known for his extreme reactions, chaotic IRL streams, and various controversies including his behavior in foreign countries.",
+    imageUrl: "https://i.pravatar.cc/150?img=42",
+    redditUrls: ["https://www.reddit.com/r/IShowSpeed/"],
+    moments: [
+      { title: "China/Shenzhen Incident", description: "Controversial behavior during China trip", date: "2024-01-01", type: "controversy" },
+      { title: "World Cup Final", description: "Attended World Cup final, chaotic behavior", date: "2022-12-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Cringe Behavior Abroad", description: "Multiple incidents of inappropriate behavior in foreign countries", date: "2024-01-01", severity: "medium" },
+      { title: "Toxic Fanbase", description: "Fanbase known for harassing people he interacts with", date: "2023-01-01", severity: "medium" },
+    ],
+  },
+  {
+    name: "BruceDropEmOff",
+    platform: "Twitch/Kick",
+    category: "Gaming/IRL",
+    bio: "The banned Twitch streamer. Bruce was a major Twitch streamer who was permanently banned after alleged sexual misconduct allegations. Now streams on Kick.",
+    imageUrl: "https://i.pravatar.cc/150?img=43",
+    redditUrls: ["https://www.reddit.com/r/BruceDropEmOff/"],
+    moments: [
+      { title: "Twitch Ban", description: "Permanently banned from Twitch", date: "2023-01-01", type: "controversy" },
+      { title: "Move to Kick", description: "Started streaming on Kick after ban", date: "2023-01-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Sexual Misconduct Allegations", description: "Multiple allegations of inappropriate behavior", date: "2023-01-01", severity: "high" },
+      { title: "Twitch Permaban", description: "Banned permanently from Twitch platform", date: "2023-01-01", severity: "high" },
+    ],
+  },
+  {
+    name: "N3on",
+    platform: "Kick/Twitch",
+    category: "IRL",
+    bio: "The drama streamer. N3on is known for constant platform drama, being called out by NYC gang members on stream, and misgendering controversies at TwitchCon 2024.",
+    imageUrl: "https://i.pravatar.cc/150?img=44",
+    redditUrls: ["https://www.reddit.com/r/LivestreamFail/search/?q=n3on"],
+    moments: [
+      { title: "NYC Gang Callout", description: "Called out by NYC gang members during live stream", date: "2024-01-01", type: "controversy" },
+      { title: "Kick to Twitch Switch", description: "Accused Kick of 'hidden agenda' and moved to Twitch", date: "2025-01-01", type: "event" },
+      { title: "TwitchCon Misgendering", description: "Misgendering controversy at TwitchCon 2024", date: "2024-09-01", type: "controversy" },
+    ],
+    controversies: [
+      { title: "Platform Drama", description: "Constant beef with other streamers and platforms", date: "2024-01-01", severity: "medium" },
+      { title: "TwitchCon Incident", description: "Misgendering issues at convention", date: "2024-09-01", severity: "high" },
+    ],
+  },
+];
