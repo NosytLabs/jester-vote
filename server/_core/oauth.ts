@@ -21,6 +21,45 @@ export function registerOAuthRoutes(app: Express) {
     res.json({ providers });
   });
 
+  // Development login bypass - creates a test user without OAuth
+  app.get("/api/oauth/dev-login", async (req: Request, res: Response) => {
+    if (process.env.NODE_ENV === "production") {
+      res.status(403).json({ error: "Dev login not available in production" });
+      return;
+    }
+
+    const testUsername = req.query.username as string || "test_jester";
+    const openId = `dev:${testUsername}`;
+
+    try {
+      // Create or update test user
+      await db.upsertUser({
+        openId,
+        name: testUsername,
+        email: `${testUsername}@localhost`,
+        loginMethod: "dev",
+        lastSignedIn: new Date(),
+        kickUsername: testUsername,
+        kickAvatarUrl: null,
+      });
+
+      // Create session
+      const sessionToken = await oauthManager.createSessionToken(openId, "dev", {
+        name: testUsername,
+        expiresInMs: ONE_YEAR_MS,
+      });
+
+      // Set cookie
+      const cookieOptions = getSessionCookieOptions(req);
+      res.cookie(COOKIE_NAME, sessionToken, { ...cookieOptions, maxAge: ONE_YEAR_MS });
+
+      res.redirect(302, "/");
+    } catch (error) {
+      console.error("[OAuth] Dev login failed:", error);
+      res.status(500).json({ error: "Dev login failed" });
+    }
+  });
+
   // Initiate OAuth login for a specific platform
   app.get("/api/oauth/login/:platform", (req: Request, res: Response) => {
     const platform = req.params.platform;

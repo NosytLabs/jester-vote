@@ -1,40 +1,40 @@
-# Jester-Vote Project Operations
-
-## Build Commands
-```bash
-npm run dev      # Development server (tsx watch)
-npm run build    # Production build (vite + esbuild)
-npm run start    # Production start (node dist/index.js)
-```
-
-## Validation Commands
-```bash
-npm run check    # TypeScript typecheck (tsc --noEmit)
-npm run test     # Vitest test runner
-npm run format   # Prettier formatting
-```
-
-## Database Commands
-```bash
-npm run db:push  # Drizzle generate + migrate
-```
-
-## Operational Notes
-- TypeScript strict mode enabled
-- Tests must pass before committing
-- MySQL database via Drizzle ORM
-- tRPC for API routes
-- React 19 + Vite + Tailwind CSS
-- Kick OAuth already integrated
-- Dark theme: black bg, purple header, green dashed borders
-
-## Backpressure Gates
-1. TypeScript: `npm run check` must pass
-2. Tests: `npm run test` must pass
-3. Build: `npm run build` must succeed
+# TopJester Operations Guide
 
 ## Project Structure
-- `client/src/` - React frontend
-- `server/` - Express + tRPC backend
-- `drizzle/` - Database schema and migrations
-- `shared/` - Shared types/utilities
+- `/client` - React frontend (Vite + React + TypeScript)
+- `/server` - Express backend with tRPC
+- `/shared` - Shared types and schemas
+
+## Commands
+```bash
+# Development
+npm run dev          # Starts both client and server
+
+# Production build
+npm run build        # Build for production
+
+# Validation
+npx tsc --noEmit     # TypeScript type check
+npm run lint         # ESLint (if configured)
+```
+
+## Key Files
+- `client/src/pages/Home.tsx` - Main page
+- `client/src/components/` - React components
+- `client/src/index.css` - Styles and jester theme
+- `server/seed-rich-data.ts` - Streamer data
+
+## Audit
+```bash
+# Run squirrel audit
+squirrel audit http://localhost:3001 --format llm
+
+# Generate report
+squirrel report <audit-id> --format llm
+```
+
+## Notes
+- Local server runs on port 3001
+- Uses SQLite for local development
+- Real-time updates via SSE
+- Kick OAuth for authentication

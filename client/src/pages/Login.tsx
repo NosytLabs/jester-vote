@@ -36,21 +36,27 @@ export default function LoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
-            <span
-              className="text-3xl font-black tracking-widest"
-              style={{
-                fontFamily: "'Orbitron', monospace",
-                color: "oklch(0.92 0 0)",
-                textShadow:
-                  "0 0 20px oklch(0.75 0.25 140 / 0.6), 0 0 40px oklch(0.55 0.22 300 / 0.4)",
-              }}
-            >
-              [TOP<span style={{ color: "oklch(0.75 0.25 140)" }}>JESTER</span>]
-            </span>
+            <div className="text-center">
+              <div className="text-4xl mb-2">🃏</div>
+              <span
+                className="text-3xl font-black tracking-tight"
+                style={{
+                  fontFamily: "'Orbitron', monospace",
+                  background: "linear-gradient(135deg, oklch(0.85 0.18 85) 0%, oklch(0.75 0.25 140) 50%, oklch(0.55 0.22 300) 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                TOPJESTER
+              </span>
+            </div>
           </div>
-          <CardTitle className="text-2xl">Welcome to the Court</CardTitle>
-          <CardDescription>
-            Sign in to nominate lolcows, cast votes, and join the community.
+          <CardTitle className="text-2xl flex items-center justify-center gap-2">
+            <span>👑</span> Enter the Court <span>👑</span>
+          </CardTitle>
+          <CardDescription className="text-center">
+            Join the Royal Court of Fools to nominate jesters,
+            <br />cast your votes, and crown the clowns.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -92,10 +98,26 @@ export default function LoginPage() {
             </div>
           )}
 
+          {/* Development login for testing */}
+          {import.meta.env.DEV && (
+            <div className="pt-4 border-t border-border">
+              <p className="text-xs text-center text-muted-foreground mb-2">
+                Development Mode
+              </p>
+              <Button
+                onClick={() => window.location.href = "/api/oauth/dev-login?username=dev_jester"}
+                className="w-full h-10 justify-center gap-2 font-semibold"
+                variant="outline"
+              >
+                <span>🎭</span> Quick Dev Login
+              </Button>
+            </div>
+          )}
+
           <p className="text-xs text-center text-muted-foreground pt-4">
-            By signing in, you agree to our Terms of Service and Privacy Policy.
+            By entering the Court, you swear allegiance to chaos. <span className="text-[oklch(0.75_0.25_140)]">🤡</span>
             <br />
-            We only access your public profile information.
+            We only access your public jester profile.
           </p>
         </CardContent>
       </Card>

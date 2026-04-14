@@ -1,98 +1,63 @@
-# Jester-Vote Implementation Plan
+# TopJester Implementation Plan - Ralph Mode
 
-## Status Overview
-- **Phase 1**: ✅ COMPLETE (Core voting platform)
-- **Phase 2**: 🔄 IN PROGRESS (Content enhancements)
-- **Phase 3**: ⏳ PENDING (Profile page enhancements)
-- **Phase 4**: ⏳ PENDING (Social sharing)
-- **Phase 5**: ⏳ PENDING (UI/UX improvements)
-- **Phase 6**: ⏳ PENDING (Final polish)
-
-## Completed
-
-### Iteration 1: Backend Rich Profile Endpoint ✅
-- [x] Created `server/db-rich.ts` with database functions
-  - listNotableMoments(), insertNotableMoment()
-  - listControversies(), insertControversy()
-  - listNewsItems(), insertNewsItem()
-  - listExternalLinks(), insertExternalLink()
-  - seedRichData() - seeds sample data
-- [x] Created `profile.getRichData` tRPC endpoint
-  - Returns moments, controversies, news, links for a nominee
-  - All data sorted appropriately
-- [x] Seeded sample data for nominees 1-5
-  - External links (KYM, Wikipedia)
-  - Controversies (Controller Throwing, Patreon Meltdown, Banned from Twitch)
-  - Notable moments (Legendary Rage Quit, First IRL Stream)
-- **Validation**: ✅ `npm run check` passed, `npm test` passed
-
-### Iteration 2: Backend Content Management Endpoints ✅
-- [x] `profile.addNotableMoment` (protected) - Add clips/videos
-- [x] `profile.addControversy` (admin) - Add incidents with severity
-- [x] `profile.addNewsItem` (protected) - Submit news (requires approval)
-- [x] `profile.addExternalLink` (protected) - Add KYM/Wikipedia links
-- [x] `profile.approveNews` (admin) - Approve pending news
-- **Validation**: ✅ `npm run check` passed, `npm test` passed
+## Project Goal
+Make TopJester an excellent, unique, fully-functional site with:
+- High audit scores (90+)
+- Unique jester/court personality
+- Real streamer data and images
+- Smooth user experience
 
 ## In Progress
-
-### Phase 2: Content Population & Frontend Components ✅ COMPLETE
-- [x] Create `profile.addNotableMoment` (protected) - add clips/videos
-- [x] Create `profile.addControversy` (admin only) - add incidents
-- [x] Create `profile.addNewsItem` (protected, requires approval) - add news
-- [x] Create `profile.addExternalLink` (protected) - add links
-- [x] Create `profile.approveNews` (admin only) - approve pending news
-- **Validation**: ✅ `npm run check` passed, `npm test` passed (10/10)
-- **Files**: `server/routers.ts` (profile router extended)
+- [ ] Initial site audit with squirrel
 
 ## Backlog
+### Phase 1: Audit & Critical Fixes
+- [ ] Run squirrel audit on localhost:3001
+- [ ] Fix all critical SEO issues
+- [ ] Fix all broken links
+- [ ] Fix accessibility issues
+- [ ] Fix performance issues
 
-### Phase 2: Content Enhancements
-- [ ] Populate 10 seed nominees with real Twitch/IP2 data
-  - Research and add real streamer bios
-  - Add Twitch clip embeds for xQc, Kai Cenat, IShowSpeed, Mizkif, Trainwreckstv
-  - Add known controversies with dates
-  - Add external links to KYM pages
-- [ ] Create seed script for rich content
+### Phase 2: UI/UX Enhancements
+- [ ] Add real streamer images (replace Imgur placeholders)
+- [ ] Enhance jester animations and interactions
+- [ ] Improve mobile responsiveness
+- [ ] Add easter eggs and fun surprises
+- [ ] Enhance baseball card flip animations
 
-### Phase 3: Profile Page UI
-- [ ] Build `TheArcTimeline` component
-- [ ] Build `NotableClipsSection` component with embeds
-- [ ] Build `ControversiesSection` component
-- [ ] Build `NewsSection` component
-- [ ] Build `ExternalLinksSection` component
-- [ ] Update `NomineePage` to include all new sections
+### Phase 3: Content & Data
+- [ ] Verify and update all streamer social links
+- [ ] Add more Ice Poseidon crew members
+- [ ] Create compelling streamer bios
+- [ ] Add real controversy data with sources
 
-### Phase 4: Social Sharing
-- [ ] Add Twitter/X share button
-- [ ] Add Reddit share button
-- [ ] Add Discord share button
-- [ ] Create shareable nominee cards
+### Phase 4: Polish
+- [ ] Optimize images and assets
+- [ ] Add loading states and skeletons
+- [ ] Improve error handling
+- [ ] Add analytics tracking
+- [ ] Final audit to verify 90+ score
 
-### Phase 5: UI/UX Improvements
-- [ ] Mobile responsiveness improvements
-- [ ] Animated rank transitions
-- [ ] Trending/controversial badges
-- [ ] Search and filter functionality
-- [ ] Loading states and skeleton screens
+## Acceptance Criteria
+- [ ] Squirrel audit score 90+ (Grade A)
+- [ ] All pages load < 2 seconds
+- [ ] Mobile-friendly (responsive)
+- [ ] No broken links
+- [ ] Real images for all streamers
+- [ ] Unique, memorable UI
+- [ ] Smooth animations
 
-### Phase 6: Final Polish
-- [ ] Complete data population for all nominees
-- [ ] Test all social sharing features
-- [ ] Mobile QA across devices
-- [ ] Performance optimization
+## Commands
+```bash
+# Dev server
+npm run dev
 
-## Research Data Available
-- **Twitch API**: OAuth flows, clip embeds (`https://clips.twitch.tv/embed?clip=<SLUG>&parent=<DOMAIN>`)
-- **Top Streamers**: xQc, Kai Cenat, IShowSpeed, Mizkif, Trainwreckstv, Destiny, HasanAbi
-- **IP2 Network**: Aggregates streamers across YouTube, Twitch, Kick, Rumble, DLive
-- **Lolcow Culture**: Drama-driven, high engagement, perfect for voting platform
+# Build
+npm run build
 
-## Current Blockers
-None - ready to proceed with Iteration 1
+# Type check
+npx tsc --noEmit
 
-## Notes
-- Database schema already supports all Phase 2 features
-- Kick OAuth already integrated
-- Dark theme established (black bg, purple header, green dashed borders)
-- Need to verify Kick clip embed format (research timed out)
+# Lint
+npm run lint
+```

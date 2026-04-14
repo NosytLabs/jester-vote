@@ -283,6 +283,9 @@ export class OAuthManager {
 
   constructor() {
     // Initialize providers if credentials are available
+    // In development, allow mock credentials for testing
+    const isDev = !ENV.isProduction;
+    
     if (ENV.twitchClientId && ENV.twitchClientSecret) {
       this.providers.set("twitch", new TwitchProvider({
         clientId: ENV.twitchClientId,
@@ -301,7 +304,11 @@ export class OAuthManager {
       }));
     }
 
+    // Kick OAuth - allow in dev mode with warning
     if (ENV.kickClientId && ENV.kickClientSecret) {
+      if (isDev && ENV.kickClientId.startsWith("dev_")) {
+        console.warn("[OAuth] Using development Kick credentials - real OAuth will fail. Register at https://kick.com/developer/apps for production.");
+      }
       this.providers.set("kick", new KickProvider({
         clientId: ENV.kickClientId,
         clientSecret: ENV.kickClientSecret,

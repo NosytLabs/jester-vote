@@ -57,50 +57,80 @@ export default function Home() {
       <Header />
 
       <main role="main" className="container py-4 sm:py-6">
-        {/* Page title - Medieval Court Theme */}
+        {/* Page title - Unique Jester Theme (NOT ip2.network clone) */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-6 text-center"
+          className="mb-8 text-center relative"
         >
-          {/* Royal banner */}
-          <div className="court-banner py-2 mb-4 mx-auto max-w-lg rounded-lg">
-            <motion.div
-              animate={{ rotate: [0, 2, -2, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <span className="text-2xl">👑</span>
-            </motion.div>
+          {/* Decorative jester bells */}
+          <div className="absolute -top-2 left-1/4 text-2xl opacity-60">
+            <motion.span 
+              animate={{ rotate: [0, 15, -15, 0], y: [0, -3, 0] }}
+              transition={{ duration: 2, repeat: Infinity, delay: 0 }}
+            >🔔</motion.span>
+          </div>
+          <div className="absolute -top-2 right-1/4 text-2xl opacity-60">
+            <motion.span 
+              animate={{ rotate: [0, -15, 15, 0], y: [0, -3, 0] }}
+              transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+            >🔔</motion.span>
           </div>
           
-          <h1
-            className="text-2xl sm:text-4xl font-black tracking-widest jester-hat"
-            style={{
-              fontFamily: "'Orbitron', monospace",
-              color: "oklch(0.75 0.25 140)",
-              textShadow: "0 0 20px oklch(0.75 0.25 140 / 0.4), 0 0 40px oklch(0.55 0.22 300 / 0.3)",
-            }}
-          >
-            THE COURT OF FOOLS
-          </h1>
+          {/* Main title with jester hat */}
+          <div className="relative inline-block">
+            <motion.div
+              className="absolute -top-8 left-1/2 -translate-x-1/2 text-4xl"
+              animate={{ rotate: [0, 5, -5, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+              🃏
+            </motion.div>
+            <h1
+              className="text-3xl sm:text-5xl font-black tracking-tight mt-4"
+              style={{
+                fontFamily: "'Orbitron', monospace",
+                background: "linear-gradient(135deg, oklch(0.85 0.18 85) 0%, oklch(0.75 0.25 140) 50%, oklch(0.55 0.22 300) 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                textShadow: "0 0 30px oklch(0.75 0.25 140 / 0.3)",
+              }}
+            >
+              TOPJESTER
+            </h1>
+          </div>
           
-          <motion.p 
-            className="text-xs sm:text-sm text-muted-foreground mt-3 max-w-md mx-auto"
+          {/* Subtitle */}
+          <motion.div 
+            className="mt-3 flex items-center justify-center gap-2 flex-wrap"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            <span className="text-[oklch(0.75_0.25_140)]">🎭</span> Who's the biggest clown in streaming? <span className="text-[oklch(0.75_0.25_140)]">🤡</span><br/>
-            Cast your vote in the Royal Court of Chaos! <span className="text-[oklch(0.85_0.18_85)]">👑</span>
+            <span className="text-2xl">🎪</span>
+            <span className="text-lg sm:text-xl font-bold text-[oklch(0.75_0.25_140)]">
+              The Court of Fools
+            </span>
+            <span className="text-2xl">🎪</span>
+          </motion.div>
+          
+          <motion.p 
+            className="text-sm text-muted-foreground mt-3 max-w-lg mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            Who's the biggest clown in streaming? <span className="text-[oklch(0.75_0.25_140)]">You decide.</span><br/>
+            Crown the jesters. Celebrate the chaos. <span className="text-[oklch(0.85_0.18_85)]">👑</span>
           </motion.p>
           
-          {/* Funny tagline rotation */}
+          {/* Rotating taglines */}
           <motion.div
-            className="mt-2 text-[10px] text-[oklch(0.65_0.22_300)] italic"
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 3, repeat: Infinity }}
+            className="mt-3 text-xs text-[oklch(0.55_0.22_300)] italic"
+            animate={{ opacity: [0.4, 1, 0.4] }}
+            transition={{ duration: 4, repeat: Infinity }}
           >
-            "Where the lolcows roam and the jesters get crowned"
+            "In clownery we trust, in drama we delight, in the Court we unite"
           </motion.div>
         </motion.div>
 
