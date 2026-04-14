@@ -617,4 +617,148 @@ const nominees = [
       { title: "TwitchCon Incident", description: "Misgendering issues at convention", date: "2024-09-01", severity: "high" },
     ],
   },
+
+  // ========== LEGENDARY DECEASED LOLCOWS ==========
+  {
+    name: "Terry A. Davis",
+    platform: "YouTube",
+    category: "Programming",
+    bio: "The TempleOS prophet. Terry created TempleOS, an entire operating system, while suffering from schizophrenia. His livestreams of programming, religious rants, and struggles with mental illness made him one of the most documented and tragic lolcows. Deceased 2018.",
+    imageUrl: "https://i.pravatar.cc/150?img=45",
+    redditUrls: ["https://www.reddit.com/r/TempleOS/"],
+    moments: [
+      { title: "TempleOS Creation", description: "Created entire operating system alone", date: "2005-01-01", type: "event" },
+      { title: "Glow-in-the-Dark CIA Rants", description: "Famous rants about CIA agents", date: "2010-01-01", type: "clip" },
+      { title: "Death", description: "Died after being struck by train in 2018", date: "2018-08-11", type: "event" },
+    ],
+    controversies: [
+      { title: "Mental Health Exploitation", description: "Community extensively documented his schizophrenia", date: "2010-01-01", severity: "high" },
+      { title: "Homelessness Documented", description: "Final years of homelessness broadcast", date: "2016-01-01", severity: "high" },
+    ],
+  },
+
+  // ========== ADDITIONAL VERIFIED LOLCOWS ==========
+  {
+    name: "Jake Paul",
+    platform: "YouTube",
+    category: "Vlogs/Boxing",
+    bio: "The scammer boxer. Jake Paul built his career on documented scams (Team 10, crypto), boxing drama, and constant controversy. Known for the 'It's Everyday Bro' video and various business ventures that harmed fans.",
+    imageUrl: "https://i.pravatar.cc/150?img=46",
+    redditUrls: ["https://www.reddit.com/r/JakePaul/"],
+    moments: [
+      { title: "It's Everyday Bro", description: "Infamous music video with 300M+ views", date: "2017-05-30", type: "clip" },
+      { title: "Team 10 Drama", description: "Documented abuse and exploitation of young creators", date: "2018-01-01", type: "controversy" },
+      { title: "Crypto Scams", description: "Multiple pump-and-dump crypto schemes", date: "2021-01-01", type: "controversy" },
+    ],
+    controversies: [
+      { title: "Team 10 Abuse", description: "Former members documented abuse and exploitation", date: "2018-01-01", severity: "high" },
+      { title: "Crypto Pump and Dump", description: "Promoted coins then sold, harming fans", date: "2021-01-01", severity: "high" },
+      { title: "FBI Raid", description: "Home raided by FBI in 2021", date: "2021-08-01", severity: "high" },
+    ],
+  },
+  {
+    name: "Logan Paul",
+    platform: "YouTube",
+    category: "Vlogs/Boxing",
+    bio: "The suicide forest vlogger. Logan Paul became infamous for filming a dead body in Japan's Aokigahara forest. Despite the controversy, he built a boxing career and podcast empire, but remains a documented lolcow for his various scandals.",
+    imageUrl: "https://i.pravatar.cc/150?img=47",
+    redditUrls: ["https://www.reddit.com/r/LoganPaul/"],
+    moments: [
+      { title: "Suicide Forest Video", description: "Filmed dead body in Aokigahara, Japan", date: "2017-12-31", type: "controversy" },
+      { title: "CryptoZoo Scam", description: "NFT game that never delivered, $2.5M+ lost", date: "2021-09-01", type: "controversy" },
+      { title: "KSI Boxing Matches", description: "Built boxing career off YouTube drama", date: "2018-08-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Suicide Forest Incident", description: "Filmed and laughed at dead body", date: "2017-12-31", severity: "high" },
+      { title: "CryptoZoo Scam", description: "Defrauded fans of millions via NFT project", date: "2021-09-01", severity: "high" },
+      { title: "Flat Earth Documentary", description: "Promoted flat earth theories for views", date: "2019-03-01", severity: "medium" },
+    ],
+  },
+  {
+    name: "Tana Mongeau",
+    platform: "YouTube",
+    category: "Vlogs",
+    bio: "The professional liar. Tana built her career on documented lies, scams, and constant drama. Known for TanaCon (disastrous convention), failed MTV show, and endless controversies.",
+    imageUrl: "https://i.pravatar.cc/150?img=48",
+    redditUrls: ["https://www.reddit.com/r/TanaMongeau/"],
+    moments: [
+      { title: "TanaCon Disaster", description: "Convention failed spectacularly, 5k+ stranded", date: "2018-07-01", type: "controversy" },
+      { title: "iDubbbz Content Cop", description: "Exposed by iDubbbz for lies and hypocrisy", date: "2017-12-01", type: "controversy" },
+      { title: "MTV Show Cancellation", description: "MTV No Filter show cancelled after poor ratings", date: "2019-01-01", type: "event" },
+    ],
+    controversies: [
+      { title: "TanaCon Scam", description: "Convention sold 5k+ tickets, venue held 1k, chaos ensued", date: "2018-07-01", severity: "high" },
+      { title: "Documented Lies", description: "Extensive history of documented false claims", date: "2017-01-01", severity: "medium" },
+      { title: "Racist Comments", description: "Multiple instances of racist remarks exposed", date: "2017-01-01", severity: "high" },
+    ],
+  },
+  {
+    name: "Belle Delphine",
+    platform: "OnlyFans/YouTube",
+    category: "Entertainment",
+    bio: "The e-girl entrepreneur. Belle became famous for selling her bath water and extreme clickbait. While successful, her constant controversies and exploitation of parasocial relationships make her a notable internet figure.",
+    imageUrl: "https://i.pravatar.cc/150?img=49",
+    redditUrls: ["https://www.reddit.com/r/BelleDelphine/"],
+    moments: [
+      { title: "GamerGirl Bath Water", description: "Sold her used bath water for $30/bottle", date: "2019-07-01", type: "controversy" },
+      { title: "Pornhub Troll", description: "Uploaded non-porn videos to Pornhub as prank", date: "2019-12-01", type: "clip" },
+      { title: "OnlyFans Launch", description: "Made $1M+ in first month on OnlyFans", date: "2020-12-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Exploiting Parasocial Fans", description: "Extreme monetization of lonely fans", date: "2019-01-01", severity: "medium" },
+      { title: "Clickbait Culture", description: "Pioneered extreme clickbait in e-girl space", date: "2018-01-01", severity: "low" },
+    ],
+  },
+  {
+    name: "Dahvie Vanity",
+    platform: "YouTube",
+    category: "Music",
+    bio: "The predator musician. Dahvie (Blood on the Dance Floor) has been accused by 100+ people of sexual assault, many underage. One of the most documented predators in the YouTube/music scene.",
+    imageUrl: "https://i.pravatar.cc/150?img=50",
+    redditUrls: ["https://www.reddit.com/r/DahvieVanity/"],
+    moments: [
+      { title: "Chris Hansen Investigation", description: "Investigated by Chris Hansen for predators", date: "2020-01-01", type: "controversy" },
+      { title: "100+ Accusers", description: "Over 100 people came forward with allegations", date: "2020-01-01", type: "controversy" },
+    ],
+    controversies: [
+      { title: "Sexual Assault Allegations", description: "100+ allegations of assault, many underage", date: "2009-01-01", severity: "high" },
+      { title: "Predatory Behavior", description: "Documented pattern of targeting minors", date: "2009-01-01", severity: "high" },
+    ],
+  },
+  {
+    name: "Shane Dawson",
+    platform: "YouTube",
+    category: "Documentary",
+    bio: "The canceled documentarian. Shane was one of YouTube's biggest creators until old videos resurfaced showing racist content, inappropriate behavior with minors, and bestiality jokes. His cancellation was one of the biggest in YouTube history.",
+    imageUrl: "https://i.pravatar.cc/150?img=51",
+    redditUrls: ["https://www.reddit.com/r/ShaneDawson/"],
+    moments: [
+      { title: "Cancellation", description: "Massive cancellation in 2020 for old racist videos", date: "2020-06-01", type: "controversy" },
+      { title: "Beauty Series Drama", description: "Tati/James Charles series backfired spectacularly", date: "2019-05-01", type: "controversy" },
+      { title: "Attempted Return", description: "Failed comeback attempts met with backlash", date: "2021-01-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Racist Content", description: "Extensive racist videos and blackface", date: "2010-01-01", severity: "high" },
+      { title: "Inappropriate Minors Content", description: "Sexualized content involving children", date: "2010-01-01", severity: "high" },
+      { title: "Bestiality Jokes", description: "Numerous inappropriate animal jokes", date: "2010-01-01", severity: "high" },
+    ],
+  },
+  {
+    name: "Jeffree Star",
+    platform: "YouTube",
+    category: "Beauty",
+    bio: "The beauty guru villain. Jeffree built a makeup empire but is constantly surrounded by racism scandals, feuds with other creators, and various controversies. Known for destroying careers with snap of fingers.",
+    imageUrl: "https://i.pravatar.cc/150?img=52",
+    redditUrls: ["https://www.reddit.com/r/BeautyGuruChatter/"],
+    moments: [
+      { title: "Racist Past Exposed", description: "Old racist videos and comments resurfaced", date: "2017-01-01", type: "controversy" },
+      { title: "Tati/James Charles Drama", description: "Played major role in destroying James Charles career", date: "2019-05-01", type: "controversy" },
+      { title: "Hair Pulling Incident", description: "Accused of paying people to assault others", date: "2021-01-01", type: "controversy" },
+    ],
+    controversies: [
+      { title: "Racism", description: "Multiple instances of racist behavior", date: "2010-01-01", severity: "high" },
+      { title: "Career Destruction", description: "Pattern of destroying other creators careers", date: "2018-01-01", severity: "medium" },
+      { title: "Assault Allegations", description: "Accused of paying for assaults", date: "2021-01-01", severity: "high" },
+    ],
+  },
 ];
