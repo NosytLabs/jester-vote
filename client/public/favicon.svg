@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700"/>
+      <stop offset="50%" style="stop-color:#FFA500"/>
+      <stop offset="100%" style="stop-color:#FFD700"/>
+    </linearGradient>
+    <linearGradient id="purple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6B46C1"/>
+      <stop offset="100%" style="stop-color:#553C9A"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <circle cx="50" cy="50" r="48" fill="url(#purple)" stroke="url(#gold)" stroke-width="3"/>
+  <!-- Jester Hat -->
+  <path d="M30 60 Q50 20 70 60" fill="none" stroke="url(#gold)" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="30" cy="60" r="6" fill="#FF0066"/>
+  <circle cx="70" cy="60" r="6" fill="#00FF66"/>
+  <circle cx="50" cy="35" r="6" fill="#FFCC00"/>
+  <!-- Face -->
+  <circle cx="50" cy="72" r="12" fill="#FFE4C4"/>
+  <circle cx="46" cy="70" r="2" fill="#333"/>
+  <circle cx="54" cy="70" r="2" fill="#333"/>
+  <path d="M46 76 Q50 80 54 76" fill="none" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
