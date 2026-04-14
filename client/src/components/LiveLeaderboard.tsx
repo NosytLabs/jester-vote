@@ -1,8 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
-import { ChevronRight, TrendingUp, TrendingDown, Minus, Crown, Trophy, Medal, Award } from "lucide-react";
-import { memo } from "react";
-import { VoteButtonPair, VoteButton } from "./VoteButton";
+import { ChevronRight, TrendingUp, TrendingDown, Crown, Trophy, Medal, Award, Radio, Users } from "lucide-react";
+import { memo, useState } from "react";
+import { VoteButtonPair } from "./VoteButton";
 import type { LeaderboardEntry } from "@/hooks";
 
 interface LiveLeaderboardProps {
@@ -12,6 +12,47 @@ interface LiveLeaderboardProps {
   onVote: (nomineeId: number, type: "up" | "down") => void;
   isLoading?: boolean;
   isAuthenticated?: boolean;
+}
+
+// Platform badge component
+function PlatformBadge({ platform }: { platform: string }) {
+  const platformConfig: Record<string, { color: string; bg: string; label: string }> = {
+    kick: { color: "#53FC18", bg: "#53FC1820", label: "KICK" },
+    twitch: { color: "#9146FF", bg: "#9146FF20", label: "TWITCH" },
+    youtube: { color: "#FF0000", bg: "#FF000020", label: "YOUTUBE" },
+    rumble: { color: "#1a73e8", bg: "#1a73e820", label: "RUMBLE" },
+  };
+
+  const config = platformConfig[platform.toLowerCase()] || platformConfig.twitch;
+
+  return (
+    <span
+      className="px-1.5 py-0.5 text-[9px] font-bold rounded"
+      style={{
+        backgroundColor: config.bg,
+        color: config.color,
+        border: `1px solid ${config.color}40`,
+      }}
+    >
+      {config.label}
+    </span>
+  );
+}
+
+// Live indicator component (like IP2.Network)
+function LiveIndicator({ isLive = false }: { isLive?: boolean }) {
+  if (!isLive) return null;
+
+  return (
+    <motion.div
+      className="flex items-center gap-1 px-1.5 py-0.5 bg-red-500/20 rounded text-[9px] font-bold"
+      animate={{ opacity: [1, 0.5, 1] }}
+      transition={{ duration: 1.5, repeat: Infinity }}
+    >
+      <Radio className="w-3 h-3 text-red-500" />
+      <span className="text-red-500">LIVE</span>
+    </motion.div>
+  );
 }
 
 // Rank badge with crown/medal for top 3
@@ -25,59 +66,52 @@ function RankBadge({
   isAnimating: boolean;
 }) {
   const rankIcons = [
-    { icon: Crown, color: "oklch(0.85 0.18 85)", bg: "oklch(0.85 0.18 85 / 0.2)" }, // Gold
-    { icon: Trophy, color: "oklch(0.75 0.05 250)", bg: "oklch(0.75 0.05 250 / 0.2)" }, // Silver
-    { icon: Medal, color: "oklch(0.65 0.12 55)", bg: "oklch(0.65 0.12 55 / 0.2)" }, // Bronze
+    { icon: Crown, color: "#FFD700", bg: "#FFD70020", glow: "#FFD700" }, // Gold
+    { icon: Trophy, color: "#C0C0C0", bg: "#C0C0C020", glow: "#C0C0C0" }, // Silver
+    { icon: Medal, color: "#CD7F32", bg: "#CD7F3220", glow: "#CD7F32" }, // Bronze
   ];
 
   const rankConfig = rankIcons[rank - 1];
   const Icon = rankConfig?.icon || Award;
   const color = rankConfig?.color || "oklch(0.75 0.25 140)";
   const bgColor = rankConfig?.bg || "oklch(0.75 0.25 140 / 0.1)";
+  const glowColor = rankConfig?.glow;
 
   return (
     <motion.div
-      className="relative flex flex-col items-center justify-center h-12 sm:h-14"
+      className="relative flex flex-col items-center justify-center"
       animate={isAnimating ? { scale: [1, 1.1, 1] } : {}}
       transition={{ duration: 0.4 }}
     >
-      {/* Rank number - fixed height for alignment */}
+      {/* Rank number */}
       <div
-        className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center font-black text-lg sm:text-xl"
+        className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center font-black text-lg sm:text-xl rounded-lg"
         style={{
           fontFamily: "'Orbitron', monospace",
           background: bgColor,
           border: `2px solid ${color}`,
           color: color,
-          boxShadow: rank <= 3 ? `0 0 15px ${color}40` : "none",
+          boxShadow: rank <= 3 && glowColor ? `0 0 20px ${glowColor}60, 0 0 40px ${glowColor}30` : "none",
         }}
       >
-        {rank <= 3 ? <Icon size={18} /> : `#${rank}`}
+        {rank <= 3 ? <Icon size={20} /> : rank}
       </div>
 
       {/* Rank change indicator */}
       <AnimatePresence mode="wait">
         {rankChange !== "same" && (
           <motion.div
-            initial={{ y: -10, opacity: 0 }}
+            initial={{ y: -5, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 10, opacity: 0 }}
-            className="absolute -bottom-4 flex items-center gap-0.5 text-[9px] font-bold"
+            exit={{ y: 5, opacity: 0 }}
+            className="absolute -bottom-5 flex items-center gap-0.5 text-[9px] font-bold px-1.5 py-0.5 rounded"
             style={{
+              backgroundColor: rankChange === "up" ? "oklch(0.75 0.25 140 / 0.2)" : "oklch(0.65 0.22 25 / 0.2)",
               color: rankChange === "up" ? "oklch(0.75 0.25 140)" : "oklch(0.65 0.22 25)",
             }}
           >
-            {rankChange === "up" ? (
-              <>
-                <TrendingUp size={10} />
-                +{Math.abs(rank)}
-              </>
-            ) : (
-              <>
-                <TrendingDown size={10} />
-                -{Math.abs(rank)}
-              </>
-            )}
+            {rankChange === "up" ? <TrendingUp size={10} /> : <TrendingDown size={10} />}
+            {Math.abs(rank)}
           </motion.div>
         )}
       </AnimatePresence>
@@ -110,26 +144,38 @@ function ScoreDisplay({ score }: { score: number }) {
   );
 }
 
-// Individual leaderboard row
+// Individual leaderboard row - IP2.Network inspired layout
 function LeaderboardRow({
   entry,
   isAnimating,
   userVote,
   onVote,
+  featured = false,
 }: {
   entry: LeaderboardEntry;
   isAnimating: boolean;
   userVote?: "up" | "down";
   onVote: (type: "up" | "down") => void;
+  featured?: boolean;
 }) {
-  const isTop3 = entry.currentRank <= 3;
+  const isTop3 = entry.currentRank <= 3 || featured;
+  const [imageError, setImageError] = useState(false);
   
-  // Get platform color
-  const getPlatformColor = (name: string) => {
-    const kickStreamers = ["Adin Ross", "TrainwrecksTV", "xQc", "N3on", "Nickmercs", "BruceDropEmOff"];
-    if (kickStreamers.includes(name)) return "#53FC18";
-    return "#9146FF";
+  // Get platform info
+  const getPlatformInfo = (name: string) => {
+    const kickStreamers = ["Adin Ross", "TrainwrecksTV", "xQc", "N3on", "NickWhite", "shoovy", "Moises", "BruceDropEmOff"];
+    const youtubeStreamers = ["Sneako", "DSP", "Boogie2988", "Wings of Redemption"];
+    const rumbleStreamers = ["Sneako"];
+    
+    if (kickStreamers.includes(name)) return { platform: "kick", color: "#53FC18" };
+    if (youtubeStreamers.includes(name)) return { platform: "youtube", color: "#FF0000" };
+    if (rumbleStreamers.includes(name)) return { platform: "rumble", color: "#1a73e8" };
+    return { platform: "twitch", color: "#9146FF" };
   };
+
+  const platformInfo = getPlatformInfo(entry.name);
+  // For demo purposes, simulate some streamers being "live"
+  const isLive = ["xQc", "Adin Ross", "TrainwrecksTV", "N3on"].includes(entry.name);
 
   return (
     <motion.div
@@ -138,12 +184,22 @@ function LeaderboardRow({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 30 }}
-      className={`group relative ${isTop3 ? "jester-border" : "jester-border-subtle"} bg-card hover:bg-secondary transition-all duration-300`}
+      className={`group relative ${isTop3 ? "jester-border" : "jester-border-subtle"} bg-card hover:bg-secondary transition-all duration-300 rounded-lg overflow-hidden`}
       style={{
-        boxShadow: isTop3 ? `0 0 20px ${getPlatformColor(entry.name)}20` : undefined,
-        borderColor: isTop3 ? getPlatformColor(entry.name) : undefined,
+        boxShadow: isTop3 ? `0 0 20px ${platformInfo.color}30, 0 4px 20px rgba(0,0,0,0.3)` : "0 2px 10px rgba(0,0,0,0.2)",
+        borderColor: isTop3 ? platformInfo.color : undefined,
       }}
     >
+      {/* Top 3 glow effect */}
+      {isTop3 && (
+        <div 
+          className="absolute inset-0 opacity-20 pointer-events-none"
+          style={{
+            background: `linear-gradient(135deg, ${platformInfo.color}20 0%, transparent 50%, ${platformInfo.color}10 100%)`,
+          }}
+        />
+      )}
+
       {/* Rank change flash effect */}
       <AnimatePresence>
         {isAnimating && (
@@ -369,6 +425,73 @@ function EmptyState() {
   );
 }
 
+// Stats bar component (like IP2.Network)
+function LeaderboardStats({ total, topTier, rising, falling }: { 
+  total: number; 
+  topTier: number;
+  rising: number;
+  falling: number;
+}) {
+  return (
+    <div className="flex flex-wrap items-center justify-between gap-2 p-3 bg-[#1a1a2e] rounded-lg border border-[#3f3f5f] mb-4">
+      <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-[#53FC18] animate-pulse" />
+          <span className="text-xs text-muted-foreground">Total Jesters</span>
+          <span className="text-sm font-bold text-[#fbbf24]" style={{ fontFamily: "'Orbitron', monospace" }}>
+            {total}
+          </span>
+        </div>
+        <div className="hidden sm:flex items-center gap-2">
+          <Crown className="w-3 h-3 text-[#FFD700]" />
+          <span className="text-xs text-muted-foreground">Top Tier</span>
+          <span className="text-sm font-bold text-[#FFD700]" style={{ fontFamily: "'Orbitron', monospace" }}>
+            {topTier}
+          </span>
+        </div>
+      </div>
+      <div className="flex items-center gap-4">
+        <div className="flex items-center gap-1">
+          <TrendingUp className="w-3 h-3 text-[#53FC18]" />
+          <span className="text-xs text-[#53FC18]">{rising}</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <TrendingDown className="w-3 h-3 text-red-500" />
+          <span className="text-xs text-red-500">{falling}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Section title component (like IP2.Network's "live" / "offline" sections)
+function SectionTitle({ title, count, icon: Icon, color }: { 
+  title: string; 
+  count: number; 
+  icon: React.ElementType;
+  color: string;
+}) {
+  return (
+    <div className="flex items-center gap-2 mb-3 mt-6 first:mt-0">
+      <Icon className="w-4 h-4" style={{ color }} />
+      <span className="text-sm font-bold uppercase tracking-wider" style={{ color }}>
+        {title}
+      </span>
+      <span 
+        className="px-2 py-0.5 text-xs font-bold rounded"
+        style={{ 
+          backgroundColor: `${color}20`,
+          color,
+          border: `1px solid ${color}40`,
+        }}
+      >
+        {count}
+      </span>
+      <div className="flex-1 h-px bg-[#3f3f5f] ml-2" />
+    </div>
+  );
+}
+
 // Main leaderboard component
 export const LiveLeaderboard = memo(function LiveLeaderboard({
   entries,
@@ -385,19 +508,67 @@ export const LiveLeaderboard = memo(function LiveLeaderboard({
     return <EmptyState />;
   }
 
+  // Calculate stats
+  const topTier = entries.filter(e => e.currentRank <= 10).length;
+  const rising = entries.filter(e => e.rankChange === "up").length;
+  const falling = entries.filter(e => e.rankChange === "down").length;
+
+  // Split into sections like IP2.Network
+  const top3 = entries.slice(0, 3);
+  const rest = entries.slice(3);
+
   return (
-    <div className="space-y-1 sm:space-y-2">
-      <AnimatePresence mode="popLayout">
-        {entries.map((entry) => (
-          <LeaderboardRow
-            key={entry.nomineeId}
-            entry={entry}
-            isAnimating={animatingRanks.has(entry.nomineeId)}
-            userVote={myVotes[entry.nomineeId]}
-            onVote={(type) => onVote(entry.nomineeId, type)}
-          />
-        ))}
-      </AnimatePresence>
+    <div className="space-y-2">
+      {/* Stats bar */}
+      <LeaderboardStats 
+        total={entries.length} 
+        topTier={topTier}
+        rising={rising}
+        falling={falling}
+      />
+
+      {/* Top 3 Section - Podium */}
+      <SectionTitle 
+        title="Top Jesters" 
+        count={top3.length} 
+        icon={Crown} 
+        color="#FFD700" 
+      />
+      <div className="space-y-2 mb-6">
+        <AnimatePresence mode="popLayout">
+          {top3.map((entry) => (
+            <LeaderboardRow
+              key={entry.nomineeId}
+              entry={entry}
+              isAnimating={animatingRanks.has(entry.nomineeId)}
+              userVote={myVotes[entry.nomineeId]}
+              onVote={(type) => onVote(entry.nomineeId, type)}
+              featured
+            />
+          ))}
+        </AnimatePresence>
+      </div>
+
+      {/* Rest of leaderboard */}
+      <SectionTitle 
+        title="The Court" 
+        count={rest.length} 
+        icon={Award} 
+        color="#a1a1aa" 
+      />
+      <div className="space-y-1">
+        <AnimatePresence mode="popLayout">
+          {rest.map((entry) => (
+            <LeaderboardRow
+              key={entry.nomineeId}
+              entry={entry}
+              isAnimating={animatingRanks.has(entry.nomineeId)}
+              userVote={myVotes[entry.nomineeId]}
+              onVote={(type) => onVote(entry.nomineeId, type)}
+            />
+          ))}
+        </AnimatePresence>
+      </div>
     </div>
   );
 });
