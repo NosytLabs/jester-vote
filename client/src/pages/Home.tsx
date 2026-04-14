@@ -52,7 +52,7 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-court">
       <Header />
 
-      <div role="main" className="container py-6">
+      <main id="main-content" className="container py-6">
         {/* 🎪 JESTER COURT HEADER - Enhanced with Leaderboard Preview */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
@@ -376,12 +376,55 @@ export default function Home() {
           </div>
         </motion.div>
 
+        {/* 🎪 SEO CONTENT SECTION - Hidden visually but available to crawlers */}
+        <section className="sr-only" aria-label="About TopJester">
+          <h2>TopJester - The Court of Fools: Streamer Rankings and Lolcow Voting</h2>
+          <p>
+            TopJester is the premier destination for tracking the biggest jesters, lolcows, and controversial figures 
+            in streaming culture. Our community-driven platform allows users to vote on streamers from Twitch, Kick, 
+            YouTube, and other platforms who have become infamous for their dramatic content, controversial behavior, 
+            or entertaining mishaps.
+          </p>
+          <p>
+            The term "lolcow" originated from internet culture to describe individuals who are endlessly entertaining 
+            due to their lack of self-awareness, dramatic behavior, or constant controversies. From DSP's gaming rage 
+            to Wings of Redemption's legendary trolling saga, from Ice Poseidon's IRL pioneering to modern Kick streamers 
+            like Adin Ross and N3on, we track them all.
+          </p>
+          <p>
+            Our database includes legendary figures like DarkSydePhil (DSP), Wings of Redemption, LowTierGod, Boogie2988, 
+            Chris Chan, and Onision, alongside modern streamers like Sneako, JiDion, and Cx Network alumni. 
+            Each profile includes their most infamous moments, controversies, and verified social media links.
+          </p>
+          <p>
+            Join our community to vote on who deserves the crown of the biggest jester. Login with Kick, Twitch, 
+            or YouTube OAuth to participate in real-time voting and track the ever-changing rankings of streaming's 
+            most controversial figures.
+          </p>
+          <h3>Featured Categories</h3>
+          <ul>
+            <li>Gaming Lolcows - Streamers known for gaming rage and skill issues</li>
+            <li>IRL Streamers - In-real-life content creators and their chaotic adventures</li>
+            <li>Mukbang Creators - Food-related content with dramatic elements</li>
+            <li>Commentary Channels - Opinionated creators and their hot takes</li>
+            <li>Cx Network Alumni - Members of the legendary IRL streaming group</li>
+          </ul>
+          <h3>Platform Coverage</h3>
+          <ul>
+            <li>Twitch - The original streaming platform</li>
+            <li>Kick - The controversial new streaming platform</li>
+            <li>YouTube - Video and streaming content</li>
+            <li>Rumble - Alternative video platform</li>
+          </ul>
+        </section>
+
         {/* 🎪 FOOTER */}
         <motion.footer 
           className="mt-12 text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7 }}
+          role="contentinfo"
         >
           <div className="court-divider max-w-sm mx-auto mb-4" />
           <p className="text-sm text-muted-foreground">
@@ -393,8 +436,14 @@ export default function Home() {
           <p className="text-xs text-muted-foreground mt-1">
             Not affiliated with ip2.network — Unique jester-themed ranking platform
           </p>
+          <nav aria-label="Footer navigation" className="mt-4 flex justify-center gap-4 text-xs">
+            <a href="/about" className="text-muted-foreground hover:text-foreground">About Us</a>
+            <a href="/contact" className="text-muted-foreground hover:text-foreground">Contact</a>
+            <a href="/privacy" className="text-muted-foreground hover:text-foreground">Privacy Policy</a>
+            <a href="/sitemap.xml" className="text-muted-foreground hover:text-foreground">Sitemap</a>
+          </nav>
         </motion.footer>
-      </div>
+      </main>
     </div>
   );
 }
