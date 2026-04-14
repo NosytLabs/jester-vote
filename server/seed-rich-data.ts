@@ -2854,6 +2854,228 @@ const nominees = [
       { label: "YouTube", url: "https://www.youtube.com/@FoodieBeauty" },
     ],
   },
+  // ========== REAL KICK/STREAMER LOLCOWS ==========
+  {
+    name: "NickWhite",
+    platform: "Kick",
+    category: "Gaming",
+    bio: "NickWhite is a Kick streamer known for Old School RuneScape (OSRS) staking and gambling content. Streams high-stakes in-game betting on Kick, focusing on the controversial 'staking' mechanic. Has been criticized for promoting gambling behaviors and potential real money trading (RMT) violations.",
+    imageUrl: "https://i.pravatar.cc/150?img=99",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/2007scape/search/?q=nickwhite"],
+    kickClipUrls: [],
+    moments: [
+      { title: "OSRS Staking Streams", description: "Built following through high-stakes OSRS staking content on Kick", date: "2023-01-01", type: "event" },
+      { title: "Kick Gambling Content", description: "Streams focus on gambling mechanics within OSRS", date: "2023-06-01", type: "event" },
+      { title: "RMT Allegations", description: "Accused of real money trading of in-game currency", date: "2024-01-01", type: "controversy" },
+    ],
+    controversies: [
+      { title: "Gambling Promotion", description: "Promotes gambling to young audience through OSRS staking", date: "2023-01-01", severity: "major" },
+      { title: "Real Money Trading", description: "Accused of RMT violations in OSRS", date: "2024-01-01", severity: "major" },
+      { title: "Toxic Community", description: "Community criticized for toxic behavior", date: "2023-06-01", severity: "moderate" },
+    ],
+    news: [
+      { title: "NickWhite OSRS Gambling Content", content: "Streams controversial staking content on Kick platform", date: "2023-01-01", sourceUrl: "https://www.kick.com/nickwhite", approved: true },
+    ],
+    links: [
+      { label: "Kick", url: "https://www.kick.com/nickwhite" },
+    ],
+  },
+  {
+    name: "shoovy",
+    platform: "Kick",
+    category: "IRL",
+    bio: "shoovy is a Kick streamer known for IRL content, car meets, and street culture. Streams often feature car-related content, street racing culture, and urban nightlife. Has collaborated with major Kick streamers and built a following through authentic street content.",
+    imageUrl: "https://i.pravatar.cc/150?img=100",
+    tweetUrls: [],
+    redditUrls: [],
+    kickClipUrls: [],
+    moments: [
+      { title: "Car Meet Streams", description: "Popular streams from car meets and automotive events", date: "2024-01-01", type: "event" },
+      { title: "Adin Ross Collaboration", description: "Streamed with Adin Ross boosting visibility", date: "2024-05-01", type: "event" },
+      { title: "Street Racing Content", description: "Documented street racing culture on streams", date: "2024-03-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Dangerous Driving", description: "Filmed reckless driving during IRL streams", date: "2024-04-01", severity: "major" },
+      { title: "Street Violence", description: "Accused of glorifying street violence and gang culture", date: "2024-02-01", severity: "moderate" },
+      { title: "Unpermitted Events", description: "Organized events without proper permits", date: "2024-01-01", severity: "moderate" },
+    ],
+    news: [
+      { title: "shoovy Kick Growth", content: "Grew following through car culture content on Kick", date: "2024-01-01", sourceUrl: "https://www.kick.com/shoovy", approved: true },
+    ],
+    links: [
+      { label: "Kick", url: "https://www.kick.com/shoovy" },
+    ],
+  },
+  {
+    name: "Moises",
+    platform: "Kick",
+    category: "IRL",
+    bio: "Moises is a Kick streamer known for confrontational IRL content and street interviews. Built a reputation for chaotic content in urban environments, often pushing boundaries with strangers for reactions and content.",
+    imageUrl: "https://i.pravatar.cc/150?img=101",
+    tweetUrls: [],
+    redditUrls: [],
+    kickClipUrls: [],
+    moments: [
+      { title: "Street Confrontation Viral", description: "Heated argument with public member went viral", date: "2024-03-01", type: "clip" },
+      { title: "Kick Partnership", description: "Achieved Kick partnership status", date: "2024-01-01", type: "event" },
+      { title: "Major Streamer Collabs", description: "Streamed with major Kick personalities", date: "2024-06-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Street Harassment", description: "Aggressively approaching strangers for content", date: "2024-02-01", severity: "major" },
+      { title: "Provoking Altercations", description: "Deliberately provoking physical confrontations", date: "2024-04-01", severity: "major" },
+      { title: "Inappropriate Comments", description: "Sexualized comments to women during interviews", date: "2024-05-01", severity: "moderate" },
+    ],
+    news: [
+      { title: "Moises Kick Growth", content: "Gaining traction through confrontational IRL content", date: "2024-01-01", sourceUrl: "https://www.kick.com/moises", approved: true },
+    ],
+    links: [
+      { label: "Kick", url: "https://www.kick.com/moises" },
+    ],
+  },
+  {
+    name: "N3on",
+    platform: "Kick/Twitch",
+    category: "IRL",
+    bio: "N3on is a streamer who made waves by switching from Kick to Twitch in 2025. Known for drama, being called out by NYC gang members on stream, and misgendering controversies at TwitchCon 2024. A true drama magnet who generates content through controversy.",
+    imageUrl: "https://i.pravatar.cc/150?img=102",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/LivestreamFail/search/?q=n3on"],
+    kickClipUrls: [],
+    moments: [
+      { title: "NYC Gang Callout", description: "Called out by NYC gang members during live stream", date: "2024-01-01", type: "controversy" },
+      { title: "Kick to Twitch Switch", description: "Accused Kick of 'hidden agenda' and moved to Twitch", date: "2025-01-01", type: "event" },
+      { title: "TwitchCon Misgendering", description: "Misgendering controversy at TwitchCon 2024", date: "2024-09-01", type: "controversy" },
+    ],
+    controversies: [
+      { title: "Platform Drama", description: "Constant beef with other streamers and platforms", date: "2024-01-01", severity: "moderate" },
+      { title: "TwitchCon Incident", description: "Misgendering issues at convention", date: "2024-09-01", severity: "major" },
+      { title: "Gang Association", description: "Called out by gang members on stream", date: "2024-01-01", severity: "major" },
+    ],
+    news: [
+      { title: "N3on Moves to Twitch", content: "Switched from Kick to Twitch platform", date: "2025-01-01", sourceUrl: "", approved: true },
+      { title: "N3on TwitchCon Controversy", content: "Misgendering incident at TwitchCon 2024", date: "2024-09-01", sourceUrl: "", approved: true },
+    ],
+    links: [
+      { label: "Twitch", url: "https://www.twitch.tv/n3on" },
+      { label: "Kick (Former)", url: "https://www.kick.com/n3on" },
+    ],
+  },
+  {
+    name: "Adin Ross",
+    platform: "Kick/Twitch",
+    category: "IRL",
+    bio: "Adin Ross is one of the biggest streamers who moved from Twitch to Kick in a massive deal, then returned to Twitch in 2025. Known for celebrity collaborations (Kanye, Playboi Carti disaster), Andrew Tate association, and constant platform drama. The king of streaming controversy.",
+    imageUrl: "https://i.pravatar.cc/150?img=103",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/LivestreamFail/search/?q=adin+ross"],
+    kickClipUrls: [],
+    moments: [
+      { title: "Twitch Ban 2023", description: "Banned from Twitch in February 2023", date: "2023-02-01", type: "controversy" },
+      { title: "$100M Kick Deal", description: "Massive deal to move to Kick platform", date: "2023-03-01", type: "event" },
+      { title: "Kanye/Playboi Carti Disaster", description: "Disastrous celebrity collaboration stream", date: "2024-01-01", type: "controversy" },
+      { title: "Return to Twitch 2025", description: "Unbanned and returned to Twitch", date: "2025-01-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Andrew Tate Association", description: "Close association with controversial figure", date: "2023-01-01", severity: "major" },
+      { title: "Platform Hopping", description: "Constant switching between platforms for money", date: "2025-01-01", severity: "moderate" },
+      { title: "Celebrity Drama", description: "Multiple failed celebrity collaborations", date: "2024-01-01", severity: "moderate" },
+    ],
+    news: [
+      { title: "Adin Ross Banned from Twitch", content: "Permanently banned in February 2023", date: "2023-02-01", sourceUrl: "", approved: true },
+      { title: "Adin Ross Returns to Twitch", content: "Unbanned and returned to Twitch in 2025", date: "2025-01-01", sourceUrl: "", approved: true },
+    ],
+    links: [
+      { label: "Twitch", url: "https://www.twitch.tv/adinross" },
+      { label: "Kick (Former)", url: "https://www.kick.com/adinross" },
+    ],
+  },
+  {
+    name: "TrainwrecksTV",
+    platform: "Kick",
+    category: "Slots/Gambling",
+    bio: "TrainwrecksTV is a co-owner of Kick streaming platform and one of the biggest gambling streamers. Known for burning through millions in gambling streams, public conflicts with Stake (gambling sponsor), and Rust event controversies. The gambling baron of streaming.",
+    imageUrl: "https://i.pravatar.cc/150?img=104",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/LivestreamFail/search/?q=trainwrecks"],
+    kickClipUrls: [],
+    moments: [
+      { title: "Kick Co-Owner", description: "Became co-owner of Kick streaming platform", date: "2023-01-01", type: "event" },
+      { title: "Stake Drama", description: "Public conflict with gambling sponsor Stake", date: "2024-01-01", type: "controversy" },
+      { title: "Millions in Gambling", description: "Documented burning through millions on stream", date: "2023-01-01", type: "event" },
+      { title: "Rust Event Controversy", description: "Controversies around Rust gaming events", date: "2022-01-01", type: "controversy" },
+    ],
+    controversies: [
+      { title: "Gambling Promotion", description: "Promotes gambling to massive audience including minors", date: "2023-01-01", severity: "high" },
+      { title: "Stake Greed Accusations", description: "Accused Stake of greed in public disputes", date: "2024-01-01", severity: "moderate" },
+      { title: "Crypto/NFT Ventures", description: "Various failed crypto and NFT projects", date: "2022-01-01", severity: "moderate" },
+    ],
+    news: [
+      { title: "TrainwrecksTV Kick Ownership", content: "Became co-owner of Kick platform", date: "2023-01-01", sourceUrl: "", approved: true },
+      { title: "TrainwrecksTV Stake Drama", content: "Public conflict with gambling sponsor", date: "2024-01-01", sourceUrl: "", approved: true },
+    ],
+    links: [
+      { label: "Kick", url: "https://kick.com/trainwreckstv" },
+      { label: "Twitter/X", url: "https://twitter.com/Trainwreckstv" },
+    ],
+  },
+  {
+    name: "Sneako",
+    platform: "Rumble/YouTube",
+    category: "Commentary",
+    bio: "Sneako (Nicholas Kennan) is a controversial content creator known for hot takes, red pill ideology, and association with Andrew Tate. Banned from YouTube and Twitch, he moved to Rumble and Kick. Famous for his 'Shots Fired' podcast and provocative commentary.",
+    imageUrl: "https://i.pravatar.cc/150?img=105",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/Sneako/"],
+    kickClipUrls: [],
+    moments: [
+      { title: "YouTube Ban", description: "Permanently banned from YouTube in 2022", date: "2022-10-01", type: "controversy" },
+      { title: "Shots Fired Podcast", description: "Launched controversial podcast", date: "2023-01-01", type: "event" },
+      { title: "Andrew Tate Association", description: "Became closely associated with Andrew Tate", date: "2022-12-01", type: "event" },
+      { title: "Rumble Migration", description: "Moved to Rumble after platform bans", date: "2022-10-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Misogynistic Content", content: "Multiple instances of content deemed misogynistic", date: "2023-01-01", severity: "high" },
+      { title: "Conspiracy Theories", description: "Spread various conspiracy theories and misinformation", date: "2023-06-01", severity: "moderate" },
+      { title: "Toxic Fanbase", description: "Criticized for fostering toxic community", date: "2023-01-01", severity: "moderate" },
+    ],
+    news: [
+      { title: "Sneako Banned from YouTube", content: "Permanently banned for policy violations", date: "2022-10-01", sourceUrl: "", approved: true },
+    ],
+    links: [
+      { label: "Rumble", url: "https://rumble.com/c/Sneako" },
+      { label: "Twitter/X", url: "https://twitter.com/sneako" },
+    ],
+  },
+  {
+    name: "xQc",
+    platform: "Kick/Twitch",
+    category: "Gaming",
+    bio: "Félix Lengyel, known as xQc, is a former Overwatch pro turned variety streamer. Famous for his ADHD-fueled streams, constant malding, and being the most-watched Twitch streamer for years. Known for his $100M Kick deal while still streaming on Twitch, his messy breakup with Adept, and constant drama.",
+    imageUrl: "https://i.pravatar.cc/150?img=106",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/xqcow/"],
+    kickClipUrls: [],
+    moments: [
+      { title: "$100M Kick Deal", description: "Signed massive $100M deal with Kick", date: "2023-06-01", type: "event" },
+      { title: "Adept Lawsuit Drama", description: "Public breakup and lawsuit with ex-girlfriend", date: "2022-01-01", type: "drama" },
+      { title: "Pokimane Feud", description: "Long-standing feud with Pokimane", date: "2021-01-01", type: "drama" },
+      { title: "TwitchCon Fights", description: "Physical altercations at TwitchCon events", date: "2022-10-01", type: "controversy" },
+    ],
+    controversies: [
+      { title: "Gambling Streams", description: "Promoted gambling on stream", date: "2021-01-01", severity: "major" },
+      { title: "Adept Legal Battle", description: "Lawsuit with ex-girlfriend over property", date: "2022-01-01", severity: "major" },
+      { title: "TwitchCon Altercations", description: "Physical fights at TwitchCon", date: "2022-10-01", severity: "major" },
+    ],
+    news: [
+      { title: "xQc Signs $100M Kick Deal", content: "One of the largest streaming deals in history", date: "2023-06-01", sourceUrl: "", approved: true },
+    ],
+    links: [
+      { label: "Kick", url: "https://kick.com/xqc" },
+      { label: "Twitch", url: "https://www.twitch.tv/xqc" },
+      { label: "Twitter/X", url: "https://twitter.com/xqc" },
+    ],
+  },
 ];
 
 async function seedRichData() {
