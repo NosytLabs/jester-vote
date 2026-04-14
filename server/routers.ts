@@ -167,6 +167,111 @@ export const appRouter = router({
         ]);
         return { moments, controversies, news, links };
       }),
+
+    /** Protected: add a notable moment (clip) */
+    addNotableMoment: protectedProcedure
+      .input(
+        z.object({
+          nomineeId: z.number(),
+          title: z.string().min(1).max(256),
+          description: z.string().max(1000).optional(),
+          videoUrl: z.string().url().optional(),
+          timestamp: z.string().max(20).optional(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const { insertNotableMoment } = await import("./db-rich");
+        await insertNotableMoment({
+          nomineeId: input.nomineeId,
+          title: input.title,
+          description: input.description ?? null,
+          videoUrl: input.videoUrl ?? null,
+          timestamp: input.timestamp ?? null,
+        });
+        return { success: true };
+      }),
+
+    /** Admin: add a controversy/incident */
+    addControversy: adminProcedure
+      .input(
+        z.object({
+          nomineeId: z.number(),
+          title: z.string().min(1).max(256),
+          description: z.string().min(1).max(2000),
+          date: z.string().max(20).optional(),
+          severity: z.enum(["minor", "moderate", "major"]).default("moderate"),
+          sourceUrl: z.string().url().optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const { insertControversy } = await import("./db-rich");
+        await insertControversy({
+          nomineeId: input.nomineeId,
+          title: input.title,
+          description: input.description,
+          date: input.date ?? null,
+          severity: input.severity,
+          sourceUrl: input.sourceUrl ?? null,
+        });
+        return { success: true };
+      }),
+
+    /** Protected: add a news item (requires approval) */
+    addNewsItem: protectedProcedure
+      .input(
+        z.object({
+          nomineeId: z.number(),
+          title: z.string().min(1).max(256),
+          content: z.string().min(1).max(5000),
+          sourceUrl: z.string().url().optional(),
+          date: z.string().max(20).optional(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const { insertNewsItem } = await import("./db-rich");
+        await insertNewsItem({
+          nomineeId: input.nomineeId,
+          title: input.title,
+          content: input.content,
+          sourceUrl: input.sourceUrl ?? null,
+          date: input.date ?? null,
+          submittedByUserId: ctx.user.id,
+          approved: false,
+        });
+        return { success: true, pendingApproval: true };
+      }),
+
+    /** Protected: add an external link */
+    addExternalLink: protectedProcedure
+      .input(
+        z.object({
+          nomineeId: z.number(),
+          label: z.string().min(1).max(128),
+          url: z.string().url(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const { insertExternalLink } = await import("./db-rich");
+        await insertExternalLink({
+          nomineeId: input.nomineeId,
+          label: input.label,
+          url: input.url,
+        });
+        return { success: true };
+      }),
+
+    /** Admin: approve a pending news item */
+    approveNews: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        const { getDb } = await import("./db");
+        const { newsItems } = await import("../drizzle/schema");
+        const { eq } = await import("drizzle-orm");
+        const db = await getDb();
+        if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database not available" });
+        await db.update(newsItems).set({ approved: true }).where(eq(newsItems.id, input.id));
+        return { success: true };
+      }),
   }),
 });
 
