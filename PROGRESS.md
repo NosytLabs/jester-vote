@@ -67,5 +67,20 @@
 **Validation:**
 - [x] TypeScript check: `pnpm run check` - PASS
 - [x] Build: `pnpm run build` - PASS
+- [x] Commit: `c52ea44` - PUSHED
 
-**Next:** Commit and continue with more UI fixes
+### Iteration 4 - VoteButton Sizing Improvements ✅
+**Time:** 2026-04-14 10:05 UTC
+
+**Changes:**
+- Increased VoteButton heights: sm (h-9), md (h-10), lg (h-11)
+- Improved icon sizes: sm (14px), md (16px), lg (18px)
+- Better min-widths: sm (64px), md (84px), lg (100px)
+- Changed LiveLeaderboard to use `size="md"` for better visibility
+- Consistent padding across all sizes
+
+**Validation:**
+- [x] TypeScript check: `pnpm run check` - PASS
+- [x] Build: `pnpm run build` - PASS
+
+**Next:** Commit and push changes

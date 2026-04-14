@@ -280,7 +280,7 @@ function LeaderboardRow({
             downvotes={entry.downvotes}
             userVote={userVote}
             onVote={onVote}
-            size="sm"
+            size="md"
           />
         </div>
 
