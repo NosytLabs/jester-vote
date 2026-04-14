@@ -1,33 +1,14 @@
-# TopJester Project Operations
+# Project Operations
 
 ## Build Commands
-```bash
-npm run dev      # Development server (port auto-detects)
-npm run build    # Production build
-npm start        # Start production server
-```
+pnpm run dev      # Development server
+pnpm run build    # Production build
 
 ## Validation
-```bash
-npm run typecheck    # TypeScript check
-npm run lint         # ESLint
-npm run test         # Run tests (if available)
-```
-
-## Database
-- SQLite: `local.db` (auto-created on first use)
-- Schema managed by Drizzle
-
-## OAuth Configuration
-- Kick OAuth configured in `.env`
-- Callback: `/api/oauth/callback`
-- Dev login: `/api/oauth/dev-login`
-
-## Ports
-- Preferred: 3013 (matches Kick app)
-- Fallback: auto-detects if 3013 busy
+pnpm run check    # TypeScript type check
+pnpm run typecheck # TypeScript (alias)
 
 ## Operational Notes
-- Server must match Kick app redirect URL exactly
-- OAuth codes expire after ~10 minutes
-- Admin set via OWNER_OPEN_ID in .env
+- Typecheck must pass before committing
+- Build must succeed before committing
+- Target: Lighthouse score 75+

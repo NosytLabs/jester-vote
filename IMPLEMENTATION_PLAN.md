@@ -1,32 +1,55 @@
-# Ralph Mode: Fix All TopJester Issues
+# Implementation Plan: Fix Critical Audit Issues
 
-## Current Status (2026-04-14)
-- Server running but port keeps changing
-- OAuth fails due to port mismatches
-- 5 commits ahead of origin/main (unpushed)
-- UI/UX redesigned but needs validation
-- Cloudflare tunnel inactive
-- GitHub auth failing
+**Goal:** Fix critical audit issues for jester-vote project (Lighthouse score 46/100 → 75+) including SEO, accessibility, security headers, and performance optimizations.
+
+**Constraints:**
+- Validate each fix with `pnpm run check && pnpm run build` before commit
+- Target: 75+ Lighthouse score
 
 ## In Progress
-- [ ] Stabilize server on fixed port (3013)
-- [ ] Fix OAuth redirect URL matching
-- [ ] Push commits to GitHub
-- [ ] Validate UI/UX works correctly
-- [ ] Test complete login flow
+- [ ] Initial audit and assessment
 
-## Backlog
-- [ ] Fix Cloudflare tunnel
-- [ ] Update GitHub token
-- [ ] Add more streamers to database
-- [ ] Test admin features
-- [ ] Run full test suite
+## Backlog (Priority Order)
 
-## Acceptance Criteria
-- [ ] Server runs consistently on port 3013
-- [ ] Kick OAuth login works end-to-end
-- [ ] All 5 commits pushed to GitHub
-- [ ] UI/UX renders correctly (jester theme)
-- [ ] Admin can login and manage nominees
-- [ ] No TypeScript errors
-- [ ] No console errors in browser
+### SEO Issues
+- [ ] Add meta description tag to index.html
+- [ ] Add proper title tag
+- [ ] Add Open Graph meta tags
+- [ ] Add Twitter Card meta tags
+- [ ] Add canonical link tag
+- [ ] Add robots.txt
+- [ ] Add sitemap.xml
+
+### Accessibility Issues
+- [ ] Add lang attribute to html tag
+- [ ] Ensure all images have alt text
+- [ ] Fix color contrast ratios
+- [ ] Add skip-to-content link
+- [ ] Ensure proper heading hierarchy
+- [ ] Add aria-labels to interactive elements
+- [ ] Fix focus indicators
+
+### Security Headers
+- [ ] Add Content-Security-Policy
+- [ ] Add X-Frame-Options
+- [ ] Add X-Content-Type-Options
+- [ ] Add Referrer-Policy
+- [ ] Add Permissions-Policy
+
+### Performance
+- [ ] Optimize images (WebP/AVIF)
+- [ ] Add resource hints (preconnect, dns-prefetch)
+- [ ] Minimize render-blocking resources
+- [ ] Enable text compression
+- [ ] Optimize font loading
+
+### Best Practices
+- [ ] Fix console errors
+- [ ] Remove unused JavaScript
+- [ ] Add service worker for caching
+- [ ] Validate HTML
+
+## Completed
+- [x] Dependencies installed
+- [x] Type check passes
+- [x] Build succeeds

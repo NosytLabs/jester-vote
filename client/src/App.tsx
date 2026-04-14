@@ -10,6 +10,8 @@ import SubmitPage from "./pages/SubmitPage";
 import AdminPage from "./pages/AdminPage";
 import LoginPage from "./pages/Login";
 import AboutPage from "./pages/AboutPage";
+import Contact from "./pages/Contact";
+import Privacy from "./pages/Privacy";
 import SettingsPage from "./pages/SettingsPage";
 import MerchPage from "./pages/MerchPage";
 
@@ -19,6 +21,8 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/login" component={LoginPage} />
       <Route path="/about" component={AboutPage} />
+      <Route path="/contact" component={Contact} />
+      <Route path="/privacy" component={Privacy} />
       <Route path="/settings" component={SettingsPage} />
       <Route path="/merch" component={MerchPage} />
       <Route path="/nominee/:id" component={NomineePage} />
