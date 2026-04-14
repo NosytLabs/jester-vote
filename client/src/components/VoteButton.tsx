@@ -16,17 +16,17 @@ interface VoteButtonProps {
 
 const sizeConfig = {
   sm: {
-    button: "px-2 py-1 text-xs gap-1",
+    button: "px-2 py-1.5 text-xs gap-1.5 min-w-[60px] justify-center",
     icon: 11,
     particleCount: 6,
   },
   md: {
-    button: "px-3 py-1.5 text-sm gap-1.5",
+    button: "px-3 py-2 text-sm gap-2 min-w-[80px] justify-center",
     icon: 14,
     particleCount: 8,
   },
   lg: {
-    button: "px-4 py-2 text-sm gap-2",
+    button: "px-4 py-2.5 text-sm gap-2.5 min-w-[100px] justify-center",
     icon: 16,
     particleCount: 12,
   },

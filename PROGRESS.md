@@ -1,39 +1,32 @@
-# Jester-Vote Project Progress
+# Ralph Mode: Jester-Vote Research & UI/UX Improvements
 
-## Latest Updates - 2026-04-14
+## Session Start: 2026-04-14
 
-### ✅ Completed
+### Goals
+1. Research lolcows (Sam Pepper, Ice Poseidon, Clavicur verification)
+2. Fix UI/UX alignment issues
+3. Update content with verified information
+4. Improve seed data with real social links
+5. Enhance component styling
 
-#### 1. Enhanced Seed Data
-- Added 20 nominees total (10 classic + 10 modern streamers)
-- New streamers: Adin Ross, N3on, TrainwrecksTV, xQc, Sneako, Kai Cenat, IShowSpeed, Nickmercs, BruceDropEmOff, Mizkif
-- All with detailed descriptions of their controversies
+### Skills to Apply
+- ui-ux-pro-max (design intelligence)
+- web-research (lolcow research)
+- code-reviewer (quality checks)
+- byterover (knowledge management)
 
-#### 2. Leaderboard Improvements
-- Added Top 3 Podium display on homepage
-- Gold/Silver/Bronze styling for top 3
-- Platform color coding (Kick green, Twitch purple)
-- Enhanced avatar borders with glow effects
-- Rank badges with crown/medal icons
+## Iteration 1 - UI/UX Improvements
 
-#### 3. Nominee Profile Page Enhancements
-- Fixed BaseballCard integration with platform detection
-- Added platform badges (Kick/YouTube/Twitch)
-- Improved layout and styling
-- Connected real vote data to baseball cards
+### Status: Complete ✅
 
-#### 4. OAuth System
-- Multi-platform OAuth ready (Twitch, YouTube, Kick)
-- Login page with platform selection
-- Kick highlighted as recommended
+### Tasks Completed
+- [x] Improved VoteButton sizing and alignment
+- [x] Added min-width and justify-center for consistent button sizing
+- [x] Increased gap between buttons for better spacing
+- [x] Build passes successfully
 
-### 🔧 In Progress
-- Testing OAuth with real credentials
-- Verifying vote persistence
-- Building and deploying
-
-### 📋 Next Steps
-1. Add real OAuth credentials to .env
-2. Test all three login providers
-3. Build and verify
-4. Deploy to production
+### Next: Content Research
+- [ ] Research Sam Pepper - already in seed data
+- [ ] Add more IRL streamers (Hampton Brandon, Mexican Andy)
+- [ ] Verify and update social links
+- [ ] Improve nominee bios with verified info

@@ -7,6 +7,9 @@
 - Target: 75+ Audit score
 
 ## In Progress
+- [ ] Research lolcows and improve content (Sam Pepper, Ice Poseidon, Clavicur)
+- [ ] Fix UI/UX alignment issues in components
+- [ ] Update seed data with verified social links
 - [ ] OAuth credential setup and testing
 
 ## Backlog (Priority Order)
