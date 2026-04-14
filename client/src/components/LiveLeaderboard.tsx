@@ -144,38 +144,33 @@ function ScoreDisplay({ score }: { score: number }) {
   );
 }
 
-// Individual leaderboard row - IP2.Network inspired layout
+// Individual leaderboard row - Clean IP2.Network style
 function LeaderboardRow({
   entry,
   isAnimating,
   userVote,
   onVote,
-  featured = false,
 }: {
   entry: LeaderboardEntry;
   isAnimating: boolean;
   userVote?: "up" | "down";
   onVote: (type: "up" | "down") => void;
-  featured?: boolean;
 }) {
-  const isTop3 = entry.currentRank <= 3 || featured;
-  const [imageError, setImageError] = useState(false);
+  const isTop3 = entry.currentRank <= 3;
   
-  // Get platform info
+  // Get platform info - simplified for TRUE lolcows only
   const getPlatformInfo = (name: string) => {
-    const kickStreamers = ["Adin Ross", "TrainwrecksTV", "xQc", "N3on", "NickWhite", "shoovy", "Moises", "BruceDropEmOff"];
-    const youtubeStreamers = ["Sneako", "DSP", "Boogie2988", "Wings of Redemption"];
-    const rumbleStreamers = ["Sneako"];
+    const kickStreamers = ["Ice Poseidon", "Hampton Brandon", "Mexican Andy"];
+    const youtubeStreamers = ["DSP", "Boogie2988", "Wings of Redemption", "LowTierGod", "Elpresador", "OnlyUseMeBlade", "Nikocado Avocado", "Chris Chan", "Onision", "Eugenia Cooney", "Trisha Paytas", "Gabbie Hanna", "Jason Genova", "KingCobraJFS", "Chantal", "Sam Pepper", "SJC", "EBZ", "Asian Andy", "Tracksuit Andy", "Burger Planet", "Andy Milonakis", "Hyphonix", "Projared", "Sam Hyde", "LeafyIsHere", "FouseyTube", "JiDion"];
     
     if (kickStreamers.includes(name)) return { platform: "kick", color: "#53FC18" };
     if (youtubeStreamers.includes(name)) return { platform: "youtube", color: "#FF0000" };
-    if (rumbleStreamers.includes(name)) return { platform: "rumble", color: "#1a73e8" };
     return { platform: "twitch", color: "#9146FF" };
   };
 
   const platformInfo = getPlatformInfo(entry.name);
-  // For demo purposes, simulate some streamers being "live"
-  const isLive = ["xQc", "Adin Ross", "TrainwrecksTV", "N3on"].includes(entry.name);
+  // Simulate live status for some streamers
+  const isLive = ["DSP", "Ice Poseidon", "Wings of Redemption"].includes(entry.name);
 
   return (
     <motion.div
@@ -425,74 +420,24 @@ function EmptyState() {
   );
 }
 
-// Stats bar component (like IP2.Network)
-function LeaderboardStats({ total, topTier, rising, falling }: { 
-  total: number; 
-  topTier: number;
-  rising: number;
-  falling: number;
-}) {
+
+
+// Simple stats bar (IP2.Network style)
+function LeaderboardStats({ total }: { total: number }) {
   return (
-    <div className="flex flex-wrap items-center justify-between gap-2 p-3 bg-[#1a1a2e] rounded-lg border border-[#3f3f5f] mb-4">
-      <div className="flex items-center gap-4">
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-[#53FC18] animate-pulse" />
-          <span className="text-xs text-muted-foreground">Total Jesters</span>
-          <span className="text-sm font-bold text-[#fbbf24]" style={{ fontFamily: "'Orbitron', monospace" }}>
-            {total}
-          </span>
-        </div>
-        <div className="hidden sm:flex items-center gap-2">
-          <Crown className="w-3 h-3 text-[#FFD700]" />
-          <span className="text-xs text-muted-foreground">Top Tier</span>
-          <span className="text-sm font-bold text-[#FFD700]" style={{ fontFamily: "'Orbitron', monospace" }}>
-            {topTier}
-          </span>
-        </div>
+    <div className="flex items-center justify-between p-2 sm:p-3 bg-[#1a1a2e] rounded-lg border border-[#3f3f5f] mb-3">
+      <div className="flex items-center gap-2">
+        <Radio className="w-4 h-4 text-red-500 animate-pulse" />
+        <span className="text-xs sm:text-sm font-bold text-[#fbbf24]">TopJesters</span>
       </div>
-      <div className="flex items-center gap-4">
-        <div className="flex items-center gap-1">
-          <TrendingUp className="w-3 h-3 text-[#53FC18]" />
-          <span className="text-xs text-[#53FC18]">{rising}</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <TrendingDown className="w-3 h-3 text-red-500" />
-          <span className="text-xs text-red-500">{falling}</span>
-        </div>
-      </div>
+      <span className="text-xs sm:text-sm text-muted-foreground">
+        {total} lolcows tracked
+      </span>
     </div>
   );
 }
 
-// Section title component (like IP2.Network's "live" / "offline" sections)
-function SectionTitle({ title, count, icon: Icon, color }: { 
-  title: string; 
-  count: number; 
-  icon: React.ElementType;
-  color: string;
-}) {
-  return (
-    <div className="flex items-center gap-2 mb-3 mt-6 first:mt-0">
-      <Icon className="w-4 h-4" style={{ color }} />
-      <span className="text-sm font-bold uppercase tracking-wider" style={{ color }}>
-        {title}
-      </span>
-      <span 
-        className="px-2 py-0.5 text-xs font-bold rounded"
-        style={{ 
-          backgroundColor: `${color}20`,
-          color,
-          border: `1px solid ${color}40`,
-        }}
-      >
-        {count}
-      </span>
-      <div className="flex-1 h-px bg-[#3f3f5f] ml-2" />
-    </div>
-  );
-}
-
-// Main leaderboard component
+// Main leaderboard component - Clean IP2.Network style
 export const LiveLeaderboard = memo(function LiveLeaderboard({
   entries,
   animatingRanks,
@@ -508,67 +453,23 @@ export const LiveLeaderboard = memo(function LiveLeaderboard({
     return <EmptyState />;
   }
 
-  // Calculate stats
-  const topTier = entries.filter(e => e.currentRank <= 10).length;
-  const rising = entries.filter(e => e.rankChange === "up").length;
-  const falling = entries.filter(e => e.rankChange === "down").length;
-
-  // Split into sections like IP2.Network
-  const top3 = entries.slice(0, 3);
-  const rest = entries.slice(3);
-
   return (
-    <div className="space-y-2">
-      {/* Stats bar */}
-      <LeaderboardStats 
-        total={entries.length} 
-        topTier={topTier}
-        rising={rising}
-        falling={falling}
-      />
+    <div className="space-y-1">
+      {/* Simple stats bar */}
+      <LeaderboardStats total={entries.length} />
 
-      {/* Top 3 Section - Podium */}
-      <SectionTitle 
-        title="Top Jesters" 
-        count={top3.length} 
-        icon={Crown} 
-        color="#FFD700" 
-      />
-      <div className="space-y-2 mb-6">
-        <AnimatePresence mode="popLayout">
-          {top3.map((entry) => (
-            <LeaderboardRow
-              key={entry.nomineeId}
-              entry={entry}
-              isAnimating={animatingRanks.has(entry.nomineeId)}
-              userVote={myVotes[entry.nomineeId]}
-              onVote={(type) => onVote(entry.nomineeId, type)}
-              featured
-            />
-          ))}
-        </AnimatePresence>
-      </div>
-
-      {/* Rest of leaderboard */}
-      <SectionTitle 
-        title="The Court" 
-        count={rest.length} 
-        icon={Award} 
-        color="#a1a1aa" 
-      />
-      <div className="space-y-1">
-        <AnimatePresence mode="popLayout">
-          {rest.map((entry) => (
-            <LeaderboardRow
-              key={entry.nomineeId}
-              entry={entry}
-              isAnimating={animatingRanks.has(entry.nomineeId)}
-              userVote={myVotes[entry.nomineeId]}
-              onVote={(type) => onVote(entry.nomineeId, type)}
-            />
-          ))}
-        </AnimatePresence>
-      </div>
+      {/* All entries in one clean list */}
+      <AnimatePresence mode="popLayout">
+        {entries.map((entry) => (
+          <LeaderboardRow
+            key={entry.nomineeId}
+            entry={entry}
+            isAnimating={animatingRanks.has(entry.nomineeId)}
+            userVote={myVotes[entry.nomineeId]}
+            onVote={(type) => onVote(entry.nomineeId, type)}
+          />
+        ))}
+      </AnimatePresence>
     </div>
   );
 });
