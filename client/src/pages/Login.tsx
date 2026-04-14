@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { useEffect } from "react";
 import { useLocation } from "wouter";
+import { motion } from "framer-motion";
 
 export default function LoginPage() {
   const { isAuthenticated, login } = useAuth();
@@ -68,6 +69,19 @@ export default function LoginPage() {
             </div>
           )}
 
+          {/* Featured Platform Badge */}
+          <motion.div 
+            className="text-center mb-4"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#53FC18]/10 text-[#53FC18] border border-[#53FC18]/30">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#53FC18] animate-pulse"></span>
+              Kick OAuth Available
+            </span>
+          </motion.div>
+
           {isLoading ? (
             <div className="flex justify-center py-4">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
@@ -76,23 +90,40 @@ export default function LoginPage() {
             <div className="space-y-3">
               {providers.map((platform) => {
                 const config = OAUTH_PLATFORMS[platform];
+                const isKick = platform === "kick";
                 return (
-                  <Button
+                  <motion.div
                     key={platform}
-                    onClick={() => handleLogin(platform)}
-                    className="w-full h-12 justify-center gap-3 font-semibold transition-all hover:scale-[1.02]"
-                    style={{
-                      backgroundColor: config.bgColor,
-                      border: `1px solid ${config.color}`,
-                      color: config.color,
-                    }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    <span
-                      dangerouslySetInnerHTML={{ __html: config.icon }}
-                      className="w-5 h-5"
-                    />
-                    Continue with {config.name}
-                  </Button>
+                    <Button
+                      onClick={() => handleLogin(platform)}
+                      className={`w-full h-12 justify-center gap-3 font-semibold transition-all relative overflow-hidden ${
+                        isKick ? "ring-2 ring-[#53FC18]/50 ring-offset-2 ring-offset-background" : ""
+                      }`}
+                      style={{
+                        backgroundColor: config.bgColor,
+                        border: `1px solid ${isKick ? config.color : config.color + "80"}`,
+                        color: config.color,
+                      }}
+                    >
+                      {/* Kick glow effect */}
+                      {isKick && (
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#53FC18]/10 to-transparent animate-shimmer" />
+                      )}
+                      <span
+                        dangerouslySetInnerHTML={{ __html: config.icon }}
+                        className="w-5 h-5 relative z-10"
+                      />
+                      <span className="relative z-10">
+                        Continue with {config.name}
+                        {isKick && (
+                          <span className="ml-2 text-xs opacity-80">(Recommended)</span>
+                        )}
+                      </span>
+                    </Button>
+                  </motion.div>
                 );
               })}
             </div>

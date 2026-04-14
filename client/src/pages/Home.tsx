@@ -14,7 +14,7 @@ import {
   useAnimatedLeaderboard,
 } from "@/hooks/useRealtimeVotes";
 import { motion } from "framer-motion";
-import { Crown, Sparkles, Flame, Theater } from "lucide-react";
+import { Crown, Sparkles, Flame, Theater, TrendingUp } from "lucide-react";
 
 export default function Home() {
   const [period, setPeriod] = useState<"alltime" | "week">("alltime");
@@ -320,16 +320,50 @@ export default function Home() {
           </div>
         </div>
 
+        {/* 🎪 RESEARCH HIGHLIGHT */}
+        <motion.div 
+          className="mt-12 mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+        >
+          <div className="jester-card p-6">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <Flame className="w-5 h-5 text-[#fbbf24]" />
+              <h3 className="font-bold text-[#fbbf24]">2024-2025 Streaming Research</h3>
+              <Flame className="w-5 h-5 text-[#fbbf24]" />
+            </div>
+            <p className="text-center text-sm text-muted-foreground mb-4">
+              Tracking the biggest controversies: Adin Ross's Kick→Twitch return, N3on's platform drama, 
+              TrainwrecksTV's gambling streams, xQc's endless feuds, and more.
+            </p>
+            <div className="flex justify-center gap-4 text-xs text-muted-foreground">
+              <span className="flex items-center gap-1">
+                <span className="w-2 h-2 rounded-full bg-[#9146FF]"></span> Twitch
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="w-2 h-2 rounded-full bg-[#53FC18]"></span> Kick
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="w-2 h-2 rounded-full bg-[#FF0000]"></span> YouTube
+              </span>
+            </div>
+          </div>
+        </motion.div>
+
         {/* 🎪 FOOTER */}
         <motion.footer 
           className="mt-12 text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.7 }}
         >
           <div className="court-divider max-w-sm mx-auto mb-4" />
           <p className="text-sm text-muted-foreground">
             🎪 The Court of Fools — Where streamers are judged by the people 🎪
+          </p>
+          <p className="text-xs text-muted-foreground mt-1">
+            Login with <span className="text-[#53FC18]">Kick</span>, <span className="text-[#9146FF]">Twitch</span>, or <span className="text-[#FF0000]">YouTube</span> to join the voting
           </p>
           <p className="text-xs text-muted-foreground mt-1">
             Not affiliated with ip2.network — Unique jester-themed ranking platform
