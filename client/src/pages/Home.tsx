@@ -52,7 +52,7 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-court">
       <Header />
 
-      <main role="main" className="container py-6">
+      <div role="main" className="container py-6">
         {/* 🎪 JESTER COURT HEADER - Enhanced with Leaderboard Preview */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
@@ -394,7 +394,7 @@ export default function Home() {
             Not affiliated with ip2.network — Unique jester-themed ranking platform
           </p>
         </motion.footer>
-      </main>
+      </div>
     </div>
   );
 }

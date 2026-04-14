@@ -128,6 +128,23 @@ async function startServer() {
   // Compression middleware for better performance
   app.use(compression());
 
+  // Caching headers for static assets
+  app.use((req, res, next) => {
+    // Cache static assets for 1 year (immutable files with hash in filename)
+    if (req.url.match(/\.[a-f0-9]{8,}\.(js|css|woff2?|png|jpg|jpeg|gif|svg|ico)$/)) {
+      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+    }
+    // Cache images and fonts for 30 days
+    else if (req.url.match(/\.(png|jpg|jpeg|gif|svg|ico|woff2?|ttf|eot)$/)) {
+      res.setHeader("Cache-Control", "public, max-age=2592000");
+    }
+    // Cache API responses for 5 minutes
+    else if (req.url.startsWith("/api/")) {
+      res.setHeader("Cache-Control", "public, max-age=300");
+    }
+    next();
+  });
+
   // Cookie parser for OAuth state management
   app.use(cookieParser());
 
