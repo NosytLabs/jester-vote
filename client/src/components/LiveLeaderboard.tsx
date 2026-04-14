@@ -338,7 +338,7 @@ export const LiveLeaderboard = memo(function LiveLeaderboard({
       </AnimatePresence>
     </div>
   );
-}
+});
 
 // Compact leaderboard for sidebars/mobile
 export const CompactLeaderboard = memo(function CompactLeaderboard({
@@ -421,4 +421,4 @@ export const CompactLeaderboard = memo(function CompactLeaderboard({
       ))}
     </div>
   );
-}
+});

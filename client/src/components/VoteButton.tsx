@@ -246,7 +246,7 @@ interface VoteButtonPairProps {
   animationType?: "up" | "down" | null;
 }
 
-export const VoteButtonPair = memo(function VoteButtonPair({
+function VoteButtonPairComponent({
   upvotes,
   downvotes,
   userVote,
@@ -280,6 +280,8 @@ export const VoteButtonPair = memo(function VoteButtonPair({
   );
 }
 
+export const VoteButtonPair = memo(VoteButtonPairComponent);
+
 // Large vote buttons for nominee detail page
 interface LargeVoteButtonsProps {
   upvotes: number;
@@ -292,7 +294,7 @@ interface LargeVoteButtonsProps {
   animationType?: "up" | "down" | null;
 }
 
-export const LargeVoteButtons = memo(function LargeVoteButtons({
+function LargeVoteButtonsComponent({
   upvotes,
   downvotes,
   score,
@@ -379,5 +381,7 @@ export const LargeVoteButtons = memo(function LargeVoteButtons({
     </div>
   );
 }
+
+export const LargeVoteButtons = memo(LargeVoteButtonsComponent);
 
 export default VoteButton;

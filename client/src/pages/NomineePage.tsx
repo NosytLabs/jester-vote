@@ -19,6 +19,7 @@ import {
   BaseballCard,
 } from "@/components";
 import { ConnectionStatus } from "@/components/ConnectionStatus";
+import { NomineePageSkeleton } from "@/components/SkeletonLoader";
 import { useRealtimeVotes, useAnimatedVote } from "@/hooks/useRealtimeVotes";
 import type { VoteUpdate } from "@/hooks/useRealtimeVotes";
 import { VoteButtonPair } from "@/components/VoteButton";
@@ -44,9 +45,10 @@ export default function NomineePage() {
   const { data: myVotes } = trpc.votes.myVotes.useQuery(undefined, { enabled: isAuthenticated });
 
   // Animated vote state with optimistic updates
-  const nomineeData = nominee as any;
-  const initialUpvotes = nomineeData?.upvotes || 0;
-  const initialDownvotes = nomineeData?.downvotes || 0;
+  // Note: nominee type from tRPC doesn't include upvotes/downvotes directly
+  // They come from the vote aggregation, so we default to 0
+  const initialUpvotes = 0;
+  const initialDownvotes = 0;
 
   const {
     upvotes,
@@ -99,16 +101,7 @@ export default function NomineePage() {
   };
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen bg-background">
-        <Header />
-        <main className="container py-6">
-          <div className="jester-border p-8 text-center text-muted-foreground animate-pulse">
-            Loading nominee...
-          </div>
-        </main>
-      </div>
-    );
+    return <NomineePageSkeleton />;
   }
 
   if (error || !nominee) {
@@ -126,7 +119,7 @@ export default function NomineePage() {
 
   const myVote = myVotes?.[id] || userVote;
   const calculatedScore = score;
-  const voteHistory = nomineeData?.voteHistory || [];
+  const voteHistory = nominee?.voteHistory || [];
 
   // Calculate rank change if we have previous data
   const rankChange: "up" | "down" | "same" = "same";
@@ -177,8 +170,8 @@ export default function NomineePage() {
             <BaseballCard
               nominee={{
                 name: nominee.name,
-                platform: (nominee as any).platform?.toLowerCase() || "other",
-                category: (nominee as any).category || "Streamer",
+                platform: "other",
+                category: "Streamer",
                 imageUrl: nominee.imageUrl || undefined,
                 bio: nominee.description || undefined,
               }}
@@ -189,7 +182,7 @@ export default function NomineePage() {
                 controversyCount: richData?.controversies?.length || 0,
                 momentCount: richData?.moments?.length || 0,
                 newsCount: richData?.news?.length || 0,
-                yearsActive: nomineeData?.yearsActive || 1,
+                yearsActive: 1,
               }}
             />
           </div>

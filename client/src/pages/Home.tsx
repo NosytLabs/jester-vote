@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import { LiveLeaderboard } from "@/components/LiveLeaderboard";
 import { VoteStreakPanel } from "@/components/VoteStreakPanel";
 import { ConnectionStatus } from "@/components/ConnectionStatus";
+import { HomePageSkeleton, LeaderboardSkeleton } from "@/components/SkeletonLoader";
 import {
   useRealtimeVotes,
   useVoteStreak,

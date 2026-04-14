@@ -53,8 +53,21 @@ export function TwitterEmbed({ tweetUrl, className = "" }: TwitterEmbedProps) {
   useEffect(() => {
     if (!isVisible || !tweetId) return;
 
+    // Define Twitter widget type
+    type TwitterWidget = {
+      widgets: {
+        load: () => void;
+        createTweet: (
+          tweetId: string,
+          container: HTMLElement | null,
+          options: Record<string, unknown>
+        ) => Promise<HTMLElement | null>;
+      };
+    };
+    const win = window as typeof window & { twttr?: TwitterWidget };
+
     // Check if script already loaded
-    if (!(window as any).twttr) {
+    if (!win.twttr) {
       const script = document.createElement("script");
       script.src = "https://platform.twitter.com/widgets.js";
       script.async = true;
@@ -71,8 +84,8 @@ export function TwitterEmbed({ tweetUrl, className = "" }: TwitterEmbedProps) {
     }
 
     function loadTweet() {
-      const twttr = (window as any).twttr;
-      if (twttr && twttr.widgets) {
+      const twttr = win.twttr;
+      if (twttr && twttr.widgets && tweetId) {
         twttr.widgets
           .createTweet(tweetId, containerRef.current, {
             theme: "dark",
