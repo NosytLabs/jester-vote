@@ -14,6 +14,7 @@ import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
 import SettingsPage from "./pages/SettingsPage";
 import MerchPage from "./pages/MerchPage";
+import ResourcesPage from "./pages/ResourcesPage";
 
 function Router() {
   return (
@@ -25,6 +26,7 @@ function Router() {
       <Route path="/privacy" component={Privacy} />
       <Route path="/settings" component={SettingsPage} />
       <Route path="/merch" component={MerchPage} />
+      <Route path="/resources" component={ResourcesPage} />
       <Route path="/nominee/:id" component={NomineePage} />
       <Route path="/submit" component={SubmitPage} />
       <Route path="/admin" component={AdminPage} />
@@ -66,6 +68,9 @@ function Footer() {
             </a>
             <a href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
               Privacy Policy
+            </a>
+            <a href="/resources" className="text-muted-foreground hover:text-foreground transition-colors">
+              Resources
             </a>
           </nav>
         </div>
