@@ -63,7 +63,7 @@ export default function SettingsPage() {
                 </div>
                 <Switch
                   checked={theme === "dark"}
-                  onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
+                  onCheckedChange={(checked) => setTheme?.(checked ? "dark" : "light")}
                 />
               </div>
               
@@ -78,7 +78,7 @@ export default function SettingsPage() {
                 </div>
                 <Switch
                   checked={theme === "light"}
-                  onCheckedChange={(checked) => setTheme(checked ? "light" : "dark")}
+                  onCheckedChange={(checked) => setTheme?.(checked ? "light" : "dark")}
                 />
               </div>
             </CardContent>

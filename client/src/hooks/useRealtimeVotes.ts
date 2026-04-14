@@ -206,6 +206,10 @@ export interface VoteStreak {
   rank: string;
   nextRank: string;
   progressToNext: number;
+  globalStats?: {
+    totalVotes24h?: number;
+    totalVoters?: number;
+  };
 }
 
 const RANKS = [

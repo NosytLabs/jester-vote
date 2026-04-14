@@ -10,6 +10,7 @@ interface LiveLeaderboardProps {
   myVotes: Record<number, "up" | "down">;
   onVote: (nomineeId: number, type: "up" | "down") => void;
   isLoading?: boolean;
+  isAuthenticated?: boolean;
 }
 
 // Rank badge with crown/medal for top 3
