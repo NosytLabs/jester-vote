@@ -288,6 +288,7 @@ export async function seedNominees() {
   if (existing.length > 0) return; // already seeded
 
   const seed = [
+    // Classic lolcows
     { name: "DSP (DarksydePhil)", description: "Legendary gaming streamer known for blaming controllers, chat, and the game itself for every loss. The original lolcow.", imageUrl: "https://i.pravatar.cc/150?img=1", status: "approved" as const },
     { name: "Boogie2988", description: "Perpetually in crisis, perpetually forgiving himself. The cycle never ends.", imageUrl: "https://i.pravatar.cc/150?img=2", status: "approved" as const },
     { name: "Wings of Redemption", description: "Rage quit pioneer. Broke more controllers than records.", imageUrl: "https://i.pravatar.cc/150?img=3", status: "approved" as const },
@@ -298,7 +299,19 @@ export async function seedNominees() {
     { name: "Leafy Is Here", description: "Chin jokes and callout videos. Got banned, came back, got banned again.", imageUrl: "https://i.pravatar.cc/150?img=8", status: "approved" as const },
     { name: "Spoony One", description: "Film critic who became his own worst critic. The original burnout arc.", imageUrl: "https://i.pravatar.cc/150?img=9", status: "approved" as const },
     { name: "Chris Chan", description: "The most documented person on the internet. The lolcow of all lolcows.", imageUrl: "https://i.pravatar.cc/150?img=10", status: "approved" as const },
+    // 2024-2025 Streaming Controversies
+    { name: "Adin Ross", description: "The King of Controversy. Made $10M+ on Kick, returned to Twitch amid drama, feuded with N3on, constantly surrounded by celebrity chaos. Master of staying relevant through controversy.", imageUrl: "https://i.pravatar.cc/150?img=11", status: "approved" as const },
+    { name: "N3on", description: "The Drama Magnet. 7M+ YouTube subs, NYC gang callouts, TwitchCon security incident, banned from Kick, feuded with Adin Ross. Real name Rangesh Mutama.", imageUrl: "https://i.pravatar.cc/150?img=12", status: "approved" as const },
+    { name: "TrainwrecksTV", description: "The Gambling Baron. Kick co-founder, Stake.com partnership, $1M+ gambling streams, crypto casino drama, moved from Twitch to Kick for gambling content freedom.", imageUrl: "https://i.pravatar.cc/150?img=13", status: "approved" as const },
+    { name: "xQc", description: "The Drama King. Former Overwatch pro, $100M Kick deal, endless feuds with Pokimane, Kai Cenat, Adept lawsuit, gambling streams, constant controversy magnet.", imageUrl: "https://i.pravatar.cc/150?img=14", status: "approved" as const },
+    { name: "Sneako", description: "The Provocateur. Moved to Rumble for 'free speech', NYC street vlogs with controversial takes, Andrew Tate association, banned from YouTube, constant platform hopping.", imageUrl: "https://i.pravatar.cc/150?img=15", status: "approved" as const },
+    { name: "Kai Cenat", description: "The NYC King. Record-breaking subathon, Union Square riot incident, endless drama with other streamers, feuded with xQc, massive influence over Gen Z audience.", imageUrl: "https://i.pravatar.cc/150?img=16", status: "approved" as const },
+    { name: "IShowSpeed", description: "The Global Jester. 100M+ YouTube subs, chaotic IRL streams worldwide, China streams with huge security, constantly in viral moments, master of cringe content.", imageUrl: "https://i.pravatar.cc/150?img=17", status: "approved" as const },
+    { name: "Nickmercs", description: "The Call of Duty King. Huge Twitch following, anti-LGBTQ controversy, removed from Call of Duty skin, survived cancel attempts, still thriving on Kick.", imageUrl: "https://i.pravatar.cc/150?img=18", status: "approved" as const },
+    { name: "BruceDropEmOff", description: "The Banned King. Multiple Twitch bans, moved to Kick, constant drama with other streamers, viral moments, controversial takes on everything.", imageUrl: "https://i.pravatar.cc/150?img=19", status: "approved" as const },
+    { name: "Mizkif", description: "The OTK Founder. Sexual assault allegations, Maya drama, OTK collapse, constant streamer house chaos, somehow still surviving despite endless controversies.", imageUrl: "https://i.pravatar.cc/150?img=20", status: "approved" as const },
   ];
 
   await db.insert(nominees).values(seed);
+  console.log(`[Seed] Inserted ${seed.length} nominees`);
 }

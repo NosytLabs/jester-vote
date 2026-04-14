@@ -123,6 +123,13 @@ function LeaderboardRow({
   onVote: (type: "up" | "down") => void;
 }) {
   const isTop3 = entry.currentRank <= 3;
+  
+  // Get platform color
+  const getPlatformColor = (name: string) => {
+    const kickStreamers = ["Adin Ross", "TrainwrecksTV", "xQc", "N3on", "Nickmercs", "BruceDropEmOff"];
+    if (kickStreamers.includes(name)) return "#53FC18";
+    return "#9146FF";
+  };
 
   return (
     <motion.div
@@ -133,7 +140,8 @@ function LeaderboardRow({
       transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 30 }}
       className={`group relative ${isTop3 ? "jester-border" : "jester-border-subtle"} bg-card hover:bg-secondary transition-all duration-300`}
       style={{
-        boxShadow: isTop3 ? `0 0 20px oklch(0.75 0.25 140 / 0.1)` : undefined,
+        boxShadow: isTop3 ? `0 0 20px ${getPlatformColor(entry.name)}20` : undefined,
+        borderColor: isTop3 ? getPlatformColor(entry.name) : undefined,
       }}
     >
       {/* Rank change flash effect */}
@@ -168,7 +176,7 @@ function LeaderboardRow({
         </div>
 
         {/* Avatar */}
-        <div className="shrink-0">
+        <div className="shrink-0 relative">
           {entry.imageUrl ? (
             <motion.img
               src={entry.imageUrl}
@@ -180,14 +188,16 @@ function LeaderboardRow({
               style={{
                 border:
                   entry.currentRank === 1
-                    ? "2px solid oklch(0.85 0.18 85)"
+                    ? "3px solid #FFD700"
                     : entry.currentRank === 2
-                    ? "2px solid oklch(0.75 0.05 250)"
+                    ? "3px solid #C0C0C0"
                     : entry.currentRank === 3
-                    ? "2px solid oklch(0.65 0.12 55)"
-                    : "1px solid oklch(0.22 0 0)",
+                    ? "3px solid #CD7F32"
+                    : "2px solid oklch(0.75 0.25 140)",
                 boxShadow:
-                  entry.currentRank <= 3 ? `0 0 10px oklch(0.75 0.25 140 / 0.2)` : undefined,
+                  entry.currentRank <= 3 
+                    ? `0 0 15px ${entry.currentRank === 1 ? '#FFD700' : entry.currentRank === 2 ? '#C0C0C0' : '#CD7F32'}60`
+                    : "0 0 10px oklch(0.75 0.25 140 / 0.2)",
               }}
               onError={(e) => {
                 (e.target as HTMLImageElement).src = `https://i.pravatar.cc/56?u=${entry.nomineeId}`;
@@ -196,10 +206,28 @@ function LeaderboardRow({
             />
           ) : (
             <div
-              className="w-12 h-12 sm:w-14 sm:h-14 bg-muted flex items-center justify-center text-lg font-bold text-muted-foreground"
-              style={{ border: "1px solid oklch(0.22 0 0)" }}
+              className="w-12 h-12 sm:w-14 sm:h-14 bg-muted flex items-center justify-center text-lg font-bold"
+              style={{ 
+                border: entry.currentRank <= 3 
+                  ? `2px solid ${entry.currentRank === 1 ? '#FFD700' : entry.currentRank === 2 ? '#C0C0C0' : '#CD7F32'}`
+                  : "2px solid oklch(0.75 0.25 140)",
+                color: "oklch(0.75 0.25 140)",
+              }}
             >
               {entry.name[0]?.toUpperCase()}
+            </div>
+          )}
+          {/* Top 3 Badge */}
+          {entry.currentRank <= 3 && (
+            <div 
+              className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center text-[10px] font-bold rounded-full"
+              style={{
+                background: entry.currentRank === 1 ? '#FFD700' : entry.currentRank === 2 ? '#C0C0C0' : '#CD7F32',
+                color: '#000',
+                boxShadow: '0 0 5px rgba(0,0,0,0.5)',
+              }}
+            >
+              {entry.currentRank === 1 ? '👑' : entry.currentRank === 2 ? '🥈' : '🥉'}
             </div>
           )}
         </div>

@@ -53,21 +53,21 @@ export default function Home() {
       <Header />
 
       <main role="main" className="container py-6">
-        {/* 🎪 JESTER COURT HEADER - Glassmorphism Modern Design */}
+        {/* 🎪 JESTER COURT HEADER - Enhanced with Leaderboard Preview */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-12 text-center relative"
+          className="mb-8 text-center relative"
         >
-          {/* Floating Jester Elements with Glassmorphism */}
-          <div className="absolute top-0 left-[10%] text-4xl opacity-60 hidden md:block">
+          {/* Floating Jester Elements */}
+          <div className="absolute top-0 left-[5%] text-4xl opacity-60 hidden md:block">
             <motion.span 
               animate={{ y: [0, -15, 0], rotate: [0, 15, -15, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="inline-block filter drop-shadow-lg"
             >🃏</motion.span>
           </div>
-          <div className="absolute top-0 right-[10%] text-4xl opacity-60 hidden md:block">
+          <div className="absolute top-0 right-[5%] text-4xl opacity-60 hidden md:block">
             <motion.span 
               animate={{ y: [0, -15, 0], rotate: [0, -15, 15, 0] }}
               transition={{ duration: 4, repeat: Infinity, delay: 2, ease: "easeInOut" }}
@@ -75,34 +75,31 @@ export default function Home() {
             >🎭</motion.span>
           </div>
 
-          {/* Glassmorphism Title Card */}
+          {/* Title Card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
             className="relative inline-block"
           >
-            {/* Glass background */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl" />
             
-            <div className="relative px-8 py-6 md:px-12 md:py-8">
-              {/* Crown decorations */}
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 flex gap-12">
+            <div className="relative px-6 py-4 md:px-10 md:py-6">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 flex gap-8">
                 <motion.span 
                   animate={{ rotate: [0, 20, 0], y: [0, -5, 0] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  className="text-3xl filter drop-shadow-lg"
+                  className="text-2xl filter drop-shadow-lg"
                 >👑</motion.span>
                 <motion.span 
                   animate={{ rotate: [0, -20, 0], y: [0, -5, 0] }}
                   transition={{ duration: 3, repeat: Infinity, delay: 0.5, ease: "easeInOut" }}
-                  className="text-3xl filter drop-shadow-lg"
+                  className="text-2xl filter drop-shadow-lg"
                 >👑</motion.span>
               </div>
               
-              {/* Main Title */}
               <motion.h1
-                className="text-4xl md:text-6xl lg:text-7xl font-black text-gradient-jester mb-3"
+                className="text-3xl md:text-5xl lg:text-6xl font-black text-gradient-jester mb-2"
                 style={{ fontFamily: "'Orbitron', serif", letterSpacing: "0.05em" }}
                 animate={{ textShadow: [
                   "0 0 20px oklch(0.75 0.25 140 / 0.4)",
@@ -111,16 +108,13 @@ export default function Home() {
                 ]}}
                 transition={{ duration: 2, repeat: Infinity }}
               >
-                THE COURT
-                <br />
-                <span className="text-3xl md:text-5xl lg:text-6xl">OF FOOLS</span>
+                THE COURT OF FOOLS
               </motion.h1>
             </div>
           </motion.div>
 
-          {/* Animated Subtitle */}
           <motion.p 
-            className="text-lg md:text-xl text-[#fbbf24] font-medium italic mt-6 max-w-2xl mx-auto"
+            className="text-base md:text-lg text-[#fbbf24] font-medium italic mt-4 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
@@ -128,92 +122,123 @@ export default function Home() {
             "Where the biggest jesters of streaming are crowned by the people"
           </motion.p>
 
-          {/* Animated Court Divider */}
+          {/* Quick Stats Bar */}
           <motion.div 
-            className="max-w-lg mx-auto mt-6 h-px bg-gradient-to-r from-transparent via-[#fbbf24] to-transparent"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-          />
+            className="flex justify-center gap-6 mt-4 text-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+          >
+            <span className="text-muted-foreground">
+              <span className="text-[#fbbf24] font-bold">{entries.length}</span> Jesters
+            </span>
+            <span className="text-muted-foreground">|</span>
+            <span className="text-muted-foreground">
+              <span className="text-[#fbbf24] font-bold">
+                {entries.reduce((sum, e) => sum + e.upvotes + e.downvotes, 0).toLocaleString()}
+              </span> Votes Cast
+            </span>
+            <span className="text-muted-foreground">|</span>
+            <span className="text-muted-foreground">
+              {isConnected ? "🟢 Live" : "🔴 Offline"}
+            </span>
+          </motion.div>
         </motion.div>
 
-        {/* 🎪 STATS CARDS - Glassmorphism Modern Design */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        {/* 🎪 TOP 3 PODIUM - Show the leaders */}
+        {entries.length > 0 && (
           <motion.div 
-            className="relative group"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            whileHover={{ y: -5 }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-[#6b21a8]/20 to-[#fbbf24]/10 backdrop-blur-md rounded-2xl border border-white/10 shadow-lg group-hover:border-[#fbbf24]/30 transition-all duration-300" />
-            <div className="relative p-5 text-center">
-              <motion.div 
-                className="text-4xl mb-3"
-                whileHover={{ scale: 1.2, rotate: 10 }}
-                transition={{ type: "spring", stiffness: 400 }}
-              >🎪</motion.div>
-              <p className="text-3xl font-black text-[#fbbf24] drop-shadow-lg">{entries.length}</p>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">Court Jesters</p>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            className="relative group"
+            className="mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            whileHover={{ y: -5 }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-[#dc2626]/20 to-[#fbbf24]/10 backdrop-blur-md rounded-2xl border border-white/10 shadow-lg group-hover:border-[#fbbf24]/30 transition-all duration-300" />
-            <div className="relative p-5 text-center">
-              <motion.div 
-                className="text-4xl mb-3"
-                whileHover={{ scale: 1.2, rotate: -10 }}
-                transition={{ type: "spring", stiffness: 400 }}
-              >⚔️</motion.div>
-              <p className="text-3xl font-black text-[#fbbf24] drop-shadow-lg">
-                {entries.reduce((sum, e) => sum + e.upvotes + e.downvotes, 0).toLocaleString()}
-              </p>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">Royal Decrees</p>
+            <div className="flex justify-center items-end gap-2 md:gap-4">
+              {/* 2nd Place */}
+              {entries[1] && (
+                <Link href={`/nominee/${entries[1].nomineeId}`}>
+                  <motion.div 
+                    className="flex flex-col items-center cursor-pointer"
+                    whileHover={{ y: -5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <div className="relative">
+                      <img 
+                        src={entries[1].imageUrl || `https://i.pravatar.cc/80?u=${entries[1].nomineeId}`}
+                        alt={entries[1].name}
+                        className="w-16 h-16 md:w-20 md:h-20 object-cover rounded-full border-3"
+                        style={{ borderColor: '#C0C0C0', boxShadow: '0 0 15px #C0C0C060' }}
+                      />
+                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#C0C0C0] rounded-full flex items-center justify-center text-black font-bold text-xs">2</div>
+                    </div>
+                    <div className="mt-2 text-center">
+                      <p className="text-xs md:text-sm font-bold text-[#C0C0C0] truncate max-w-[80px]">{entries[1].name}</p>
+                      <p className="text-[10px] text-muted-foreground">{entries[1].score > 0 ? '+' : ''}{entries[1].score}</p>
+                    </div>
+                    <div className="w-16 md:w-20 h-16 bg-gradient-to-t from-[#C0C0C0]/30 to-transparent rounded-t-lg mt-1" />
+                  </motion.div>
+                </Link>
+              )}
+              
+              {/* 1st Place */}
+              {entries[0] && (
+                <Link href={`/nominee/${entries[0].nomineeId}`}>
+                  <motion.div 
+                    className="flex flex-col items-center cursor-pointer -mt-4"
+                    whileHover={{ y: -5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <motion.div 
+                      className="text-3xl mb-1"
+                      animate={{ rotate: [0, 10, -10, 0], y: [0, -3, 0] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >👑</motion.div>
+                    <div className="relative">
+                      <img 
+                        src={entries[0].imageUrl || `https://i.pravatar.cc/100?u=${entries[0].nomineeId}`}
+                        alt={entries[0].name}
+                        className="w-20 h-20 md:w-24 md:h-24 object-cover rounded-full border-4"
+                        style={{ borderColor: '#FFD700', boxShadow: '0 0 20px #FFD70080' }}
+                      />
+                      <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-[#FFD700] rounded-full flex items-center justify-center text-black font-bold text-sm">1</div>
+                    </div>
+                    <div className="mt-2 text-center">
+                      <p className="text-sm md:text-base font-bold text-[#FFD700] truncate max-w-[100px]">{entries[0].name}</p>
+                      <p className="text-xs text-[#fbbf24]">{entries[0].score > 0 ? '+' : ''}{entries[0].score}</p>
+                    </div>
+                    <div className="w-20 md:w-24 h-24 bg-gradient-to-t from-[#FFD700]/30 to-transparent rounded-t-lg mt-1" />
+                  </motion.div>
+                </Link>
+              )}
+              
+              {/* 3rd Place */}
+              {entries[2] && (
+                <Link href={`/nominee/${entries[2].nomineeId}`}>
+                  <motion.div 
+                    className="flex flex-col items-center cursor-pointer"
+                    whileHover={{ y: -5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <div className="relative">
+                      <img 
+                        src={entries[2].imageUrl || `https://i.pravatar.cc/80?u=${entries[2].nomineeId}`}
+                        alt={entries[2].name}
+                        className="w-16 h-16 md:w-20 md:h-20 object-cover rounded-full border-3"
+                        style={{ borderColor: '#CD7F32', boxShadow: '0 0 15px #CD7F3260' }}
+                      />
+                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#CD7F32] rounded-full flex items-center justify-center text-black font-bold text-xs">3</div>
+                    </div>
+                    <div className="mt-2 text-center">
+                      <p className="text-xs md:text-sm font-bold text-[#CD7F32] truncate max-w-[80px]">{entries[2].name}</p>
+                      <p className="text-[10px] text-muted-foreground">{entries[2].score > 0 ? '+' : ''}{entries[2].score}</p>
+                    </div>
+                    <div className="w-16 md:w-20 h-12 bg-gradient-to-t from-[#CD7F32]/30 to-transparent rounded-t-lg mt-1" />
+                  </motion.div>
+                </Link>
+              )}
             </div>
           </motion.div>
-
-          <motion.div 
-            className="relative group"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            whileHover={{ y: -5 }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-[#16a34a]/20 to-[#fbbf24]/10 backdrop-blur-md rounded-2xl border border-white/10 shadow-lg group-hover:border-[#fbbf24]/30 transition-all duration-300" />
-            <div className="relative p-5 text-center">
-              <motion.div 
-                className="text-4xl mb-3"
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >🔥</motion.div>
-              <p className="text-3xl font-black text-[#fbbf24] drop-shadow-lg">
-                {streak.globalStats?.totalVotes24h?.toLocaleString() || "0"}
-              </p>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">Today's Clownery</p>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            className="jester-card p-4 text-center laugh-hover cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, delay: 0.3 }}
-          >
-            <div className="text-3xl mb-2">🤡</div>
-            <p className="text-2xl font-bold text-[#fbbf24]">
-              {isConnected ? "🟢" : "🔴"}
-            </p>
-            <p className="text-xs text-muted-foreground">
-              {isConnected ? "Court in Session" : "Court Adjourned"}
-            </p>
-          </motion.div>
-        </div>
+        )}
 
         {/* 🎪 TIME PERIOD SELECTOR - Medieval Style */}
         <div className="flex justify-center gap-2 mb-6">

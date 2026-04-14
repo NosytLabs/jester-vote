@@ -33,10 +33,14 @@ export default function NomineePage() {
   const { isAuthenticated } = useAuth();
   const [comment, setComment] = useState("");
 
-  const { data: nominee, isLoading, error, refetch } = trpc.nominees.getById.useQuery(
+  const { data: nomineeData, isLoading, error, refetch } = trpc.nominees.getById.useQuery(
     { id },
     { enabled: !!id }
   );
+  
+  // Extract nominee and vote history from response
+  const nominee = nomineeData;
+  const voteHistory = nomineeData?.voteHistory || [];
   const { data: comments, refetch: refetchComments } = trpc.comments.list.useQuery(
     { nomineeId: id },
     { enabled: !!id }
@@ -45,10 +49,9 @@ export default function NomineePage() {
   const { data: myVotes } = trpc.votes.myVotes.useQuery(undefined, { enabled: isAuthenticated });
 
   // Animated vote state with optimistic updates
-  // Note: nominee type from tRPC doesn't include upvotes/downvotes directly
-  // They come from the vote aggregation, so we default to 0
-  const initialUpvotes = 0;
-  const initialDownvotes = 0;
+  // Get initial vote counts from the nominee data or default to 0
+  const initialUpvotes = nomineeData?.upvotes || 0;
+  const initialDownvotes = nomineeData?.downvotes || 0;
 
   const {
     upvotes,
@@ -123,6 +126,15 @@ export default function NomineePage() {
 
   // Calculate rank change if we have previous data
   const rankChange: "up" | "down" | "same" = "same";
+  
+  // Get platform from nominee name or default
+  const getPlatform = (name: string): string => {
+    const kickStreamers = ["Adin Ross", "TrainwrecksTV", "xQc", "N3on", "Nickmercs", "BruceDropEmOff"];
+    const youtubeStreamers = ["IShowSpeed", "Sneako", "N3on"];
+    if (kickStreamers.includes(name)) return "kick";
+    if (youtubeStreamers.includes(name)) return "youtube";
+    return "twitch";
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -163,15 +175,15 @@ export default function NomineePage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="flex flex-col lg:flex-row gap-4 mb-4"
+          className="flex flex-col lg:flex-row gap-6 mb-6"
         >
           {/* Baseball Card - Left side */}
           <div className="flex justify-center lg:justify-start">
             <BaseballCard
               nominee={{
                 name: nominee.name,
-                platform: "other",
-                category: "Streamer",
+                platform: getPlatform(nominee.name),
+                category: "Jester",
                 imageUrl: nominee.imageUrl || undefined,
                 bio: nominee.description || undefined,
               }}
@@ -182,7 +194,7 @@ export default function NomineePage() {
                 controversyCount: richData?.controversies?.length || 0,
                 momentCount: richData?.moments?.length || 0,
                 newsCount: richData?.news?.length || 0,
-                yearsActive: 1,
+                yearsActive: 3,
               }}
             />
           </div>
@@ -206,6 +218,24 @@ export default function NomineePage() {
               >
                 {nominee.name}
               </motion.h1>
+              
+              {/* Platform Badge */}
+              <div className="flex items-center gap-2 mb-3">
+                <span 
+                  className="px-2 py-1 text-xs font-bold uppercase rounded"
+                  style={{
+                    background: getPlatform(nominee.name) === "kick" 
+                      ? "#53FC18" 
+                      : getPlatform(nominee.name) === "youtube"
+                      ? "#FF0000"
+                      : "#9146FF",
+                    color: "#000",
+                  }}
+                >
+                  {getPlatform(nominee.name)}
+                </span>
+                <span className="text-xs text-muted-foreground">Verified Jester</span>
+              </div>
 
               {nominee.description && (
                 <motion.p
