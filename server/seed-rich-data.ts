@@ -1711,6 +1711,33 @@ const nominees = [
       { label: "Reddit Discussions", url: "https://www.reddit.com/r/Ice_Poseidon/search/?q=mexican+andy" },
     ],
   },
+  {
+    name: "SJC (Samuel J. Cummings)",
+    platform: "YouTube",
+    category: "IRL",
+    bio: "The businessman of the Cx Network. SJC became infamous for his constant claims of being a 'businessman' while living in an RV and creating chaos. Known for his delusional self-image, constant drama with other Cx members, and his role in the infamous RV trips. His catchphrase 'I'm a businessman' became a meme throughout the community.",
+    imageUrl: "https://i.pravatar.cc/150?img=60",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/Ice_Poseidon/search/?q=sjc"],
+    kickClipUrls: [],
+    moments: [
+      { title: "I'm a Businessman", description: "Iconic catchphrase repeated constantly during RV trips", date: "2018-03-01", type: "clip" },
+      { title: "RV Trip Drama", description: "Central figure in multiple chaotic RV trips across America", date: "2018-03-01", type: "event" },
+      { title: "Fight with Hampton Brandon", description: "Physical altercation with Hampton Brandon during Cx event", date: "2018-05-01", type: "controversy" },
+    ],
+    controversies: [
+      { title: "Delusional Business Claims", description: "Constantly claimed to be a successful businessman while living in an RV", date: "2018-01-01", severity: "minor" },
+      { title: "Drama with Cx Members", description: "Frequent conflicts with other Cx Network streamers", date: "2018-06-01", severity: "moderate" },
+      { title: "RV Trip Chaos", description: "Multiple incidents of creating drama during group RV trips", date: "2018-03-01", severity: "moderate" },
+    ],
+    news: [
+      { title: "SJC's Businessman Meme Origin", content: "The 'I'm a businessman' catchphrase became a community-wide meme", date: "2018-04-01", sourceUrl: "", approved: true },
+    ],
+    links: [
+      { label: "YouTube", url: "https://www.youtube.com/@SJC" },
+      { label: "Reddit Discussions", url: "https://www.reddit.com/r/Ice_Poseidon/search/?q=sjc" },
+    ],
+  },
 ];
 
 async function seedRichData() {
