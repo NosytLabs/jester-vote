@@ -761,4 +761,138 @@ const nominees = [
       { title: "Assault Allegations", description: "Accused of paying for assaults", date: "2021-01-01", severity: "high" },
     ],
   },
+
+  // ========== MODERN KICK STREAMERS (2024-2025) ==========
+  {
+    name: "Clavicular",
+    platform: "Kick",
+    category: "IRL",
+    bio: "The looksmaxing documentarian. Clavicular streams OSRS while discussing looksmaxing, facial aesthetics, and controversial self-improvement topics. Known for his 'jester' terminology and documenting internet culture. ⚠️ NO EVIDENCE for 'jester' term origin claim.",
+    imageUrl: "https://i.pravatar.cc/150?img=53",
+    redditUrls: ["https://www.reddit.com/r/LivestreamFail/search/?q=clavicular"],
+    moments: [
+      { title: "Looksmaxing Streams", description: "Documenting facial aesthetics and self-improvement", date: "2024-01-01", type: "clip" },
+      { title: "OSRS Jester Content", description: "RuneScape streams with commentary", date: "2024-01-01", type: "clip" },
+    ],
+    controversies: [
+      { title: "Unverified Claims", description: "NO EVIDENCE FOUND for 'jester' term origin", date: "2024-01-01", severity: "medium" },
+    ],
+  },
+  {
+    name: "Sneako",
+    platform: "Rumble/YouTube",
+    category: "Commentary",
+    bio: "The red pill commentator. Sneako was banned from YouTube for controversial content and moved to Rumble. Known for his takes on relationships, masculinity, and various internet dramas.",
+    imageUrl: "https://i.pravatar.cc/150?img=54",
+    redditUrls: ["https://www.reddit.com/r/LivestreamFail/search/?q=sneako"],
+    moments: [
+      { title: "YouTube Ban", description: "Permanently banned from YouTube platform", date: "2022-10-01", type: "controversy" },
+      { title: "Rumble Migration", description: "Moved content to alternative platform", date: "2022-10-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Platform Ban", description: "YouTube permaban for policy violations", date: "2022-10-01", severity: "high" },
+      { title: "Controversial Takes", description: "Multiple instances of inflammatory content", date: "2022-01-01", severity: "medium" },
+    ],
+  },
+  {
+    name: "Adin Ross",
+    platform: "Kick",
+    category: "IRL",
+    bio: "The platform hopper. Adin was banned from Twitch and became one of Kick's biggest streamers. Known for his gambling streams, celebrity interviews, and constant controversies.",
+    imageUrl: "https://i.pravatar.cc/150?img=55",
+    redditUrls: ["https://www.reddit.com/r/LivestreamFail/search/?q=adin+ross"],
+    moments: [
+      { title: "Twitch Permaban", description: "Banned from Twitch platform", date: "2023-02-01", type: "controversy" },
+      { title: "Kick Move", description: "Became flagship streamer for Kick", date: "2023-03-01", type: "event" },
+      { title: "Kim Jong Un Stream", description: "Controversial interview with lookalike", date: "2024-01-01", type: "controversy" },
+    ],
+    controversies: [
+      { title: "Gambling Promotion", description: "Extensive gambling content on streams", date: "2023-01-01", severity: "medium" },
+      { title: "Twitch Ban", description: "Permanent ban from Twitch", date: "2023-02-01", severity: "high" },
+      { title: "Platform Drama", description: "Constant beef with other streamers", date: "2024-01-01", severity: "medium" },
+    ],
+  },
+  {
+    name: "TrainwrecksTV",
+    platform: "Kick",
+    category: "Slots/Gambling",
+    bio: "The gambling streamer. Train moved to Kick for gambling content freedom. Known for massive slot wins/losses, podcast Scuffed, and various streaming dramas.",
+    imageUrl: "https://i.pravatar.cc/150?img=56",
+    redditUrls: ["https://www.reddit.com/r/LivestreamFail/search/?q=trainwrecks"],
+    moments: [
+      { title: "Twitch to Kick", description: "Moved for gambling content", date: "2023-01-01", type: "event" },
+      { title: "Massive Slot Win", description: "$1M+ slot win on stream", date: "2023-01-01", type: "clip" },
+      { title: "Scuffed Podcast", description: "Streaming podcast with drama", date: "2020-01-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Gambling Content", description: "Promoting gambling to young audience", date: "2023-01-01", severity: "high" },
+      { title: "Sponsorship Drama", description: "Questions about gambling sponsors", date: "2023-01-01", severity: "medium" },
+    ],
+  },
+  {
+    name: "xQc",
+    platform: "Kick",
+    category: "Gaming/IRL",
+    bio: "The juicer. xQc moved to Kick for a reported $100M deal. Known for his Overwatch pro past, gambling streams, relationship drama, and constant controversies.",
+    imageUrl: "https://i.pravatar.cc/150?img=57",
+    redditUrls: ["https://www.reddit.com/r/LivestreamFail/search/?q=xqc"],
+    moments: [
+      { title: "Kick Deal", description: "$100M reported deal to move to Kick", date: "2023-06-01", type: "event" },
+      { title: "Adept Drama", description: "Public breakup and legal issues", date: "2023-01-01", type: "controversy" },
+      { title: "Gambling Streams", description: "Controversial slot streams", date: "2023-01-01", type: "controversy" },
+    ],
+    controversies: [
+      { title: "Gambling Promotion", description: "Massive gambling content", date: "2023-01-01", severity: "medium" },
+      { title: "Relationship Drama", description: "Public breakup with Adept", date: "2023-01-01", severity: "medium" },
+      { title: "Twitch Ban History", description: "Multiple temporary bans", date: "2020-01-01", severity: "medium" },
+    ],
+  },
+  {
+    name: "Johnny Somali",
+    platform: "Kick",
+    category: "IRL",
+    bio: "The traveling troll. Johnny became infamous for his provocative IRL streams in Japan and other countries, often causing public disturbances and getting into legal trouble.",
+    imageUrl: "https://i.pravatar.cc/150?img=58",
+    redditUrls: ["https://www.reddit.com/r/LivestreamFail/search/?q=johnny+somali"],
+    moments: [
+      { title: "Japan Deportation", description: "Deported from Japan for harassment", date: "2023-11-01", type: "controversy" },
+      { title: "Israel Arrest", description: "Arrested in Israel for provocative content", date: "2024-01-01", type: "controversy" },
+      { title: "Thailand Ban", description: "Banned from entering Thailand", date: "2024-01-01", type: "controversy" },
+    ],
+    controversies: [
+      { title: "Public Harassment", description: "Harassing people in public for content", date: "2023-01-01", severity: "high" },
+      { title: "Deportations", description: "Multiple country deportations", date: "2023-11-01", severity: "high" },
+      { title: "Arrests", description: "Arrested in multiple countries", date: "2024-01-01", severity: "high" },
+    ],
+  },
+  {
+    name: "SkiMaskAndy",
+    platform: "Kick",
+    category: "IRL",
+    bio: "The masked streamer. SkiMaskAndy streams with a mask and is known for confrontational IRL content, often getting into altercations and controversial situations.",
+    imageUrl: "https://i.pravatar.cc/150?img=59",
+    redditUrls: ["https://www.reddit.com/r/LivestreamFail/search/?q=skimaskandy"],
+    moments: [
+      { title: "Confrontational IRL", description: "Getting into altercations on stream", date: "2024-01-01", type: "clip" },
+      { title: "Mask Persona", description: "Maintains anonymity with mask", date: "2023-01-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Street Altercations", description: "Fighting with people on stream", date: "2024-01-01", severity: "high" },
+      { title: "Provocative Content", description: "Provoking reactions for views", date: "2024-01-01", severity: "medium" },
+    ],
+  },
+  {
+    name: "BillyTheGoat",
+    platform: "Kick",
+    category: "IRL",
+    bio: "The car meet streamer. Billy streams car meets and automotive content, often with chaotic crowds and confrontational situations.",
+    imageUrl: "https://i.pravatar.cc/150?img=60",
+    redditUrls: ["https://www.reddit.com/r/LivestreamFail/search/?q=billythegoat"],
+    moments: [
+      { title: "Car Meet Chaos", description: "Chaotic car meet streams", date: "2024-01-01", type: "clip" },
+    ],
+    controversies: [
+      { title: "Dangerous Driving", description: "Reckless driving on streams", date: "2024-01-01", severity: "high" },
+    ],
+  },
 ];
