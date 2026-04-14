@@ -34,12 +34,24 @@ export default function Header() {
                 <span>🏰</span> THE COURT
               </span>
             </Link>
+            <Link href="/about">
+              <span className={`px-3 py-1 border cursor-pointer transition-colors flex items-center gap-1 ${location === "/about" ? "border-[oklch(0.75_0.25_140)] text-[oklch(0.75_0.25_140)]" : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"}`}>
+                <span>📜</span> ABOUT
+              </span>
+            </Link>
             {isAuthenticated && (
-              <Link href="/submit">
-                <span className={`px-3 py-1 border cursor-pointer transition-colors flex items-center gap-1 ${location === "/submit" ? "border-[oklch(0.75_0.25_140)] text-[oklch(0.75_0.25_140)]" : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"}`}>
-                  <span>👑</span> NOMINATE
-                </span>
-              </Link>
+              <>
+                <Link href="/submit">
+                  <span className={`px-3 py-1 border cursor-pointer transition-colors flex items-center gap-1 ${location === "/submit" ? "border-[oklch(0.75_0.25_140)] text-[oklch(0.75_0.25_140)]" : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"}`}>
+                    <span>👑</span> NOMINATE
+                  </span>
+                </Link>
+                <Link href="/settings">
+                  <span className={`px-3 py-1 border cursor-pointer transition-colors flex items-center gap-1 ${location === "/settings" ? "border-[oklch(0.75_0.25_140)] text-[oklch(0.75_0.25_140)]" : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"}`}>
+                    <span>⚙️</span> SETTINGS
+                  </span>
+                </Link>
+              </>
             )}
             {user?.role === "admin" && (
               <Link href="/admin">

@@ -9,12 +9,16 @@ import NomineePage from "./pages/NomineePage";
 import SubmitPage from "./pages/SubmitPage";
 import AdminPage from "./pages/AdminPage";
 import LoginPage from "./pages/Login";
+import AboutPage from "./pages/AboutPage";
+import SettingsPage from "./pages/SettingsPage";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/login" component={LoginPage} />
+      <Route path="/about" component={AboutPage} />
+      <Route path="/settings" component={SettingsPage} />
       <Route path="/nominee/:id" component={NomineePage} />
       <Route path="/submit" component={SubmitPage} />
       <Route path="/admin" component={AdminPage} />
