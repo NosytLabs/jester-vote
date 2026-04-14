@@ -2325,6 +2325,176 @@ const nominees = [
       { label: "Instagram", url: "https://instagram.com/amouranth" },
     ],
   },
+  // ========== MORE FUNNY/UNIQUE LOLCOWS ==========
+  {
+    name: "Elpresador",
+    platform: "YouTube",
+    category: "Gaming",
+    bio: "Elpresador is a Call of Duty YouTuber known for his extreme rage, conspiracy theories, and bizarre beliefs. Famous for his 'box' (basement) streams, claims about being a 'god', and his intense hatred of various game mechanics. His content is a mix of gaming rage and increasingly unhinged rants about various topics.",
+    imageUrl: "https://i.pravatar.cc/150?img=81",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/elpresador/"],
+    kickClipUrls: [],
+    moments: [
+      { title: "The Box Streams", description: "Famous for streaming from his basement 'box' with minimal lighting and setup", date: "2010-01-01", type: "clip" },
+      { title: "'I Am God' Rants", description: "Multiple streams where he claimed to be a god or have divine powers", date: "2015-01-01", type: "clip" },
+      { title: "Conspiracy Theory Era", description: "Period of intense conspiracy theory content about various topics", date: "2016-01-01", type: "event" },
+      { title: "Call of Duty Rage Compilation", description: "Extreme rage moments in Call of Duty became viral content", date: "2012-01-01", type: "clip" },
+    ],
+    controversies: [
+      { title: "Mental Health Concerns", description: "Behavior raised concerns about mental health among viewers", date: "2015-01-01", severity: "moderate" },
+      { title: "Conspiracy Misinformation", description: "Spread various conspiracy theories and misinformation through content", date: "2016-01-01", severity: "moderate" },
+      { title: "Toxic Community", description: "Fostered toxic community that harassed other creators", date: "2014-01-01", severity: "moderate" },
+    ],
+    news: [
+      { title: "Elpresador's Decline", content: "Documented decline in content quality and increasing bizarre behavior", date: "2018-01-01", approved: true },
+    ],
+    links: [
+      { label: "YouTube", url: "https://www.youtube.com/@elpresador" },
+      { label: "Reddit", url: "https://www.reddit.com/r/elpresador/" },
+    ],
+  },
+  {
+    name: "OnlyUseMeBlade",
+    platform: "YouTube",
+    category: "Gaming",
+    bio: "OnlyUseMeBlade is a Call of Duty YouTuber who became infamous for his alcoholism, declining health, and IRL streaming career. Started as a gaming content creator, but his life took a dark turn documented extensively through his streams. Known for his wheelchair, alcohol struggles, and association with various controversial IRL streamers.",
+    imageUrl: "https://i.pravatar.cc/150?img=82",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/Ice_Poseidon/search/?q=onlyusemeblade"],
+    kickClipUrls: [],
+    moments: [
+      { title: "Wheelchair Era", description: "Became wheelchair-bound due to health issues, continued streaming", date: "2019-01-01", type: "event" },
+      { title: "Alcoholism Documentation", description: "Streams documented severe alcoholism and its effects on his life", date: "2018-01-01", type: "event" },
+      { title: "Cx Network Association", description: "Became associated with Cx Network streamers during IRL streaming era", date: "2018-01-01", type: "event" },
+      { title: "Health Decline", description: "Public health decline documented extensively on stream", date: "2019-01-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Alcohol Abuse on Stream", description: "Regularly drank excessively on stream, concerning viewers", date: "2018-01-01", severity: "major" },
+      { title: "Health Neglect", description: "Accused of neglecting serious health issues for content", date: "2019-01-01", severity: "major" },
+      { title: "Exploitation Concerns", description: "Some accused others of exploiting his condition for views", date: "2019-01-01", severity: "moderate" },
+    ],
+    news: [
+      { title: "OnlyUseMeBlade Health Crisis", content: "Documented severe health issues related to alcoholism on stream", date: "2019-01-01", approved: true },
+    ],
+    links: [
+      { label: "YouTube", url: "https://www.youtube.com/@OnlyUseMeBlade" },
+    ],
+  },
+  {
+    name: "Andy Milonakis",
+    platform: "Twitch/YouTube",
+    category: "IRL",
+    bio: "Andy Milonakis is a comedian and streamer known for his sketch comedy show on MTV, then transitioning to IRL streaming. Has a growth hormone deficiency that gives him a youthful appearance. Known for his deadpan humor, food reviews, and being a fixture in the IRL streaming community. Often the voice of reason among chaotic streamers.",
+    imageUrl: "https://i.pravatar.cc/150?img=83",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/andymilonakis/"],
+    kickClipUrls: [],
+    moments: [
+      { title: "MTV Show Era", description: "Had popular sketch comedy show on MTV 'The Andy Milonakis Show'", date: "2005-01-01", type: "event" },
+      { title: "Transition to IRL Streaming", description: "Successfully transitioned from TV to IRL streaming on Twitch", date: "2015-01-01", type: "event" },
+      { title: "Cx Network Participation", description: "Participated in Cx Network events and RV trips", date: "2017-01-01", type: "event" },
+      { title: "Food Review Streams", description: "Popular food review streams became his signature content", date: "2018-01-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Age Jokes and Harassment", description: "Constantly targeted with jokes about his appearance and age", date: "2015-01-01", severity: "minor" },
+      { title: "Association with Controversial Streamers", description: "Criticized for associating with controversial IRL streamers", date: "2017-01-01", severity: "minor" },
+    ],
+    news: [
+      { title: "Andy Milonakis Streaming Success", content: "Successfully built streaming career after TV show ended", date: "2018-01-01", approved: true },
+    ],
+    links: [
+      { label: "Twitch", url: "https://www.twitch.tv/andymilonakis" },
+      { label: "YouTube", url: "https://www.youtube.com/@AndyMilonakis" },
+      { label: "Twitter/X", url: "https://twitter.com/andymilonakis" },
+    ],
+  },
+  {
+    name: "Hyphonix",
+    platform: "YouTube/Kick",
+    category: "IRL",
+    bio: "Hyphonix is a streamer known for his gaming content, IRL streams, and elaborate setups. Banned from Twitch multiple times, he moved to YouTube and then Kick. Known for his technical setups, gaming skills, and being part of the Cx Network ecosystem. His streams often feature complex production and interactive elements.",
+    imageUrl: "https://i.pravatar.cc/150?img=84",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/hyphonix/"],
+    kickClipUrls: [],
+    moments: [
+      { title: "Twitch Ban and Move to YouTube", description: "Banned from Twitch, successfully transitioned to YouTube streaming", date: "2018-01-01", type: "event" },
+      { title: "Cx Network Participation", description: "Active member of Cx Network during peak IRL streaming era", date: "2017-01-01", type: "event" },
+      { title: "Kick Transition", description: "Moved to Kick platform after YouTube restrictions", date: "2023-01-01", type: "event" },
+      { title: "Elaborate Stream Setups", description: "Known for complex technical setups and production quality", date: "2019-01-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Twitch Ban Reasons", description: "Multiple bans from Twitch for various TOS violations", date: "2018-01-01", severity: "moderate" },
+      { title: "YouTube Restrictions", description: "Faced demonetization and restrictions on YouTube", date: "2020-01-01", severity: "moderate" },
+    ],
+    news: [
+      { title: "Hyphonix Moves to Kick", content: "Latest platform transition to Kick streaming", date: "2023-01-01", approved: true },
+    ],
+    links: [
+      { label: "Kick", url: "https://kick.com/hyphonix" },
+      { label: "YouTube", url: "https://www.youtube.com/@Hyphonix" },
+    ],
+  },
+  {
+    name: "Sam Hyde",
+    platform: "YouTube",
+    category: "Comedy",
+    bio: "Sam Hyde is a comedian and co-founder of Million Dollar Extreme (MDE). Known for his controversial comedy, trolling, and being the subject of endless 'Sam Hyde is the shooter' memes. His show was canceled by Adult Swim amid controversy, and he's become a cult figure in internet comedy. Known for provocative humor that blurs lines.",
+    imageUrl: "https://i.pravatar.cc/150?img=85",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/milliondollarextreme/"],
+    kickClipUrls: [],
+    moments: [
+      { title: "Million Dollar Extreme Show", description: "MDE World Peace aired on Adult Swim before cancellation", date: "2016-01-01", type: "event" },
+      { title: "Adult Swim Cancellation", description: "Show canceled amid controversy over content and politics", date: "2016-12-01", type: "controversy" },
+      { title: "'Sam Hyde is the Shooter' Meme", description: "Became subject of meme falsely identifying him as various attackers", date: "2017-01-01", type: "clip" },
+      { title: "TEDx Troll", description: "Infamous TEDx talk that was elaborate troll of TED format", date: "2013-01-01", type: "clip" },
+    ],
+    controversies: [
+      { title: "Alt-Right Association", description: "Accused of having alt-right connections and promoting extremist views", date: "2016-01-01", severity: "major" },
+      { title: "Transphobic Content", description: "Criticized for transphobic jokes and content", date: "2016-01-01", severity: "major" },
+      { title: "Racist Humor", description: "Used racist humor that received widespread criticism", date: "2016-01-01", severity: "major" },
+      { title: "Show Cancellation Fallout", description: "Adult Swim cancellation led to controversy and fan backlash", date: "2016-12-01", severity: "moderate" },
+    ],
+    news: [
+      { title: "Sam Hyde Show Canceled", content: "Adult Swim canceled MDE World Peace amid controversy", date: "2016-12-01", sourceUrl: "", approved: true },
+      { title: "Sam Hyde TEDx Troll", content: "Infamous TEDx talk revealed as elaborate prank", date: "2013-01-01", sourceUrl: "", approved: true },
+    ],
+    links: [
+      { label: "YouTube", url: "https://www.youtube.com/@milliondollarextreme" },
+      { label: "Twitter/X", url: "https://twitter.com/samdontap" },
+    ],
+  },
+  {
+    name: "Projared",
+    platform: "YouTube",
+    category: "Gaming",
+    bio: "Projared (Jared Knabenbauer) was a popular gaming YouTuber who faced one of the biggest cancellation events in YouTube history. Accused of soliciting nudes from underage fans and cheating on his wife, he lost hundreds of thousands of subscribers overnight. He has since attempted a comeback with mixed reception.",
+    imageUrl: "https://i.pravatar.cc/150?img=86",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/Projared/"],
+    kickClipUrls: [],
+    moments: [
+      { title: "Cancellation Event", description: "Mass cancellation after accusations of soliciting minors and cheating", date: "2019-05-01", type: "controversy" },
+      { title: "Subscriber Loss Record", description: "Lost over 100K subscribers in days, one of YouTube's biggest losses", date: "2019-05-01", type: "event" },
+      { title: "Comeback Attempt", description: "Attempted comeback with explanation video and new content", date: "2020-01-01", type: "event" },
+      { title: "Divorce Finalized", description: "Divorce from Heidi O'Ferrall finalized after public drama", date: "2019-12-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Soliciting Minors", description: "Accused of soliciting nude photos from underage fans through Tumblr", date: "2019-05-01", severity: "high" },
+      { title: "Cheating on Wife", description: "Accused of cheating on wife Heidi with fellow YouTuber", date: "2019-05-01", severity: "major" },
+      { title: "Power Abuse", description: "Accused of using YouTube fame to manipulate fans", date: "2019-05-01", severity: "major" },
+    ],
+    news: [
+      { title: "Projared Cancellation", content: "One of YouTube's biggest cancellation events unfolded over days", date: "2019-05-10", sourceUrl: "", approved: true },
+      { title: "Projared Attempts Comeback", content: "Released explanation video and attempted to return to YouTube", date: "2020-01-01", sourceUrl: "", approved: true },
+    ],
+    links: [
+      { label: "YouTube", url: "https://www.youtube.com/@Projared" },
+      { label: "Twitter/X", url: "https://twitter.com/Projared" },
+    ],
+  },
 ];
 
 async function seedRichData() {
