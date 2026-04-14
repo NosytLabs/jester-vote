@@ -11,6 +11,7 @@ import AdminPage from "./pages/AdminPage";
 import LoginPage from "./pages/Login";
 import AboutPage from "./pages/AboutPage";
 import SettingsPage from "./pages/SettingsPage";
+import MerchPage from "./pages/MerchPage";
 
 function Router() {
   return (
@@ -19,6 +20,7 @@ function Router() {
       <Route path="/login" component={LoginPage} />
       <Route path="/about" component={AboutPage} />
       <Route path="/settings" component={SettingsPage} />
+      <Route path="/merch" component={MerchPage} />
       <Route path="/nominee/:id" component={NomineePage} />
       <Route path="/submit" component={SubmitPage} />
       <Route path="/admin" component={AdminPage} />

@@ -64,12 +64,206 @@ import { eq } from "drizzle-orm";
  */
 
 const nominees = [
+  // ========== LEGENDARY LOLCOWS ==========
+  {
+    name: "DSP (DarkSydePhil)",
+    platform: "YouTube",
+    category: "Gaming",
+    bio: "The original gaming lolcow. DSP is infamous for blaming controllers, games, lag, and chat for every failure. Known for his 'ack ack ack' laugh, constant begging for tips, and inability to take criticism. A true legend in the clown community.",
+    imageUrl: "https://i.pravatar.cc/150?img=1",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/DSPDrama/"],
+    kickClipUrls: [],
+    moments: [
+      { title: "The $1000 Door Incident", description: "Locked himself out and begged for $1000 to fix it", date: "2019-08-15", type: "controversy" },
+      { title: "Controller Throw Compilation", description: "Hundreds of broken controllers over the years", date: "2020-01-01", type: "clip" },
+      { title: "Begging for Tips", description: "Daily 'support the stream' guilt trips", date: "2021-06-01", type: "clip" },
+    ],
+    controversies: [
+      { title: "Tax Fraud Allegations", description: "Failed to pay taxes for years, claimed ignorance", date: "2018-12-01", severity: "high" },
+      { title: "Cat Incident", description: "Accidentally revealed inappropriate content with cat present", date: "2020-05-01", severity: "high" },
+    ],
+    newsItems: [
+      { title: "DSP Files for Bankruptcy", source: "Kiwi Farms", date: "2019-05-20", url: "" },
+    ],
+  },
+  {
+    name: "Boogie2988",
+    platform: "YouTube",
+    category: "Vlogs",
+    bio: "The perpetual victim. Boogie built his channel on sympathy for his weight and difficult past, but became infamous for constant crisis cycles, self-pity, and questionable decisions. The 'forgiving myself' meme originated from his endless cycle of mistakes and self-forgiveness.",
+    imageUrl: "https://i.pravatar.cc/150?img=2",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/SamandTolki/"],
+    kickClipUrls: [],
+    moments: [
+      { title: "The Sam and Tolki Divorce", description: "Public divorce drama that exposed his behavior", date: "2017-12-01", type: "controversy" },
+      { title: "Frank Hassle Incident", description: "Drama with another YouTuber that went physical", date: "2020-07-01", type: "controversy" },
+      { title: "Weight Loss Surgery Saga", description: "Multiple surgeries, constant relapses", date: "2018-01-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Charity Donation Questions", description: "Questions about where charity money went", date: "2019-03-01", severity: "medium" },
+      { title: "Threats to Other Creators", description: "Alleged threats made to other YouTubers", date: "2020-08-01", severity: "high" },
+    ],
+  },
+  {
+    name: "Wings of Redemption",
+    platform: "YouTube",
+    category: "Gaming",
+    bio: "The rage quit pioneer. Wings built his reputation on breaking controllers, yelling at teammates, and blaming everyone but himself. Known for his 'LOOK HERE, LOOK LISTEN' catchphrase and constant excuses for poor performance in Call of Duty.",
+    imageUrl: "https://i.pravatar.cc/150?img=3",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/WingsOfRedemption/"],
+    kickClipUrls: [],
+    moments: [
+      { title: "LOOK HERE, LOOK LISTEN", description: "Iconic catchphrase born from a rant", date: "2015-06-01", type: "clip" },
+      { title: "Controller Break Compilation", description: "Dozens of destroyed controllers", date: "2016-01-01", type: "clip" },
+      { title: "The Surgery Fund", description: "Raised money for weight loss surgery, drama ensued", date: "2017-01-01", type: "controversy" },
+    ],
+    controversies: [
+      { title: "Surgery Fund Drama", description: "Questions about surgery fund usage", date: "2017-06-01", severity: "medium" },
+      { title: "Racist Rant", description: "Caught on stream using racial slurs", date: "2018-03-01", severity: "high" },
+    ],
+  },
+  {
+    name: "Keemstar (DramaAlert)",
+    platform: "YouTube",
+    category: "Commentary",
+    bio: "The drama vampire. Keemstar built an empire on other people's drama while constantly finding himself in his own controversies. Known for his 'Let's get right into the news!' intro and his inability to stay out of his own drama.",
+    imageUrl: "https://i.pravatar.cc/150?img=4",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/DramaAlert/"],
+    kickClipUrls: [],
+    moments: [
+      { title: "Alex is a Stupid N*****", description: "Infamous racist rant that nearly ended his career", date: "2016-01-01", type: "controversy" },
+      { title: "iDubbbz Content Cop", description: "Devastating expose by iDubbbz", date: "2016-05-01", type: "controversy" },
+      { title: "Etika Controversy", description: "Criticized for handling of Etika's mental health", date: "2019-06-01", type: "controversy" },
+    ],
+    controversies: [
+      { title: "Racist Rant", description: "Repeated use of racial slurs", date: "2016-01-01", severity: "high" },
+      { title: "Doxxing Allegations", description: "Accused of doxxing other creators", date: "2018-01-01", severity: "high" },
+    ],
+  },
+  {
+    name: "Ice Poseidon",
+    platform: "Kick",
+    category: "IRL",
+    bio: "The original IRL streaming pioneer. Ice built a massive following by streaming his life 24/7, but became infamous for constant drama, swatting incidents, and getting banned from every platform. The term 'Cx' army originated from his community.",
+    imageUrl: "https://i.pravatar.cc/150?img=5",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/Ice_Poseidon/"],
+    kickClipUrls: [],
+    moments: [
+      { title: "Twitch Ban", description: "Permanently banned from Twitch after airport incident", date: "2017-04-01", type: "controversy" },
+      { title: "YouTube Ban", description: "Banned from YouTube after multiple violations", date: "2019-01-01", type: "controversy" },
+      { title: "The RV Trip", description: "Infamous RV trip with constant drama", date: "2018-03-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Airport Incident", description: "Swatted at airport, led to Twitch ban", date: "2017-04-01", severity: "high" },
+      { title: "Crypto Scam", description: "Accused of promoting crypto scams", date: "2021-01-01", severity: "high" },
+    ],
+  },
+  {
+    name: "Onision",
+    platform: "YouTube",
+    category: "Vlogs",
+    bio: "The banana man turned villain. Onision started as a comedy YouTuber but became infamous for grooming allegations, abuse accusations, and bizarre behavior. His downfall was extensively documented by Chris Hansen.",
+    imageUrl: "https://i.pravatar.cc/150?img=7",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/Onision/"],
+    kickClipUrls: [],
+    moments: [
+      { title: "Chris Hansen Investigation", description: "Chris Hansen investigated grooming allegations", date: "2019-11-01", type: "controversy" },
+      { title: "Wetlands Book", description: "Wrote bizarre book about abuse", date: "2018-01-01", type: "controversy" },
+      { title: "Banana Song", description: "His only remaining popular content", date: "2009-01-01", type: "clip" },
+    ],
+    controversies: [
+      { title: "Grooming Allegations", description: "Multiple allegations of grooming underage fans", date: "2019-01-01", severity: "high" },
+      { title: "Abuse Allegations", description: "Former partners accused him of abuse", date: "2019-01-01", severity: "high" },
+    ],
+  },
+  {
+    name: "Chris Chan (Christine Weston Chandler)",
+    platform: "YouTube",
+    category: "Vlogs",
+    bio: "The most documented person on the internet. Chris Chan is the original lolcow, with a decade of documented eccentric behavior, Sonichu comics, and bizarre personal life. The subject of the original CWCki.",
+    imageUrl: "https://i.pravatar.cc/150?img=10",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/ChrisChan/"],
+    kickClipUrls: [],
+    moments: [
+      { title: "Sonichu Creation", description: "Created the infamous Sonichu character", date: "2000-03-01", type: "event" },
+      { title: "Encyclopedia Dramatica Page", description: "Became the subject of extensive documentation", date: "2007-01-01", type: "event" },
+      { title: "CWCki Forums", description: "Forums dedicated to documenting his life", date: "2012-01-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Incest Charge", description: "Arrested for incest with elderly mother", date: "2021-08-01", severity: "high" },
+      { title: "Multiple Arrests", description: "Numerous legal issues over the years", date: "2011-01-01", severity: "high" },
+    ],
+  },
+  {
+    name: "Sam Pepper",
+    platform: "YouTube",
+    category: "Pranks",
+    bio: "Prank gone wrong. Multiple times. Sam Pepper built his channel on controversial pranks that often crossed ethical lines. His 'killing best friend prank' and fake hand ass pinch prank sparked massive backlash.",
+    imageUrl: "https://i.pravatar.cc/150?img=6",
+    tweetUrls: [],
+    redditUrls: [],
+    kickClipUrls: [],
+    moments: [
+      { title: "Killing Best Friend Prank", description: "Faked killing his friend for views", date: "2015-11-01", type: "controversy" },
+      { title: "Fake Hand Ass Pinch", description: "Sexual harassment prank", date: "2014-09-01", type: "controversy" },
+      { title: "Platform Bans", description: "Banned from multiple platforms", date: "2016-01-01", type: "controversy" },
+    ],
+    controversies: [
+      { title: "Sexual Harassment Pranks", description: "Multiple pranks involving sexual harassment", date: "2014-01-01", severity: "high" },
+      { title: "Fake Kidnapping", description: "Faked kidnapping for views", date: "2015-01-01", severity: "high" },
+    ],
+  },
+  {
+    name: "LeafyIsHere",
+    platform: "YouTube",
+    category: "Commentary",
+    bio: "The chin that launched a thousand memes. Leafy built his empire on callout videos and chin jokes, but got banned, came back, and got banned again. Known for his distinctive voice and constant drama.",
+    imageUrl: "https://i.pravatar.cc/150?img=8",
+    tweetUrls: [],
+    redditUrls: [],
+    kickClipUrls: [],
+    moments: [
+      { title: "Content Cop by iDubbbz", description: "iDubbbz devastating takedown", date: "2016-09-01", type: "controversy" },
+      { title: "First YouTube Ban", description: "Permanently banned from YouTube", date: "2020-08-01", type: "controversy" },
+      { title: "Return and Re-ban", description: "Came back, got banned again", date: "2021-01-01", type: "controversy" },
+    ],
+    controversies: [
+      { title: "Harassment Campaigns", description: "Accused of leading harassment campaigns", date: "2016-01-01", severity: "high" },
+      { title: "Platform Ban", description: "Multiple permanent bans", date: "2020-01-01", severity: "medium" },
+    ],
+  },
+  {
+    name: "Spoony One",
+    platform: "YouTube",
+    category: "Gaming",
+    bio: "The original burnout arc. Spoony was a beloved film and game critic who gradually descended into constant negativity, Twitter rants, and eventual silence. His downfall was slow, painful, and extensively documented.",
+    imageUrl: "https://i.pravatar.cc/150?img=9",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/TheSpoonyExperiment/"],
+    kickClipUrls: [],
+    moments: [
+      { title: "Final Fantasy VIII Review", description: "His most famous and controversial review", date: "2009-01-01", type: "clip" },
+      { title: "Twitter Meltdown", description: "Years of increasingly unhinged Twitter posts", date: "2015-01-01", type: "controversy" },
+      { title: "Patreon Controversy", description: "Taking Patreon money with no content", date: "2018-01-01", type: "controversy" },
+    ],
+    controversies: [
+      { title: "Patreon Scam", description: "Collected Patreon money without producing content", date: "2018-01-01", severity: "medium" },
+      { title: "Mental Health Concerns", description: "Public mental health struggles", date: "2016-01-01", severity: "medium" },
+    ],
+  },
   // ========== KICK IRL STREAMERS ==========
   {
     name: "Moises",
     platform: "Kick",
     category: "IRL",
-    bio: "Moises is a controversial Kick streamer known for his IRL (In Real Life) content, street interviews, and frequent confrontations with the public. He has built a reputation for creating chaotic content in urban environments, often pushing boundaries with strangers for reactions. His content style exemplifies the 'confrontational IRL' genre that has become popular on Kick.",
+    bio: "Moises is a controversial Kick streamer known for his IRL (In Real Life) content, street interviews, and frequent confrontations with the public. He has built a reputation for creating chaotic content in urban environments, often pushing boundaries with strangers for reactions.",
     // ⚠️ VERIFICATION NEEDED: Profile image URL is placeholder
     // Research could not locate actual social media due to API/network restrictions
     // See MOISES-VERIFICATION.md for full research report

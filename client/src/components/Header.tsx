@@ -39,6 +39,11 @@ export default function Header() {
                 <span>📜</span> ABOUT
               </span>
             </Link>
+            <Link href="/merch">
+              <span className={`px-3 py-1 border cursor-pointer transition-colors flex items-center gap-1 ${location === "/merch" ? "border-[oklch(0.75_0.25_140)] text-[oklch(0.75_0.25_140)]" : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"}`}>
+                <span>🛒</span> MERCH
+              </span>
+            </Link>
             {isAuthenticated && (
               <>
                 <Link href="/submit">
