@@ -3,530 +3,334 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ============================================
+   TOPJESTER - UNIQUE JESTER THEME
+   NOT ip2.network clone - Medieval Court Style
+   ============================================ */
+
+:root {
+  /* Jester Court Color Palette - Unique */
+  --jester-purple: #6b21a8;
+  --jester-gold: #fbbf24;
+  --jester-red: #dc2626;
+  --jester-green: #16a34a;
+  --court-dark: #0f0f1a;
+  --court-card: #1a1a2e;
+  
+  /* Theme Variables */
+  --radius: 0.75rem;
+  --background: #0f0f1a;
+  --foreground: #f8fafc;
+  --card: #1a1a2e;
+  --card-foreground: #f8fafc;
+  --popover: #1a1a2e;
+  --popover-foreground: #f8fafc;
+  --primary: #fbbf24;
+  --primary-foreground: #0f0f1a;
+  --secondary: #6b21a8;
+  --secondary-foreground: #f8fafc;
+  --muted: #27273a;
+  --muted-foreground: #94a3b8;
+  --accent: #dc2626;
+  --accent-foreground: #f8fafc;
+  --destructive: #dc2626;
+  --border: #3f3f5f;
+  --input: #27273a;
+  --ring: #fbbf24;
+}
+
 @theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
-:root {
-  /* TopJester dark streamer palette */
-  --radius: 0.25rem;
-  --background: oklch(0.08 0 0);
-  --foreground: oklch(0.92 0 0);
-  --card: oklch(0.12 0 0);
-  --card-foreground: oklch(0.92 0 0);
-  --popover: oklch(0.12 0 0);
-  --popover-foreground: oklch(0.92 0 0);
-  --primary: oklch(0.55 0.22 300);
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.15 0 0);
-  --secondary-foreground: oklch(0.92 0 0);
-  --muted: oklch(0.18 0 0);
-  --muted-foreground: oklch(0.6 0 0);
-  --accent: oklch(0.75 0.25 140);
-  --accent-foreground: oklch(0.08 0 0);
-  --destructive: oklch(0.55 0.22 25);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.22 0 0);
-  --input: oklch(0.18 0 0);
-  --ring: oklch(0.55 0.22 300);
-  --chart-1: oklch(0.75 0.25 140);
-  --chart-2: oklch(0.55 0.22 300);
-  --chart-3: oklch(0.65 0.2 200);
-  --chart-4: oklch(0.7 0.18 85);
-  --chart-5: oklch(0.55 0.22 25);
-  --sidebar: oklch(0.1 0 0);
-  --sidebar-foreground: oklch(0.92 0 0);
-  --sidebar-primary: oklch(0.55 0.22 300);
-  --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.15 0 0);
-  --sidebar-accent-foreground: oklch(0.92 0 0);
-  --sidebar-border: oklch(0.22 0 0);
-  --sidebar-ring: oklch(0.55 0.22 300);
+/* ============================================
+   JESTER THEME COMPONENTS
+   ============================================ */
+
+/* Jester Card - Unique styling */
+.jester-card {
+  background: linear-gradient(135deg, var(--court-card) 0%, #252540 100%);
+  border: 2px solid var(--jester-gold);
+  border-radius: var(--radius);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(251, 191, 36, 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
-/* Dark theme same as root since this is always dark */
+.jester-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--jester-purple), var(--jester-gold), var(--jester-red), var(--jester-green), var(--jester-purple));
+  background-size: 200% 100%;
+  animation: jesterStripe 3s linear infinite;
+}
+
+@keyframes jesterStripe {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Court Banner */
+.court-banner {
+  background: linear-gradient(135deg, var(--jester-purple) 0%, #4a148c 100%);
+  border: 2px solid var(--jester-gold);
+  border-radius: var(--radius);
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+}
+
+.court-banner::after {
+  content: "👑";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+/* Jester Button */
+.jester-btn {
+  background: linear-gradient(135deg, var(--jester-gold) 0%, #f59e0b 100%);
+  color: var(--court-dark);
+  border: 2px solid var(--jester-gold);
+  border-radius: var(--radius);
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.jester-btn::before {
+  content: "🃏";
+  position: absolute;
+  left: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.jester-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
+}
+
+.jester-btn:hover::before {
+  opacity: 1;
+}
+
+/* Honk Button Effect */
+.honk-btn {
+  position: relative;
+}
+
+.honk-btn:active::after {
+  content: "🤡 HONK!";
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--jester-red);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  animation: honkPop 0.5s ease-out forwards;
+  pointer-events: none;
+  z-index: 100;
+}
+
+@keyframes honkPop {
+  0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  50% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+}
+
+/* Laugh Animation */
+.laugh-hover:hover {
+  animation: laugh 0.5s ease-in-out;
+}
+
+@keyframes laugh {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg) scale(1.02); }
+  50% { transform: rotate(5deg) scale(1.02); }
+  75% { transform: rotate(-3deg) scale(1.01); }
+}
+
+/* Jester Hat Animation */
+.jester-hat {
+  display: inline-block;
+  animation: hatWiggle 2s ease-in-out infinite;
+}
+
+@keyframes hatWiggle {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+/* Medieval Scroll Effect */
+.medieval-scroll {
+  background: linear-gradient(to bottom, #f5f5dc 0%, #e8e4c9 100%);
+  border: 3px solid #8b7355;
+  border-radius: 8px;
+  padding: 1.5rem;
+  position: relative;
+  box-shadow: 
+    inset 0 0 30px rgba(139, 115, 85, 0.1),
+    0 4px 6px rgba(0,0,0,0.1);
+}
+
+.medieval-scroll::before,
+.medieval-scroll::after {
+  content: "🪵";
+  position: absolute;
+  font-size: 1.5rem;
+}
+
+.medieval-scroll::before {
+  top: -12px;
+  left: 10px;
+}
+
+.medieval-scroll::after {
+  bottom: -12px;
+  right: 10px;
+}
+
+/* Court Divider */
+.court-divider {
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--jester-gold) 20%, 
+    var(--jester-purple) 50%, 
+    var(--jester-gold) 80%, 
+    transparent 100%
+  );
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+.court-divider::before {
+  content: "🎭";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--background);
+  padding: 0 0.5rem;
+}
+
+/* Rank Badge Styles */
+.rank-1 {
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  color: #000;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.rank-2 {
+  background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%);
+  color: #000;
+}
+
+.rank-3 {
+  background: linear-gradient(135deg, #cd7f32 0%, #daa520 100%);
+  color: #000;
+}
+
+/* Dark mode overrides */
 .dark {
-  --background: oklch(0.08 0 0);
-  --foreground: oklch(0.92 0 0);
-  --card: oklch(0.12 0 0);
-  --card-foreground: oklch(0.92 0 0);
-  --popover: oklch(0.12 0 0);
-  --popover-foreground: oklch(0.92 0 0);
-  --primary: oklch(0.55 0.22 300);
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.15 0 0);
-  --secondary-foreground: oklch(0.92 0 0);
-  --muted: oklch(0.18 0 0);
-  --muted-foreground: oklch(0.6 0 0);
-  --accent: oklch(0.75 0.25 140);
-  --accent-foreground: oklch(0.08 0 0);
-  --destructive: oklch(0.55 0.22 25);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.22 0 0);
-  --input: oklch(0.18 0 0);
-  --ring: oklch(0.55 0.22 300);
-  --chart-1: oklch(0.75 0.25 140);
-  --chart-2: oklch(0.55 0.22 300);
-  --chart-3: oklch(0.65 0.2 200);
-  --chart-4: oklch(0.7 0.18 85);
-  --chart-5: oklch(0.55 0.22 25);
-  --sidebar: oklch(0.1 0 0);
-  --sidebar-foreground: oklch(0.92 0 0);
-  --sidebar-primary: oklch(0.55 0.22 300);
-  --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.15 0 0);
-  --sidebar-accent-foreground: oklch(0.92 0 0);
-  --sidebar-border: oklch(0.22 0 0);
-  --sidebar-ring: oklch(0.55 0.22 300);
+  --background: #0f0f1a;
+  --foreground: #f8fafc;
+  --card: #1a1a2e;
+  --card-foreground: #f8fafc;
+  --popover: #1a1a2e;
+  --popover-foreground: #f8fafc;
+  --primary: #fbbf24;
+  --primary-foreground: #0f0f1a;
+  --secondary: #6b21a8;
+  --secondary-foreground: #f8fafc;
+  --muted: #27273a;
+  --muted-foreground: #94a3b8;
+  --accent: #dc2626;
+  --accent-foreground: #f8fafc;
+  --destructive: #dc2626;
+  --border: #3f3f5f;
+  --input: #27273a;
+  --ring: #fbbf24;
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Share Tech Mono', 'Courier New', monospace;
-  }
-  button:not(:disabled),
-  [role="button"]:not([aria-disabled="true"]),
-  [type="button"]:not(:disabled),
-  [type="submit"]:not(:disabled),
-  [type="reset"]:not(:disabled),
-  a[href],
-  select:not(:disabled),
-  input[type="checkbox"]:not(:disabled),
-  input[type="radio"]:not(:disabled) {
-    @apply cursor-pointer;
-  }
+/* Base styles */
+* {
+  border-color: var(--border);
 }
 
-@layer components {
-  .container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    max-width: 900px;
-  }
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
 
-  .flex {
-    min-height: 0;
-    min-width: 0;
-  }
+/* Utility classes */
+.text-gradient-jester {
+  background: linear-gradient(135deg, var(--jester-gold) 0%, var(--jester-purple) 50%, var(--jester-red) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-  @media (min-width: 640px) {
-    .container {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-  }
+.bg-gradient-court {
+  background: linear-gradient(135deg, var(--court-dark) 0%, #1a1a2e 50%, #252540 100%);
+}
 
-  /* TopJester custom utilities - Medieval Court of Fools Theme */
-  .jester-border {
-    border: 2px dashed oklch(0.75 0.25 140);
-    box-shadow: 0 0 10px oklch(0.75 0.25 140 / 0.2);
-    position: relative;
-  }
-  .jester-border::before {
-    content: "🃏";
-    position: absolute;
-    top: -10px;
-    right: 10px;
-    font-size: 12px;
-    opacity: 0.6;
-  }
-  .jester-border-subtle {
-    border: 1px dashed oklch(0.45 0.15 140);
-    position: relative;
-  }
-  .jester-border-subtle::after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 2px;
-    background: oklch(0.75 0.25 140 / 0.5);
-  }
-  .jester-gold {
-    color: oklch(0.85 0.18 85);
-    text-shadow: 0 0 8px oklch(0.85 0.18 85 / 0.5);
-  }
-  .jester-purple {
-    color: oklch(0.75 0.25 300);
-    text-shadow: 0 0 8px oklch(0.75 0.25 300 / 0.4);
-  }
-  .header-bg {
-    background: linear-gradient(180deg, oklch(0.28 0.18 300) 0%, oklch(0.12 0.08 300) 100%);
-    border-bottom: 2px solid oklch(0.75 0.25 140);
-    position: relative;
-  }
-  .header-bg::before {
-    content: "👑 THE COURT OF FOOLS 👑";
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 8px;
-    letter-spacing: 2px;
-    color: oklch(0.75 0.25 140 / 0.6);
-    background: oklch(0.08 0 0);
-    padding: 0 10px;
-    white-space: nowrap;
-  }
-  
-  /* Medieval court decorations */
-  .court-banner {
-    background: linear-gradient(135deg, 
-      oklch(0.15 0.1 300) 0%, 
-      oklch(0.12 0.08 300) 50%,
-      oklch(0.15 0.1 300) 100%);
-    border: 2px solid oklch(0.55 0.22 300);
-    box-shadow: 
-      inset 0 0 20px oklch(0.55 0.22 300 / 0.2),
-      0 0 10px oklch(0.55 0.22 300 / 0.3);
-    position: relative;
-  }
-  .court-banner::before,
-  .court-banner::after {
-    content: "🏰";
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 16px;
-    opacity: 0.4;
-  }
-  .court-banner::before { left: 10px; }
-  .court-banner::after { right: 10px; }
-  
-  /* Jester hat decoration */
-  .jester-hat {
-    position: relative;
-    display: inline-block;
-  }
-  .jester-hat::before {
-    content: "🎭";
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 20px;
-    animation: hatWiggle 2s ease-in-out infinite;
-  }
-  @keyframes hatWiggle {
-    0%, 100% { transform: translateX(-50%) rotate(-5deg); }
-    50% { transform: translateX(-50%) rotate(5deg); }
-  }
-  
-  /* Clown/entertainer badges */
-  .badge-lolcow {
-    background: linear-gradient(135deg, oklch(0.65 0.22 25), oklch(0.55 0.18 25));
-    border: 1px solid oklch(0.75 0.25 140);
-    position: relative;
-  }
-  .badge-lolcow::before {
-    content: "🐄";
-    margin-right: 4px;
-  }
-  .badge-jester {
-    background: linear-gradient(135deg, oklch(0.75 0.25 140), oklch(0.65 0.22 300));
-    border: 1px solid oklch(0.85 0.18 85);
-    position: relative;
-  }
-  .badge-jester::before {
-    content: "🃏";
-    margin-right: 4px;
-  }
-  .badge-drama {
-    background: linear-gradient(135deg, oklch(0.55 0.22 300), oklch(0.45 0.18 300));
-    border: 1px solid oklch(0.75 0.25 140);
-  }
-  .badge-drama::before {
-    content: "🍿";
-    margin-right: 4px;
-  }
-  
-  /* Funny hover effects */
-  .hover-laugh:hover {
-    animation: laugh 0.3s ease-in-out;
-  }
-  @keyframes laugh {
-    0%, 100% { transform: translateY(0); }
-    25% { transform: translateY(-3px) rotate(-2deg); }
-    75% { transform: translateY(-3px) rotate(2deg); }
-  }
-  
-  /* Honk button effect */
-  .honk-btn {
-    position: relative;
-    overflow: visible;
-  }
-  .honk-btn:active::after {
-    content: "🤡 HONK!";
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 10px;
-    color: oklch(0.75 0.25 140);
-    font-weight: bold;
-    white-space: nowrap;
-    animation: honkPop 0.5s ease-out forwards;
-  }
-  @keyframes honkPop {
-    0% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
-    100% { opacity: 0; transform: translateX(-50%) translateY(-20px) scale(1.2); }
-  }
-  .rank-1 { color: oklch(0.85 0.18 85); text-shadow: 0 0 8px oklch(0.85 0.18 85 / 0.7); }
-  .rank-2 { color: oklch(0.78 0.05 220); text-shadow: 0 0 6px oklch(0.78 0.05 220 / 0.5); }
-  .rank-3 { color: oklch(0.72 0.12 55); text-shadow: 0 0 6px oklch(0.72 0.12 55 / 0.5); }
-  .vote-up-active {
-    color: oklch(0.75 0.25 140);
-    border-color: oklch(0.75 0.25 140);
-    background: oklch(0.75 0.25 140 / 0.15);
-  }
-  .vote-down-active {
-    color: oklch(0.65 0.22 25);
-    border-color: oklch(0.65 0.22 25);
-    background: oklch(0.65 0.22 25 / 0.15);
-  }
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: oklch(0.08 0 0); }
-  ::-webkit-scrollbar-thumb { background: oklch(0.35 0.15 300); border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: oklch(0.55 0.22 300); }
-
-  /* Baseball Card Styles */
-  .baseball-card-container {
-    perspective: 1000px;
-  }
-
-  .baseball-card {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .baseball-card.flipped {
-    transform: rotateY(180deg);
-  }
-
-  .baseball-card-face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  .baseball-card-back {
-    transform: rotateY(180deg);
-  }
-
-  /* Holographic shimmer effect */
-  .holographic-shimmer {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      45deg,
-      transparent 30%,
-      rgba(255, 215, 0, 0.1) 50%,
-      transparent 70%
-    );
-    background-size: 200% 200%;
-    animation: shimmer 3s linear infinite;
-    pointer-events: none;
-  }
-
-  @keyframes shimmer {
-    0% { background-position: 200% 200%; }
-    100% { background-position: -200% -200%; }
-  }
-
-  /* Rainbow holographic background */
-  .holographic-rainbow {
-    position: absolute;
-    inset: 0;
-    background: conic-gradient(
-      from 0deg,
-      #ff0080,
-      #ff8c00,
-      #ffd700,
-      #00ff80,
-      #00ffff,
-      #0080ff,
-      #8000ff,
-      #ff0080
-    );
-    opacity: 0.15;
-    animation: rotate 8s linear infinite;
-    pointer-events: none;
-  }
-
-  @keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  /* Gold foil border effect */
-  .gold-foil-border {
-    position: relative;
-    border: 2px solid transparent;
-    background-clip: padding-box;
-  }
-
-  .gold-foil-border::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: inherit;
-    background: linear-gradient(
-      45deg,
-      #ffd700,
-      #ffa500,
-      #ffd700,
-      #ffec8b,
-      #ffd700
-    );
-    z-index: -1;
-    animation: goldShine 4s ease-in-out infinite;
-  }
-
-  @keyframes goldShine {
-    0%, 100% { filter: brightness(1); }
-    50% { filter: brightness(1.2); }
-  }
-
-  /* Retro baseball card stat box */
-  .stat-box-retro {
-    background: linear-gradient(135deg, oklch(0.15 0 0), oklch(0.08 0 0));
-    border: 2px solid oklch(0.75 0.25 140);
-    box-shadow: 
-      inset 0 0 10px oklch(0.75 0.25 140 / 0.2),
-      0 0 5px oklch(0.75 0.25 140 / 0.3);
-    transition: all 0.2s ease;
-  }
-
-  .stat-box-retro:hover {
-    transform: scale(1.05);
-    box-shadow: 
-      inset 0 0 15px oklch(0.75 0.25 140 / 0.3),
-      0 0 15px oklch(0.75 0.25 140 / 0.5);
-  }
-
-  /* Card glow effect */
-  .card-glow {
-    position: absolute;
-    inset: -4px;
-    border-radius: 16px;
-    background: linear-gradient(
-      45deg,
-      oklch(0.75 0.25 140),
-      oklch(0.55 0.22 300),
-      oklch(0.75 0.25 140)
-    );
-    filter: blur(12px);
-    opacity: 0.4;
-    z-index: -1;
-    animation: glowPulse 4s ease-in-out infinite;
-  }
-
-  @keyframes glowPulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.5; }
-  }
-
-  /* Rank badge styles */
-  .rank-badge-gold {
-    background: linear-gradient(135deg, #ffd700, #ffa500);
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-    animation: goldPulse 2s ease-in-out infinite;
-  }
-
-  .rank-badge-silver {
-    background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
-    box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
-  }
-
-  .rank-badge-bronze {
-    background: linear-gradient(135deg, #cd7f32, #a0522d);
-    box-shadow: 0 0 10px rgba(205, 127, 50, 0.5);
-  }
-
-  @keyframes goldPulse {
-    0%, 100% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.3); }
-    50% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.7); }
-  }
-
-  /* Retro text effects */
-  .text-retro-glow {
-    text-shadow: 
-      0 0 10px oklch(0.75 0.25 140 / 0.5),
-      2px 2px 4px rgba(0, 0, 0, 0.8);
-  }
-
-  .text-holographic {
-    background: linear-gradient(
-      90deg,
-      #ff0080,
-      #ff8c00,
-      #ffd700,
-      #00ff80,
-      #00ffff,
-      #0080ff,
-      #8000ff,
-      #ff0080
-    );
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: textShine 3s linear infinite;
-  }
-
-  @keyframes textShine {
-    0% { background-position: 200% center; }
-    100% { background-position: -200% center; }
-  }
+.border-jester {
+  border: 2px solid transparent;
+  border-image: linear-gradient(135deg, var(--jester-gold), var(--jester-purple)) 1;
 }
