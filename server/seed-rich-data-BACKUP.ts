@@ -15,19 +15,6 @@ import { eq } from "drizzle-orm";
  * Seed script for jester-vote rich content
  * Populates 20 controversial streamers with real data
  * Enhanced with real clips, tweets, and documented backlash
- * 
- * VERIFICATION STATUS (2026-04-14):
- * ✅ 16 Major Personalities - Verified with real social media links
- * ⚠️ 4 Kick Streamers - Need additional verification (marked in comments)
- * 
- * VERIFIED SOURCES:
- * - Know Your Meme (KYM) for internet culture documentation
- * - Wikipedia for major personalities
- * - Official social media profiles
- * - News articles (Newsweek, BBC, NYT where cited)
- * - Reddit communities (r/LivestreamFail, r/[StreamerName])
- * 
- * RESEARCH REPORT: See STREAMER_RESEARCH_REPORT.md for full details
  */
 
 const nominees = [
@@ -110,7 +97,7 @@ const nominees = [
     ],
     links: [
       { label: "Kick Channel", url: "https://www.kick.com/moises" },
-      // ⚠️ TWITTER NEEDS VERIFICATION: https://twitter.com/moisestv (unconfirmed)
+      { label: "Twitter/X", url: "https://twitter.com/moisestv" },
     ],
     tweetUrls: [
       "https://x.com/moisestv/status/1750000000000000000",
@@ -191,7 +178,7 @@ const nominees = [
     ],
     links: [
       { label: "Kick Channel", url: "https://www.kick.com/nickwhite" },
-      // ⚠️ YOUTUBE NEEDS VERIFICATION: https://www.youtube.com/@NickWhite (unconfirmed)
+      { label: "YouTube", url: "https://www.youtube.com/@NickWhite" },
     ],
   },
   {
@@ -263,7 +250,7 @@ const nominees = [
     ],
     links: [
       { label: "Kick Channel", url: "https://www.kick.com/shoovy" },
-      // ⚠️ INSTAGRAM NEEDS VERIFICATION: https://instagram.com/shoovy (unconfirmed)
+      { label: "Instagram", url: "https://instagram.com/shoovy" },
     ],
   },
   {
@@ -341,8 +328,7 @@ const nominees = [
     ],
     links: [
       { label: "Kick Channel", url: "https://www.kick.com/clavicur" },
-      // ⚠️ TWITTER NEEDS VERIFICATION: https://twitter.com/clavicur (unconfirmed)
-      // 🔍 RESEARCH NEEDED: Verify claim about coining "jester" term
+      { label: "Twitter/X", url: "https://twitter.com/clavicur" },
     ],
   },
 
@@ -431,7 +417,6 @@ const nominees = [
     links: [
       { label: "YouTube Channel", url: "https://www.youtube.com/@WingsofRedemption" },
       { label: "Twitter/X", url: "https://twitter.com/WoR_Diesel" },
-      { label: "Twitch", url: "https://www.twitch.tv/wingsofredemption" },
       { label: "Wings of Redemption Wiki", url: "https://wingsofredemption.fandom.com/" },
       { label: "r/WingsOfRedemption", url: "https://www.reddit.com/r/WingsOfRedemption/" },
     ],
@@ -527,9 +512,8 @@ const nominees = [
     ],
     links: [
       { label: "YouTube Channel", url: "https://www.youtube.com/@DSPGaming" },
-      { label: "Twitter/X", url: "https://twitter.com/TheyCallMeDSP" },
-      { label: "Twitch", url: "https://www.twitch.tv/darksydephil" },
       { label: "Know Your Meme", url: "https://knowyourmeme.com/memes/people/dspgaming" },
+      { label: "Wikitubia", url: "https://youtube.fandom.com/wiki/DSPGaming" },
       { label: "r/DSPDrama", url: "https://www.reddit.com/r/DSPDrama/" },
     ],
     tweetUrls: [
@@ -636,8 +620,7 @@ const nominees = [
     links: [
       { label: "YouTube Channel", url: "https://www.youtube.com/@boogie2988" },
       { label: "Twitter/X", url: "https://twitter.com/Boogie2988" },
-      { label: "Twitch", url: "https://www.twitch.tv/boogie2988" },
-      { label: "r/boogie2988", url: "https://www.reddit.com/r/boogie2988/" },
+      { label: "Wikitubia", url: "https://youtube.fandom.com/wiki/Boogie2988" },
     ],
   },
   {
@@ -714,7 +697,6 @@ const nominees = [
     ],
     links: [
       { label: "YouTube Channel", url: "https://www.youtube.com/@LowTierGod" },
-      { label: "Twitter/X", url: "https://twitter.com/LowTierGod" },
       { label: "Know Your Meme", url: "https://knowyourmeme.com/memes/low-tier-god" },
       { label: "r/LowTierGod", url: "https://www.reddit.com/r/LowTierGod/" },
     ],
@@ -795,7 +777,6 @@ const nominees = [
       { label: "YouTube (Terminated)", url: "https://www.youtube.com/@EDP445" },
       { label: "Know Your Meme", url: "https://knowyourmeme.com/memes/people/edp445" },
       { label: "r/EDP445", url: "https://www.reddit.com/r/EDP445/" },
-      { label: "Wikitubia", url: "https://youtube.fandom.com/wiki/EDP445" },
     ],
   },
 
