@@ -52,98 +52,151 @@ export default function Home() {
       <Header />
 
       <main role="main" className="container py-6">
-        {/* 🎪 JESTER COURT HEADER - Unique, NOT ip2.network clone */}
+        {/* 🎪 JESTER COURT HEADER - Glassmorphism Modern Design */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8 text-center relative"
+          className="mb-12 text-center relative"
         >
-          {/* Floating Jester Elements */}
-          <div className="absolute top-0 left-[15%] text-3xl opacity-40">
+          {/* Floating Jester Elements with Glassmorphism */}
+          <div className="absolute top-0 left-[10%] text-4xl opacity-60 hidden md:block">
             <motion.span 
-              animate={{ y: [0, -10, 0], rotate: [0, 10, -10, 0] }}
-              transition={{ duration: 3, repeat: Infinity }}
+              animate={{ y: [0, -15, 0], rotate: [0, 15, -15, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="inline-block filter drop-shadow-lg"
             >🃏</motion.span>
           </div>
-          <div className="absolute top-0 right-[15%] text-3xl opacity-40">
+          <div className="absolute top-0 right-[10%] text-4xl opacity-60 hidden md:block">
             <motion.span 
-              animate={{ y: [0, -10, 0], rotate: [0, -10, 10, 0] }}
-              transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
+              animate={{ y: [0, -15, 0], rotate: [0, -15, 15, 0] }}
+              transition={{ duration: 4, repeat: Infinity, delay: 2, ease: "easeInOut" }}
+              className="inline-block filter drop-shadow-lg"
             >🎭</motion.span>
           </div>
 
-          {/* Main Title - Medieval Court Style */}
-          <div className="relative inline-block">
-            <motion.div
-              className="text-5xl md:text-7xl font-black text-gradient-jester mb-2 jester-hat"
-              style={{ fontFamily: "serif" }}
-            >
-              🏰 THE COURT OF FOOLS 🏰
-            </motion.div>
+          {/* Glassmorphism Title Card */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="relative inline-block"
+          >
+            {/* Glass background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl" />
             
-            {/* Crown decorations */}
-            <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 flex gap-8">
-              <motion.span 
-                animate={{ rotate: [0, 15, 0] }}
+            <div className="relative px-8 py-6 md:px-12 md:py-8">
+              {/* Crown decorations */}
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 flex gap-12">
+                <motion.span 
+                  animate={{ rotate: [0, 20, 0], y: [0, -5, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  className="text-3xl filter drop-shadow-lg"
+                >👑</motion.span>
+                <motion.span 
+                  animate={{ rotate: [0, -20, 0], y: [0, -5, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, delay: 0.5, ease: "easeInOut" }}
+                  className="text-3xl filter drop-shadow-lg"
+                >👑</motion.span>
+              </div>
+              
+              {/* Main Title */}
+              <motion.h1
+                className="text-4xl md:text-6xl lg:text-7xl font-black text-gradient-jester mb-3"
+                style={{ fontFamily: "'Orbitron', serif", letterSpacing: "0.05em" }}
+                animate={{ textShadow: [
+                  "0 0 20px oklch(0.75 0.25 140 / 0.4)",
+                  "0 0 40px oklch(0.75 0.25 140 / 0.6)",
+                  "0 0 20px oklch(0.75 0.25 140 / 0.4)"
+                ]}}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="text-2xl"
-              >👑</motion.span>
-              <motion.span 
-                animate={{ rotate: [0, -15, 0] }}
-                transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-                className="text-2xl"
-              >👑</motion.span>
+              >
+                THE COURT
+                <br />
+                <span className="text-3xl md:text-5xl lg:text-6xl">OF FOOLS</span>
+              </motion.h1>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Subtitle - Medieval Style */}
+          {/* Animated Subtitle */}
           <motion.p 
-            className="text-lg text-[#fbbf24] font-medium italic"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
+            className="text-lg md:text-xl text-[#fbbf24] font-medium italic mt-6 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
           >
             "Where the biggest jesters of streaming are crowned by the people"
           </motion.p>
 
-          {/* Court Divider */}
-          <div className="court-divider max-w-md mx-auto mt-4" />
+          {/* Animated Court Divider */}
+          <motion.div 
+            className="max-w-lg mx-auto mt-6 h-px bg-gradient-to-r from-transparent via-[#fbbf24] to-transparent"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ delay: 0.7, duration: 0.8 }}
+          />
         </motion.div>
 
-        {/* 🎪 STATS CARDS - Unique Jester Style */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        {/* 🎪 STATS CARDS - Glassmorphism Modern Design */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <motion.div 
-            className="jester-card p-4 text-center"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
+            className="relative group"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            whileHover={{ y: -5 }}
           >
-            <div className="text-3xl mb-2">🎪</div>
-            <p className="text-2xl font-bold text-[#fbbf24]">{entries.length}</p>
-            <p className="text-xs text-muted-foreground">Court Jesters</p>
+            <div className="absolute inset-0 bg-gradient-to-br from-[#6b21a8]/20 to-[#fbbf24]/10 backdrop-blur-md rounded-2xl border border-white/10 shadow-lg group-hover:border-[#fbbf24]/30 transition-all duration-300" />
+            <div className="relative p-5 text-center">
+              <motion.div 
+                className="text-4xl mb-3"
+                whileHover={{ scale: 1.2, rotate: 10 }}
+                transition={{ type: "spring", stiffness: 400 }}
+              >🎪</motion.div>
+              <p className="text-3xl font-black text-[#fbbf24] drop-shadow-lg">{entries.length}</p>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">Court Jesters</p>
+            </div>
           </motion.div>
 
           <motion.div 
-            className="jester-card p-4 text-center"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, delay: 0.1 }}
+            className="relative group"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            whileHover={{ y: -5 }}
           >
-            <div className="text-3xl mb-2">⚔️</div>
-            <p className="text-2xl font-bold text-[#fbbf24]">
-              {entries.reduce((sum, e) => sum + e.upvotes + e.downvotes, 0).toLocaleString()}
-            </p>
-            <p className="text-xs text-muted-foreground">Royal Decrees</p>
+            <div className="absolute inset-0 bg-gradient-to-br from-[#dc2626]/20 to-[#fbbf24]/10 backdrop-blur-md rounded-2xl border border-white/10 shadow-lg group-hover:border-[#fbbf24]/30 transition-all duration-300" />
+            <div className="relative p-5 text-center">
+              <motion.div 
+                className="text-4xl mb-3"
+                whileHover={{ scale: 1.2, rotate: -10 }}
+                transition={{ type: "spring", stiffness: 400 }}
+              >⚔️</motion.div>
+              <p className="text-3xl font-black text-[#fbbf24] drop-shadow-lg">
+                {entries.reduce((sum, e) => sum + e.upvotes + e.downvotes, 0).toLocaleString()}
+              </p>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">Royal Decrees</p>
+            </div>
           </motion.div>
 
           <motion.div 
-            className="jester-card p-4 text-center"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, delay: 0.2 }}
+            className="relative group"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            whileHover={{ y: -5 }}
           >
-            <div className="text-3xl mb-2">🔥</div>
-            <p className="text-2xl font-bold text-[#fbbf24]">
-              {streak.globalStats?.totalVotes24h?.toLocaleString() || "0"}
-            </p>
-            <p className="text-xs text-muted-foreground">Today's Clownery</p>
+            <div className="absolute inset-0 bg-gradient-to-br from-[#16a34a]/20 to-[#fbbf24]/10 backdrop-blur-md rounded-2xl border border-white/10 shadow-lg group-hover:border-[#fbbf24]/30 transition-all duration-300" />
+            <div className="relative p-5 text-center">
+              <motion.div 
+                className="text-4xl mb-3"
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >🔥</motion.div>
+              <p className="text-3xl font-black text-[#fbbf24] drop-shadow-lg">
+                {streak.globalStats?.totalVotes24h?.toLocaleString() || "0"}
+              </p>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">Today's Clownery</p>
+            </div>
           </motion.div>
 
           <motion.div 
