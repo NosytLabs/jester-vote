@@ -165,7 +165,7 @@ function LeaderboardRow({
         )}
       </AnimatePresence>
 
-      <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4">
+      <div className="flex items-center gap-2 sm:gap-4 p-2 sm:p-4 min-h-[72px] sm:min-h-[80px]">
         {/* Rank */}
         <div className="shrink-0">
           <RankBadge
@@ -268,22 +268,26 @@ function LeaderboardRow({
         </div>
 
         {/* Score (desktop) */}
-        <ScoreDisplay score={entry.score} />
+        <div className="hidden sm:flex items-center">
+          <ScoreDisplay score={entry.score} />
+        </div>
 
-        {/* Vote buttons */}
-        <VoteButtonPair
-          nomineeId={entry.nomineeId}
-          upvotes={entry.upvotes}
-          downvotes={entry.downvotes}
-          userVote={userVote}
-          onVote={onVote}
-          size="sm"
-        />
+        {/* Vote buttons - fixed alignment */}
+        <div className="flex items-center shrink-0">
+          <VoteButtonPair
+            nomineeId={entry.nomineeId}
+            upvotes={entry.upvotes}
+            downvotes={entry.downvotes}
+            userVote={userVote}
+            onVote={onVote}
+            size="sm"
+          />
+        </div>
 
         {/* Profile link */}
         <Link href={`/nominee/${entry.nomineeId}`}>
           <motion.div
-            className="shrink-0 p-1"
+            className="shrink-0 p-1 flex items-center"
             whileHover={{ x: 3 }}
             whileTap={{ scale: 0.9 }}
           >

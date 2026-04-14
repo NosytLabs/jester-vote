@@ -17,17 +17,17 @@ interface VoteButtonProps {
 const sizeConfig = {
   sm: {
     button: "px-2 py-1.5 text-xs gap-1.5 min-w-[60px] justify-center",
-    icon: 11,
+    icon: 12,
     particleCount: 6,
   },
   md: {
     button: "px-3 py-2 text-sm gap-2 min-w-[80px] justify-center",
-    icon: 14,
+    icon: 16,
     particleCount: 8,
   },
   lg: {
     button: "px-4 py-2.5 text-sm gap-2.5 min-w-[100px] justify-center",
-    icon: 16,
+    icon: 18,
     particleCount: 12,
   },
 };
@@ -110,10 +110,13 @@ export function VoteButton({
   streakCount = 0,
 }: VoteButtonProps) {
   const [isPressed, setIsPressed] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
   const config = sizeConfig[size];
 
   const handleClick = useCallback(() => {
     if (disabled) return;
+    setShowFeedback(true);
+    setTimeout(() => setShowFeedback(false), 600);
     onClick();
   }, [disabled, onClick]);
 
@@ -129,6 +132,7 @@ export function VoteButton({
         background: `${activeColor}20`,
         color: activeColor,
         boxShadow: `0 0 15px ${activeColor}40, inset 0 0 10px ${activeColor}20`,
+        transform: isPressed ? "scale(0.95)" : "scale(1)",
       };
     }
     if (isPressed) {
@@ -143,6 +147,7 @@ export function VoteButton({
       borderColor: "oklch(0.22 0 0)",
       background: "transparent",
       color: "oklch(0.6 0 0)",
+      transform: "scale(1)",
     };
   };
 
@@ -158,8 +163,8 @@ export function VoteButton({
       onTouchStart={() => setIsPressed(true)}
       onTouchEnd={() => setIsPressed(false)}
       disabled={disabled}
-      className={`relative flex items-center border transition-all duration-200 ${config.button} ${
-        disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+      className={`relative flex items-center border-2 rounded-md transition-all duration-150 ${config.button} ${
+        disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer hover:border-opacity-80"
       }`}
       style={styles}
       whileHover={
@@ -167,11 +172,14 @@ export function VoteButton({
           ? {
               borderColor: hoverColor,
               color: hoverColor,
-              boxShadow: `0 0 10px ${hoverColor}30`,
+              boxShadow: `0 0 12px ${hoverColor}40`,
+              scale: 1.02,
             }
           : undefined
       }
-      whileTap={{ scale: disabled ? 1 : 0.95 }}
+      whileTap={{ scale: disabled ? 1 : 0.92 }}
+      aria-label={isUp ? "Upvote" : "Downvote"}
+      aria-pressed={isActive}
     >
       {/* Particles */}
       <VoteParticles type={type} isAnimating={isAnimating} />

@@ -437,26 +437,42 @@ const CardBack = ({
 // Main BaseballCard component
 export function BaseballCard({ nominee, stats, rank, className = "" }: BaseballCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleFlip = () => setIsFlipped(!isFlipped);
 
   return (
     <motion.div
-      className={`relative w-full max-w-[280px] aspect-[3/4] cursor-pointer ${className}`}
-      style={{ perspective: "1000px" }}
+      className={`relative w-full max-w-[300px] aspect-[3/4] cursor-pointer mx-auto ${className}`}
+      style={{ perspective: "1200px" }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={handleFlip}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleFlip();
+        }
+      }}
+      aria-label={`${nominee.name} baseball card. Click to flip.`}
     >
       <motion.div
         className="relative w-full h-full"
         style={{ transformStyle: "preserve-3d" }}
-        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        animate={{ 
+          rotateY: isFlipped ? 180 : 0,
+          scale: isHovered && !isFlipped ? 1.02 : 1,
+        }}
         transition={{ duration: 0.6, type: "spring", stiffness: 260, damping: 20 }}
       >
         {/* Front */}
         <div 
-          className="absolute inset-0 rounded-lg overflow-hidden"
+          className="absolute inset-0 rounded-xl overflow-hidden shadow-2xl"
           style={{ 
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -468,7 +484,7 @@ export function BaseballCard({ nominee, stats, rank, className = "" }: BaseballC
 
         {/* Back */}
         <div 
-          className="absolute inset-0 rounded-lg overflow-hidden"
+          className="absolute inset-0 rounded-xl overflow-hidden shadow-2xl"
           style={{ 
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -482,18 +498,31 @@ export function BaseballCard({ nominee, stats, rank, className = "" }: BaseballC
 
       {/* Outer glow effect */}
       <motion.div
-        className="absolute -inset-1 rounded-xl -z-10"
+        className="absolute -inset-2 rounded-2xl -z-10"
         style={{
           background: "linear-gradient(45deg, oklch(0.75 0.25 140), oklch(0.55 0.22 300), oklch(0.75 0.25 140))",
-          filter: "blur(8px)",
-          opacity: 0.4,
+          filter: "blur(12px)",
+          opacity: 0.3,
         }}
         animate={{ 
-          opacity: [0.3, 0.5, 0.3],
+          opacity: isHovered ? [0.4, 0.6, 0.4] : [0.3, 0.4, 0.3],
           rotate: [0, 180, 360],
         }}
-        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+        transition={{ 
+          opacity: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+          rotate: { duration: 8, repeat: Infinity, ease: "linear" }
+        }}
       />
+      
+      {/* Flip hint tooltip */}
+      <motion.div
+        className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-muted-foreground whitespace-nowrap"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isHovered ? 1 : 0 }}
+        transition={{ duration: 0.2 }}
+      >
+        Click to flip
+      </motion.div>
     </motion.div>
   );
 }

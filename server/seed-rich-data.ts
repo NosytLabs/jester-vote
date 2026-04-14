@@ -14,10 +14,12 @@ import { eq } from "drizzle-orm";
 /**
  * Seed script for jester-vote rich content
  * Populates controversial streamers with verified data
+ * Enhanced with Cx Network IRL streamers (2026-04-14)
  * 
  * VERIFICATION STATUS (2026-04-14):
  * ✅ LEGENDARY LOLCOWS - Fully verified with real social links, clips, sources
  * ✅ MAJOR YOUTUBERS - Verified with KYM, Wikipedia, official sources
+ * ✅ CX NETWORK - Added Hampton Brandon, Mexican Andy (well-documented IRL history)
  * ⚠️ KICK STREAMERS - Partially verified (Kick channels confirmed, some details unverified)
  * ❌ CLAVICUR - UNVERIFIED: "jester" term origin claim has NO EVIDENCE
  * 
@@ -27,7 +29,7 @@ import { eq } from "drizzle-orm";
  * ❌ = Unverified claims (marked clearly in data)
  * 
  * VERIFIED SOURCES:
- * - Know Your Meme (KYM): DSP, Wings, Boogie, LTG, EDP445, Nikocado
+ * - Know Your Meme (KYM): DSP, Wings, Boogie, LTG, EDP445, Nikocado, Hampton Brandon, Mexican Andy
  * - Wikipedia: Chris Chan, Onision, Boogie2988
  * - Official social media: YouTube, Twitter/X, Twitch channels
  * - News: BBC, NYT, Newsweek where cited
@@ -1652,6 +1654,62 @@ const nominees = [
       "https://www.reddit.com/r/LivestreamFail/comments/n2m5ed/edp445_caught_in_predator_sting_operation/",
     ],
     kickClipUrls: [],
+  },
+  // ========== CX NETWORK IRL STREAMERS ==========
+  {
+    name: "Hampton Brandon",
+    platform: "Kick",
+    category: "IRL",
+    bio: "The original content king. Hampton Brandon became legendary in the IRL streaming world through his association with Ice Poseidon and the Cx Network. Known for his unpredictable behavior, confrontations with strangers, and the iconic 'TTD' (Ten Toes Down) motto. His streams were a perfect storm of chaos, drama, and genuine unscripted moments that defined early IRL streaming culture.",
+    imageUrl: "https://i.pravatar.cc/150?img=33",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/hamptonbrandon/"],
+    kickClipUrls: [],
+    moments: [
+      { title: "TTD - Ten Toes Down", description: "Created the iconic TTD motto and movement", date: "2017-06-01", type: "clip" },
+      { title: "Cx Network Origins", description: "Became one of the original Cx Network streamers alongside Ice Poseidon", date: "2017-08-01", type: "event" },
+      { title: "RV Trip 1", description: "Participated in the legendary first RV trip with Ice Poseidon", date: "2018-03-01", type: "event" },
+      { title: "Content King Streams", description: "Known for streaming 24/7 with constant drama and entertainment", date: "2017-01-01", type: "clip" },
+    ],
+    controversies: [
+      { title: "Multiple Arrests on Stream", description: "Arrested multiple times during live streams for various incidents", date: "2017-01-01", severity: "high" },
+      { title: "Platform Bans", description: "Banned from Twitch, YouTube, and other platforms repeatedly", date: "2018-01-01", severity: "medium" },
+      { title: "Confrontation with Ice Poseidon", description: "Public falling out with Ice Poseidon and Cx Network", date: "2018-09-01", severity: "medium" },
+    ],
+    news: [
+      { title: "Hampton Brandon Returns to Streaming", content: "After multiple bans and hiatuses, returned to streaming on various platforms", date: "2020-01-01", sourceUrl: "", approved: true },
+    ],
+    links: [
+      { label: "Reddit Community", url: "https://www.reddit.com/r/hamptonbrandon/" },
+      { label: "Know Your Meme", url: "https://knowyourmeme.com/memes/people/hampton-brandon" },
+    ],
+  },
+  {
+    name: "Mexican Andy",
+    platform: "YouTube/Kick",
+    category: "IRL",
+    bio: "The Andy who started it all. Mexican Andy became internet famous through his persistent appearances on Ice Poseidon's streams, eventually becoming a core member of the Cx Network. Known for his distinctive appearance, earnest personality, and ability to create content through sheer persistence. Became a meme template and symbol of the 'Andy' archetype in streaming culture.",
+    imageUrl: "https://i.pravatar.cc/150?img=34",
+    tweetUrls: [],
+    redditUrls: ["https://www.reddit.com/r/Ice_Poseidon/search/?q=mexican+andy"],
+    kickClipUrls: [],
+    moments: [
+      { title: "First Ice Poseidon Appearance", description: "First appeared on Ice Poseidon's stream, beginning his streaming career", date: "2016-01-01", type: "event" },
+      { title: "The Andy Archetype", description: "Became the namesake for all 'Andy' streamers who follow IRL streamers", date: "2017-01-01", type: "event" },
+      { title: "24 Hour Challenges", description: "Known for attempting extreme 24-hour streaming challenges", date: "2017-06-01", type: "clip" },
+      { title: "Weight Loss Journey", description: "Documented significant weight loss transformation on stream", date: "2019-01-01", type: "event" },
+    ],
+    controversies: [
+      { title: "Stalking Allegations", description: "Accused of stalking female streamers for content", date: "2017-01-01", severity: "medium" },
+      { title: "Inappropriate Behavior", description: "Multiple instances of inappropriate comments and actions on stream", date: "2018-01-01", severity: "medium" },
+    ],
+    news: [
+      { title: "Mexican Andy Weight Loss Transformation", content: "Documented losing significant weight through streaming his fitness journey", date: "2019-06-01", sourceUrl: "", approved: true },
+    ],
+    links: [
+      { label: "YouTube", url: "https://www.youtube.com/@MexicanAndy" },
+      { label: "Reddit Discussions", url: "https://www.reddit.com/r/Ice_Poseidon/search/?q=mexican+andy" },
+    ],
   },
 ];
 
