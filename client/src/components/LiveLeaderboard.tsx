@@ -165,7 +165,7 @@ function LeaderboardRow({
         )}
       </AnimatePresence>
 
-      <div className="flex items-center gap-3 p-3 sm:p-4">
+      <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4">
         {/* Rank */}
         <div className="shrink-0">
           <RankBadge
@@ -233,17 +233,17 @@ function LeaderboardRow({
         </div>
 
         {/* Name + description */}
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0 flex flex-col justify-center">
           <Link href={`/nominee/${entry.nomineeId}`}>
             <motion.span
-              className="text-sm sm:text-base font-bold text-foreground hover:text-[oklch(0.75_0.25_140)] cursor-pointer transition-colors truncate block"
+              className="text-sm sm:text-base font-bold text-foreground hover:text-[oklch(0.75_0.25_140)] cursor-pointer transition-colors truncate block leading-tight"
               whileHover={{ x: 2 }}
             >
               {entry.name}
             </motion.span>
           </Link>
           {entry.description && (
-            <p className="text-xs text-muted-foreground truncate hidden sm:block">
+            <p className="text-xs text-muted-foreground truncate hidden sm:block mt-0.5 leading-relaxed">
               {entry.description}
             </p>
           )}

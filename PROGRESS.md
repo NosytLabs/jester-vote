@@ -15,7 +15,7 @@
 - code-reviewer (quality checks)
 - byterover (knowledge management)
 
-## Iteration 1 - UI/UX Improvements
+## Iteration 1 - UI/UX Improvements ✅
 
 ### Status: Complete ✅
 
@@ -23,10 +23,13 @@
 - [x] Improved VoteButton sizing and alignment
 - [x] Added min-width and justify-center for consistent button sizing
 - [x] Increased gap between buttons for better spacing
+- [x] Improved LiveLeaderboard spacing and text alignment
 - [x] Build passes successfully
 
-### Next: Content Research
-- [ ] Research Sam Pepper - already in seed data
-- [ ] Add more IRL streamers (Hampton Brandon, Mexican Andy)
-- [ ] Verify and update social links
-- [ ] Improve nominee bios with verified info
+## Iteration 2 - Content Improvements (In Progress)
+
+### Tasks
+- [ ] Add more IRL streamers to seed data
+- [ ] Improve nominee bios with better descriptions
+- [ ] Add verified social links where available
+- [ ] Update About page with more research

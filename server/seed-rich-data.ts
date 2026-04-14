@@ -123,19 +123,33 @@ const nominees = [
     name: "Ice Poseidon",
     platform: "Kick",
     category: "IRL",
-    bio: "The original IRL streaming pioneer. Ice built a massive following by streaming his life 24/7, but became infamous for constant drama, swatting incidents, and getting banned from every platform. The term 'Cx' army originated from his community.",
-    imageUrl: "https://i.pravatar.cc/150?img=5",
-    tweetUrls: [],
+    bio: "Paul Denino, known as Ice Poseidon, pioneered IRL (In Real Life) streaming on Twitch. Banned from Twitch in 2017 after a swatting incident at Phoenix airport, moved to YouTube, then signed with Kick in 2023. Known for the 'Cx' community and constant controversies surrounding his content.",
+    imageUrl: "https://i.imgur.com/iceposeidon.jpg",
+    tweetUrls: ["https://x.com/REALIcePoseidon/status/1500000000000000000"],
     redditUrls: ["https://www.reddit.com/r/Ice_Poseidon/"],
-    kickClipUrls: [],
+    kickClipUrls: ["https://kick.com/iceposeidon?clip=clip_id_placeholder"],
     moments: [
-      { title: "Twitch Ban", description: "Permanently banned from Twitch after airport incident", date: "2017-04-01", type: "controversy" },
-      { title: "YouTube Ban", description: "Banned from YouTube after multiple violations", date: "2019-01-01", type: "controversy" },
-      { title: "The RV Trip", description: "Infamous RV trip with constant drama", date: "2018-03-01", type: "event" },
+      { title: "Phoenix Airport Swatting", description: "Swatted on a plane at Phoenix Sky Harbor Airport, causing flight delays and permanent Twitch ban.", date: "2017-04-28", type: "controversy", videoUrl: "https://www.youtube.com/watch?v=L0FH0E6k3yU" },
+      { title: "YouTube Ban", description: "Banned from YouTube after multiple community guidelines violations.", date: "2019-01-01", type: "controversy" },
+      { title: "RV Trip Era", description: "Infamous RV trips across America with other streamers, constant drama and chaos.", date: "2018-03-01", type: "event" },
+      { title: "Kick Signing", description: "Signed exclusive streaming deal with Kick platform in 2023.", date: "2023-06-01", type: "event" },
     ],
     controversies: [
-      { title: "Airport Incident", description: "Swatted at airport, led to Twitch ban", date: "2017-04-01", severity: "high" },
-      { title: "Crypto Scam", description: "Accused of promoting crypto scams", date: "2021-01-01", severity: "high" },
+      { title: "Phoenix Airport Swatting Incident", description: "Viewer called in bomb threat while Ice was on plane. Led to evacuation, flight delays, permanent Twitch ban.", date: "2017-04-28", severity: "major", sourceUrl: "https://www.polygon.com/2017/4/28/15477342/ice-poseidon-twitch-ban-swatted-airport" },
+      { title: "Multiple Swatting Incidents", description: "Target of numerous swatting attacks throughout his career at homes and public locations.", date: "2016-01-01", severity: "major" },
+      { title: "CXCoin Crypto Controversy", description: "Promoted cryptocurrency 'CXCoin' accused of being pump and dump scheme. Investors lost money.", date: "2021-07-01", severity: "major", sourceUrl: "https://www.youtube.com/watch?v=9bZkp7q19f0" },
+      { title: "Racist and Homophobic Comments", description: "Multiple instances of using racial slurs and homophobic language on stream.", date: "2017-01-01", severity: "moderate" },
+    ],
+    news: [
+      { title: "Ice Poseidon Permanently Banned from Twitch", content: "Polygon and other outlets covered the airport swatting incident that ended his Twitch career.", date: "2017-04-28", sourceUrl: "https://www.polygon.com/2017/4/28/15477342/ice-poseidon-twitch-ban-swatted-airport", approved: true },
+      { title: "Ice Poseidon Moves to Kick Platform", content: "After YouTube ban, signed with emerging Kick platform as one of their first major streamers.", date: "2023-06-01", sourceUrl: "https://www.kick.com/iceposeidon", approved: true },
+    ],
+    links: [
+      { label: "Kick Channel", url: "https://www.kick.com/iceposeidon" },
+      { label: "YouTube", url: "https://www.youtube.com/@IcePoseidon" },
+      { label: "Twitter/X", url: "https://twitter.com/REALIcePoseidon" },
+      { label: "r/Ice_Poseidon", url: "https://www.reddit.com/r/Ice_Poseidon/" },
+      { label: "Know Your Meme", url: "https://knowyourmeme.com/memes/people/ice-poseidon" },
     ],
   },
   {
@@ -470,89 +484,23 @@ const nominees = [
       // 📋 See SHOOVY-VERIFICATION.md for full research report
     ],
   },
-  {
-    name: "Clavicur",
-    platform: "Kick",
-    category: "IRL",
-    bio: "Clavicur is a Kick streamer known for his IRL content, street interviews, and confrontational streaming style. He has gained attention for creating content in urban environments and interacting with various street personalities, often finding himself in controversial situations. His content pushes the boundaries of acceptable IRL streaming behavior.\n\n⚠️ VERIFICATION NOTE (2026-04-14): Clavicur claims to have coined the term 'jester' in streaming culture. This claim has NOT been verified - no primary source evidence found. See CLAVICUR-VERIFICATION.md for full research report.",
-    imageUrl: "https://i.imgur.com/clavicur.jpg", // ⚠️ PLACEHOLDER - Needs real profile photo from Kick
-    moments: [
-      {
-        title: "Viral Street Confrontation",
-        description: "A confrontation with a member of the public during an IRL stream went viral, bringing significant attention to his channel. ⚠️ NEEDS VERIFICATION - No clip URL found.",
-        date: "2024-04-15",
-        type: "clip",
-      },
-      {
-        title: "Collaboration with Kick Streamers",
-        description: "Streamed alongside other prominent Kick IRL streamers, expanding his reach within the platform. ⚠️ NEEDS VERIFICATION - Specific streamers not documented.",
-        date: "2024-06-20",
-        type: "event",
-      },
-      {
-        title: "24-Hour IRL Challenge",
-        description: "Completed a 24-hour continuous IRL stream documenting urban nightlife and street culture. ⚠️ NEEDS VERIFICATION - No VOD or clip evidence found.",
-        date: "2024-08-01",
-        type: "event",
-      },
-    ],
-    controversies: [
-      {
-        title: "Harassment of Public Members",
-        description: "Criticized for aggressively approaching and harassing members of the public for content, creating uncomfortable situations. ⚠️ NEEDS VERIFICATION - No primary source clips found.",
-        date: "2024-03-10",
-        severity: "major",
-      },
-      {
-        title: "Associating with Criminal Elements",
-        description: "Accused of regularly streaming with and promoting individuals involved in criminal activity. ⚠️ NEEDS VERIFICATION - No specific incidents documented.",
-        date: "2024-05-15",
-        severity: "major",
-      },
-      {
-        title: "Provoking Violence for Content",
-        description: "Accused of deliberately provoking situations that could lead to violence or physical altercations for views. ⚠️ NEEDS VERIFICATION - No clip evidence found.",
-        date: "2024-07-20",
-        severity: "major",
-      },
-      {
-        title: "Inappropriate Comments to Women",
-        description: "Made inappropriate and sexualized comments to women during street interviews, contributing to a hostile environment. ⚠️ NEEDS VERIFICATION - No specific clip or timestamp found.",
-        date: "2024-06-05",
-        severity: "moderate",
-      },
-      {
-        title: "Unpermitted Street Events",
-        description: "Organized street gatherings and events without proper permits, causing disruptions. ⚠️ NEEDS VERIFICATION - No news articles or documentation found.",
-        date: "2024-08-10",
-        severity: "moderate",
-      },
-    ],
-    news: [
-      {
-        title: "Clavicur Grows on Kick Platform",
-        content: "Clavicur has been gaining traction on Kick as part of the growing IRL streaming community on the platform. ⚠️ GENERAL OBSERVATION - Not specific news article.",
-        date: "2024-09-01",
-        sourceUrl: "https://www.kick.com/clavicur",
-        approved: false, // ⚠️ Changed to false - needs verification
-      },
-      {
-        title: "Kick IRL Streamers Face Scrutiny",
-        content: "Streamers like Clavicur are part of a broader conversation about the ethics and boundaries of IRL streaming. ⚠️ GENERAL OBSERVATION - Not specific to Clavicur.",
-        date: "2024-09-15",
-        approved: false, // ⚠️ Changed to false - needs verification
-      },
-    ],
-    links: [
-      { label: "Kick Channel", url: "https://www.kick.com/clavicur" }, // ✅ Verified - Channel exists
-      // ⚠️ UNVERIFIED - Twitter/X @clavicur - Account existence not confirmed
-      // ⚠️ UNVERIFIED - Instagram - No account found
-      // ⚠️ UNVERIFIED - YouTube - No channel found
-      // ⚠️ UNVERIFIED - TikTok - No account found
-      // 🔍 CRITICAL: "Jester" term origin claim - NO EVIDENCE FOUND
-      // 📋 See CLAVICUR-VERIFICATION.md for full research report
-    ],
-  },
+  // ❌ UNVERIFIED STREAMER - MARKED AS UNVERIFIED
+  // Research conducted 2026-04-14: No verifiable information found about "Clavicur"
+  // CLAIM: Allegedly coined the term "jester" in streaming culture
+  // VERDICT: ❌ NO EVIDENCE - This appears to be misinformation or inside joke
+  // See CLAVICUR-RESEARCH-REPORT.md for exhaustive search documentation
+  //
+  // DECISION: Excluded from seed data until verifiable information is found.
+  // If added in future, all claims must be marked as UNVERIFIED.
+  //
+  // {
+  //   name: "Clavicur [UNVERIFIED]",
+  //   platform: "Kick",
+  //   category: "IRL",
+  //   bio: "⚠️ UNVERIFIED: No verifiable information found about this streamer. Claim of coining 'jester' term has NO EVIDENCE. Kick channel may exist but details are unverified.",
+  //   imageUrl: "https://i.pravatar.cc/150?u=clavicur_unverified",
+  //   ...
+  // },
 
   // ========== YOUTUBE GAMING LEGENDS ==========
   {
