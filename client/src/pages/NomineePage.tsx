@@ -27,20 +27,17 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend } fro
 import { ArrowLeft, Send, Crown, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function NomineePage() {
+export default function LolcowPage() {
   const params = useParams<{ id: string }>();
   const id = parseInt(params.id ?? "0", 10);
   const { isAuthenticated } = useAuth();
   const [comment, setComment] = useState("");
 
-  const { data: nomineeData, isLoading, error, refetch } = trpc.nominees.getById.useQuery(
+  const { data: lolcow, isLoading, error, refetch } = trpc.nominees.getById.useQuery(
     { id },
     { enabled: !!id }
   );
-
-  // Extract nominee and vote history from response
-  const nominee = nomineeData;
-  const voteHistory = nomineeData?.voteHistory || [];
+  const voteHistory = lolcow?.voteHistory || [];
   const { data: comments, refetch: refetchComments } = trpc.comments.list.useQuery(
     { nomineeId: id },
     { enabled: !!id }
@@ -49,9 +46,9 @@ export default function NomineePage() {
   const { data: myVotes } = trpc.votes.myVotes.useQuery(undefined, { enabled: isAuthenticated });
 
   // Animated vote state with optimistic updates
-  // Get initial vote counts from the nominee data or default to 0
-  const initialUpvotes = (nomineeData as any)?.upvotes || 0;
-  const initialDownvotes = (nomineeData as any)?.downvotes || 0;
+  // Get initial vote counts from the lolcow data or default to 0
+  const initialUpvotes = (lolcow as any)?.upvotes || 0;
+  const initialDownvotes = (lolcow as any)?.downvotes || 0;
 
   const {
     upvotes,
@@ -107,13 +104,13 @@ export default function NomineePage() {
     return <NomineePageSkeleton />;
   }
 
-  if (error || !nominee) {
+  if (error || !lolcow) {
     return (
       <div className="min-h-screen bg-background">
         <Header />
         <main className="container py-6">
           <div className="jester-border p-8 text-center text-destructive">
-            Nominee not found.
+            Jester not found.
           </div>
         </main>
       </div>
@@ -123,7 +120,7 @@ export default function NomineePage() {
   const myVote = myVotes?.[id] || userVote;
   const calculatedScore = score;
 
-  // Get platform from nominee name or default
+  // Get platform from lolcow name or default
   const getPlatform = (name: string): string => {
     const kickStreamers = ["Adin Ross", "TrainwrecksTV", "xQc", "N3on", "Nickmercs", "BruceDropEmOff"];
     const youtubeStreamers = ["IShowSpeed", "Sneako", "N3on"];
@@ -160,9 +157,9 @@ export default function NomineePage() {
           className="jester-border-subtle bg-card p-2 mb-4"
         >
           <SocialShareButtons
-            nomineeName={nominee.name}
-            nomineeId={id}
-            description={nominee.description ?? undefined}
+            lolcowName={lolcow.name}
+            lolcowId={id}
+            description={lolcow.description ?? undefined}
           />
         </motion.div>
 
@@ -176,12 +173,12 @@ export default function NomineePage() {
           {/* Baseball Card - Left side */}
           <div className="flex justify-center lg:justify-start">
             <BaseballCard
-              nominee={{
-                name: nominee.name,
-                platform: getPlatform(nominee.name),
+              lolcow={{
+                name: lolcow.name,
+                platform: getPlatform(lolcow.name),
                 category: "Jester",
-                imageUrl: nominee.imageUrl || undefined,
-                bio: nominee.description || undefined,
+                imageUrl: lolcow.imageUrl || undefined,
+                bio: lolcow.description || undefined,
               }}
               stats={{
                 score: calculatedScore,
@@ -212,7 +209,7 @@ export default function NomineePage() {
                   textShadow: "0 0 20px oklch(0.75 0.25 140 / 0.4)",
                 }}
               >
-                {nominee.name}
+                {lolcow.name}
               </motion.h1>
 
               {/* Platform Badge */}
@@ -220,27 +217,27 @@ export default function NomineePage() {
                 <span
                   className="px-2 py-1 text-xs font-bold uppercase rounded"
                   style={{
-                    background: getPlatform(nominee.name) === "kick"
+                    background: getPlatform(lolcow.name) === "kick"
                       ? "#53FC18"
-                      : getPlatform(nominee.name) === "youtube"
+                      : getPlatform(lolcow.name) === "youtube"
                       ? "#FF0000"
                       : "#9146FF",
                     color: "#000",
                   }}
                 >
-                  {getPlatform(nominee.name)}
+                  {getPlatform(lolcow.name)}
                 </span>
                 <span className="text-xs text-muted-foreground">Verified Jester</span>
               </div>
 
-              {nominee.description && (
+              {lolcow.description && (
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
                   className="text-sm text-muted-foreground mb-4"
                 >
-                  {nominee.description}
+                  {lolcow.description}
                 </motion.p>
               )}
             </div>
@@ -325,7 +322,7 @@ export default function NomineePage() {
                 className="text-xs font-bold mb-3 tracking-widest"
                 style={{ color: "oklch(0.75 0.25 140)" }}
               >
-                VOTE HISTORY (BY WEEK)
+                JESTER RANKING HISTORY (BY WEEK)
               </h2>
               <ResponsiveContainer width="100%" height={200}>
                 <BarChart
@@ -408,7 +405,7 @@ export default function NomineePage() {
             className="text-xs font-bold mb-3 tracking-widest"
             style={{ color: "oklch(0.75 0.25 140)" }}
           >
-            COMMUNITY REACTIONS
+            COURT JESTER COMMENTARY
           </h2>
 
           {/* Add comment */}
@@ -425,7 +422,7 @@ export default function NomineePage() {
                       content: comment.trim(),
                     });
                 }}
-                placeholder="Add a reaction..."
+                placeholder="Add your jest..."
                 maxLength={500}
                 className="flex-1 bg-input border border-border px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-[oklch(0.75_0.25_140)] transition-colors"
               />
@@ -451,9 +448,9 @@ export default function NomineePage() {
                 href={getLegacyLoginUrl()}
                 className="text-[oklch(0.75_0.25_140)] hover:underline transition-colors"
               >
-                Login
+                Enter the Court
               </a>{" "}
-              to leave a reaction.
+              to leave your jest.
             </div>
           )}
 
@@ -504,7 +501,7 @@ export default function NomineePage() {
                   animate={{ opacity: 1 }}
                   className="text-xs text-muted-foreground text-center py-4"
                 >
-                  No reactions yet. Be the first!
+                  No jests yet. Be the first to mock!
                 </motion.p>
               )}
             </AnimatePresence>

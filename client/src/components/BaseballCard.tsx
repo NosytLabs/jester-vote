@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Twitch, Youtube, Flame, Crown, Skull, TrendingUp, MessageSquare, Film, Newspaper, Clock, RotateCw } from "lucide-react";
 
-interface NomineeData {
+interface LolcowData {
   name: string;
   platform: string;
   category: string;
@@ -21,7 +21,7 @@ interface StatsData {
 }
 
 interface BaseballCardProps {
-  nominee: NomineeData;
+  lolcow: LolcowData;
   stats: StatsData;
   rank?: number;
   className?: string;
@@ -176,12 +176,12 @@ const StatBox = ({
 
 // Front of card
 const CardFront = ({ 
-  nominee, 
+  lolcow, 
   stats, 
   rank,
   onFlip 
 }: { 
-  nominee: NomineeData; 
+  lolcow: LolcowData; 
   stats: StatsData; 
   rank?: number;
   onFlip: () => void;
@@ -224,8 +224,8 @@ const CardFront = ({
             color: "oklch(0.75 0.25 140)",
           }}
         >
-          <PlatformIcon platform={nominee.platform} size={14} />
-          <span className="uppercase">{nominee.platform}</span>
+          <PlatformIcon platform={lolcow.platform} size={14} />
+          <span className="uppercase">{lolcow.platform}</span>
         </div>
       </div>
 
@@ -239,10 +239,10 @@ const CardFront = ({
           }}
           whileHover={{ boxShadow: "0 0 30px oklch(0.75 0.25 140 / 0.6)" }}
         >
-          {nominee.imageUrl ? (
+          {lolcow.imageUrl ? (
             <motion.img
-              src={nominee.imageUrl}
-              alt={nominee.name}
+              src={lolcow.imageUrl}
+              alt={lolcow.name}
               className="w-full h-full object-cover"
               style={{ filter: "contrast(1.1) saturate(1.2)" }}
               whileHover={{ scale: 1.05 }}
@@ -255,7 +255,7 @@ const CardFront = ({
                 fontFamily: "'Orbitron', monospace",
                 textShadow: "0 0 20px oklch(0.75 0.25 140 / 0.5)",
               }}>
-                {nominee.name[0]?.toUpperCase()}
+                {lolcow.name[0]?.toUpperCase()}
               </span>
             </div>
           )}
@@ -279,7 +279,7 @@ const CardFront = ({
             boxShadow: "0 0 10px rgba(255,215,0,0.5)",
           }}
         >
-          {nominee.category}
+          {lolcow.category}
         </div>
       </div>
 
@@ -293,14 +293,14 @@ const CardFront = ({
           letterSpacing: "0.05em",
         }}
       >
-        {nominee.name}
+        {lolcow.name}
       </motion.h2>
 
       {/* Main stats row */}
       <div className="grid grid-cols-3 gap-2 mb-3 z-10">
-        <StatBox label="SCORE" value={stats.score} icon={TrendingUp} color={stats.score >= 0 ? "green" : "red"} />
-        <StatBox label="UP" value={stats.upvotes} icon={Crown} color="gold" />
-        <StatBox label="DOWN" value={stats.downvotes} icon={Skull} color="red" />
+        <StatBox label="JESTER SCORE" value={stats.score} icon={TrendingUp} color={stats.score >= 0 ? "green" : "red"} />
+        <StatBox label="CROWN VOTES" value={stats.upvotes} icon={Crown} color="gold" />
+        <StatBox label="YIKES VOTES" value={stats.downvotes} icon={Skull} color="red" />
       </div>
 
       {/* Flip hint */}
@@ -319,11 +319,11 @@ const CardFront = ({
 
 // Back of card
 const CardBack = ({ 
-  nominee, 
+  lolcow, 
   stats,
   onFlip 
 }: { 
-  nominee: NomineeData; 
+  lolcow: LolcowData; 
   stats: StatsData;
   onFlip: () => void;
 }) => {
@@ -344,7 +344,7 @@ const CardBack = ({
             textShadow: "0 0 10px oklch(0.75 0.25 140 / 0.5)",
           }}
         >
-          {nominee.name}
+          {lolcow.name}
         </h3>
         <p className="text-[10px] text-oklch(0.6 0 0) uppercase tracking-wider">
           Career Statistics
@@ -411,12 +411,12 @@ const CardBack = ({
       </div>
 
       {/* Bio preview if available */}
-      {nominee.bio && (
+      {lolcow.bio && (
         <div className="mt-2 p-2 rounded text-[10px] text-oklch(0.7 0 0) italic z-10" style={{
           background: "oklch(0.1 0 0 / 0.5)",
           borderLeft: "2px solid oklch(0.75 0.25 140)",
         }}>
-          "{nominee.bio.slice(0, 80)}{nominee.bio.length > 80 ? '...' : ''}"
+          "{lolcow.bio.slice(0, 80)}{lolcow.bio.length > 80 ? '...' : ''}"
         </div>
       )}
 
@@ -435,7 +435,7 @@ const CardBack = ({
 };
 
 // Main BaseballCard component
-export function BaseballCard({ nominee, stats, rank, className = "" }: BaseballCardProps) {
+export function BaseballCard({ lolcow, stats, rank, className = "" }: BaseballCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -479,7 +479,7 @@ export function BaseballCard({ nominee, stats, rank, className = "" }: BaseballC
           }}
         >
           <HolographicBackground isFlipped={false} />
-          <CardFront nominee={nominee} stats={stats} rank={rank} onFlip={handleFlip} />
+          <CardFront lolcow={lolcow} stats={stats} rank={rank} onFlip={handleFlip} />
         </div>
 
         {/* Back */}
@@ -492,7 +492,7 @@ export function BaseballCard({ nominee, stats, rank, className = "" }: BaseballC
           }}
         >
           <HolographicBackground isFlipped={true} />
-          <CardBack nominee={nominee} stats={stats} onFlip={handleFlip} />
+          <CardBack lolcow={lolcow} stats={stats} onFlip={handleFlip} />
         </div>
       </motion.div>
 
