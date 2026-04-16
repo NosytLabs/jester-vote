@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 export const metadata: Metadata = {
   title: "TopJester - The Court of LOLCOWS | Streamer Rankings",
@@ -59,11 +60,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className="font-sans antialiased bg-[#0f0f1a] text-white min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        <ErrorBoundary>
+          <Header />
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </ErrorBoundary>
       </body>
     </html>
   );

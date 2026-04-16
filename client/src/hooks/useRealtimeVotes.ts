@@ -62,15 +62,23 @@ export function useRealtimeVotes({ enabled = true, onVoteUpdate }: UseRealtimeVo
   }, [enabled, onVoteUpdate]);
 
   useEffect(() => {
-    connect();
+    // Only connect if enabled and not already connected
+    if (enabled && !eventSourceRef.current) {
+      connect();
+    }
 
     return () => {
       if (reconnectTimeoutRef.current) {
         clearTimeout(reconnectTimeoutRef.current);
+        reconnectTimeoutRef.current = null;
       }
-      eventSourceRef.current?.close();
+      if (eventSourceRef.current) {
+        eventSourceRef.current.close();
+        eventSourceRef.current = null;
+      }
+      setIsConnected(false);
     };
-  }, [connect]);
+  }, [connect, enabled]);
 
   const close = useCallback(() => {
     if (reconnectTimeoutRef.current) {
