@@ -147,7 +147,8 @@ function ScoreDisplay({ score }: { score: number }) {
 }
 
 // Individual leaderboard row - Clean IP2.Network style
-function LeaderboardRow({
+// Memoized to prevent unnecessary re-renders
+const LeaderboardRow = memo(function LeaderboardRow({
   entry,
   isAnimating,
   userVote,

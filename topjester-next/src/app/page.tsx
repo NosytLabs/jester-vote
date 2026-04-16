@@ -13,23 +13,27 @@ export const metadata: Metadata = {
 
 async function getData() {
   try {
-    // Single query to get top nominees and all data for stats
-    const allNominees = await db.query.nominees.findMany({
+    // Query 1: Get top 10 approved nominees with SQL LIMIT
+    const topNominees = await db.query.nominees.findMany({
+      limit: 10,
       orderBy: desc(nominees.score),
+      where: eq(nominees.status, 'approved'),
     });
     
-    const topNominees = allNominees.filter(n => n.status === 'approved').slice(0, 10);
-    const totalVotes = allNominees.reduce((sum, n) => sum + (n.upvotes || 0) + (n.downvotes || 0), 0);
+    // Query 2: Get stats using aggregation (not full table fetch)
+    const allApproved = await db.select({ 
+      count: sql<number>`COUNT(*)`,
+      totalUpvotes: sql<number>`SUM(${nominees.upvotes})`,
+      totalDownvotes: sql<number>`SUM(${nominees.downvotes})`
+    }).from(nominees).where(eq(nominees.status, 'approved'));
     
-    return {
-      topNominees,
-      stats: {
-        totalNominees: allNominees.length,
-        totalVotes,
-      }
+    const stats = {
+      totalNominees: Number(allApproved[0]?.count) || 0,
+      totalVotes: (Number(allApproved[0]?.totalUpvotes) || 0) + (Number(allApproved[0]?.totalDownvotes) || 0),
     };
-  } catch (error) {
-    console.warn('Database not available, using fallback data');
+    
+    return { topNominees, stats };
+  } catch {
     return {
       topNominees: [],
       stats: {

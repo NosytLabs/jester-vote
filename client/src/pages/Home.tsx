@@ -117,18 +117,16 @@ export default function Home() {
                 >👑</motion.span>
               </div>
               
-              <motion.h1
+              <h1
                 className="text-3xl md:text-5xl lg:text-6xl font-black text-gradient-jester mb-2"
-                style={{ fontFamily: "'Orbitron', serif", letterSpacing: "0.05em" }}
-                animate={{ textShadow: [
-                  "0 0 20px oklch(0.75 0.25 140 / 0.4)",
-                  "0 0 40px oklch(0.75 0.25 140 / 0.6)",
-                  "0 0 20px oklch(0.75 0.25 140 / 0.4)"
-                ]}}
-                transition={{ duration: 2, repeat: Infinity }}
+                style={{ 
+                  fontFamily: "'Orbitron', serif", 
+                  letterSpacing: "0.05em",
+                  textShadow: "0 0 30px oklch(0.75 0.25 140 / 0.4)"
+                }}
               >
                 THE COURT OF FOOLS
-              </motion.h1>
+              </h1>
             </div>
           </motion.div>
 
