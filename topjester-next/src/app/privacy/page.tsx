@@ -4,6 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Privacy Policy - TopJester",
   description: "Privacy policy for TopJester - The Court of Fools.",
+  authors: [{ name: "TopJester Team" }],
 };
 
 export default function PrivacyPage() {

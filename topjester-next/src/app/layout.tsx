@@ -57,8 +57,45 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // JSON-LD structured data for SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://topjester.com/#website",
+        "url": "https://topjester.com",
+        "name": "TopJester",
+        "description": "The Court of LOLCOWS - Community-driven streamer rankings",
+        "publisher": {
+          "@id": "https://topjester.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://topjester.com/#organization",
+        "name": "TopJester",
+        "url": "https://topjester.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://topjester.com/icon.svg"
+        },
+        "sameAs": [
+          "https://twitter.com/TopJester",
+          "https://discord.gg/topjester"
+        ]
+      }
+    ]
+  };
+
   return (
     <html lang="en" className="dark">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </head>
       <body className="font-sans antialiased bg-[#0f0f1a] text-white min-h-screen flex flex-col">
         <ErrorBoundary>
           <Header />

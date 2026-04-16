@@ -9,6 +9,7 @@ import { TheaterIcon } from "@/components/icons";
 export const metadata: Metadata = {
   title: "Leaderboard - TopJester | Royal Rankings of Lolcows",
   description: "Live rankings of the biggest internet lolcows and jesters. Vote and see who's on top of the Court of Fools.",
+  authors: [{ name: "TopJester Team" }],
 };
 
 async function getAllNominees() {

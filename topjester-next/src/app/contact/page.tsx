@@ -3,6 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact - TopJester",
   description: "Get in touch with the TopJester team. Questions, feedback, or partnership inquiries.",
+  authors: [{ name: "TopJester Team" }],
 };
 
 export default function ContactPage() {

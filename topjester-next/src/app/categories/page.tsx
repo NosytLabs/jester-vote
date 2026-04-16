@@ -5,6 +5,7 @@ import { Crown, Gamepad2, Video, Radio, Star, Drama, Heart, Skull } from "lucide
 export const metadata: Metadata = {
   title: "Categories - TopJester | Browse Lolcows by Type",
   description: "Browse lolcows and jesters by category - Gaming, IRL, YouTube Drama, Legendary, and more.",
+  authors: [{ name: "TopJester Team" }],
 };
 
 const categories = [

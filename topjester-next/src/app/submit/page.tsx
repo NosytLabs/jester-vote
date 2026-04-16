@@ -5,6 +5,7 @@ import { Crown, Upload, Info } from "lucide-react";
 export const metadata: Metadata = {
   title: "Submit a Jester - TopJester | Nominate a New Lolcow",
   description: "Submit a new lolcow or jester for community review and voting on TopJester. Help us document the biggest jesters in streaming culture.",
+  authors: [{ name: "TopJester Team" }],
 };
 
 export default function SubmitPage() {

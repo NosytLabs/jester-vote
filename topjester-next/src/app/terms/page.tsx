@@ -4,6 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Terms of Service - TopJester",
   description: "Terms of service for TopJester - The Court of Fools.",
+  authors: [{ name: "TopJester Team" }],
 };
 
 export default function TermsPage() {

@@ -3,6 +3,14 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About - TopJester",
   description: "Learn about TopJester, the court of fools, and the definition of lolcows in internet culture.",
+  authors: [{ name: "TopJester Team" }],
+};
+
+// Page metadata for structured data
+const pageMetadata = {
+  author: "TopJester Team",
+  datePublished: "2024-01-01",
+  dateModified: new Date().toISOString().split('T')[0],
 };
 
 export default function AboutPage() {
