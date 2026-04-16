@@ -4,6 +4,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { Link } from "wouter";
 import { toast } from "sonner";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { LiveLeaderboard } from "@/components/LiveLeaderboard";
 import { VoteStreakPanel } from "@/components/VoteStreakPanel";
 import { ConnectionStatus } from "@/components/ConnectionStatus";
@@ -38,8 +39,24 @@ export default function Home() {
   });
 
   const castVote = trpc.votes.cast.useMutation({
-    onSuccess: () => {
+    onSuccess: (data, variables) => {
       refetch();
+      // Show feedback toast
+      const voteType = variables.voteType;
+      const nominee = entries.find(e => e.nomineeId === variables.nomineeId);
+      if (nominee) {
+        if (voteType === "up") {
+          toast.success(`👑 Crowned ${nominee.name}! Your vote has been counted.`, {
+            icon: "🎭",
+            duration: 2000,
+          });
+        } else {
+          toast.error(`🃏 Downvoted ${nominee.name}. The court has spoken.`, {
+            icon: "⚖️",
+            duration: 2000,
+          });
+        }
+      }
     },
     onError: (e) => toast.error(e.message),
   });
@@ -49,10 +66,10 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-court">
+    <div className="min-h-screen bg-gradient-court flex flex-col">
       <Header />
 
-      <main id="main-content" className="container py-6">
+      <main id="main-content" className="container py-6 md:py-8 flex-1">
         {/* 🎪 JESTER COURT HEADER - Enhanced with Leaderboard Preview */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
@@ -418,32 +435,9 @@ export default function Home() {
           </ul>
         </section>
 
-        {/* 🎪 FOOTER */}
-        <motion.footer 
-          className="mt-12 text-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7 }}
-          role="contentinfo"
-        >
-          <div className="court-divider max-w-sm mx-auto mb-4" />
-          <p className="text-sm text-muted-foreground">
-            🎪 The Court of Fools — Where streamers are judged by the people 🎪
-          </p>
-          <p className="text-xs text-muted-foreground mt-1">
-            Login with <span className="text-[#53FC18]">Kick</span>, <span className="text-[#9146FF]">Twitch</span>, or <span className="text-[#FF0000]">YouTube</span> to join the voting
-          </p>
-          <p className="text-xs text-muted-foreground mt-1">
-            Not affiliated with ip2.network — Unique jester-themed ranking platform
-          </p>
-          <nav aria-label="Footer navigation" className="mt-4 flex justify-center gap-4 text-xs">
-            <a href="/about" className="text-muted-foreground hover:text-foreground">About Us</a>
-            <a href="/contact" className="text-muted-foreground hover:text-foreground">Contact</a>
-            <a href="/privacy" className="text-muted-foreground hover:text-foreground">Privacy Policy</a>
-            <a href="/sitemap.xml" className="text-muted-foreground hover:text-foreground">Sitemap</a>
-          </nav>
-        </motion.footer>
       </main>
+      
+      <Footer />
     </div>
   );
 }

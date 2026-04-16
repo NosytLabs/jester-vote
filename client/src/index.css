@@ -30,11 +30,11 @@
   --secondary: #6b21a8;
   --secondary-foreground: #f8fafc;
   --muted: #27273a;
-  --muted-foreground: #94a3b8;
+  --muted-foreground: #b4b4c7;
   --accent: #dc2626;
   --accent-foreground: #f8fafc;
   --destructive: #dc2626;
-  --border: #3f3f5f;
+  --border: #4a4a6a;
   --input: #27273a;
   --ring: #fbbf24;
 }
@@ -320,11 +320,11 @@
   --secondary: #6b21a8;
   --secondary-foreground: #f8fafc;
   --muted: #27273a;
-  --muted-foreground: #a1a1aa;
+  --muted-foreground: #c4c4d4;
   --accent: #dc2626;
   --accent-foreground: #f8fafc;
   --destructive: #dc2626;
-  --border: #3f3f5f;
+  --border: #4a4a6a;
   --input: #27273a;
   --ring: #fbbf24;
 }
@@ -332,6 +332,12 @@
 /* Base styles */
 * {
   border-color: var(--border);
+}
+
+/* Header background with better contrast */
+.header-bg {
+  background: linear-gradient(180deg, #0f0f1a 0%, #151526 100%);
+  border-bottom: 1px solid #4a4a6a;
 }
 
 /* Focus visible styles for accessibility */
