@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="crownGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#fbbf24"/>
+    </linearGradient>
+  </defs>
+  <!-- Crown -->
+  <path d="M2 24L5 10L10 16L16 6L22 16L27 10L30 24H2Z" fill="url(#crownGrad)" stroke="#fbbf24" stroke-width="1.5"/>
+  <!-- Jester bells -->
+  <circle cx="5" cy="10" r="2.5" fill="#dc2626"/>
+  <circle cx="27" cy="10" r="2.5" fill="#16a34a"/>
+  <circle cx="16" cy="6" r="2.5" fill="#7c3aed"/>
+</svg>

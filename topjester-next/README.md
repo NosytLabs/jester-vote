@@ -1,36 +1,139 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TopJester Next.js Migration
 
-## Getting Started
+A modern Next.js 16 application with server-side rendering, tRPC API, and MySQL database integration.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Server-Side Rendering (SSR)** - Better SEO and initial page load
+- **tRPC API** - Type-safe API routes
+- **MySQL Database** - Via Drizzle ORM (compatible with parent project)
+- **Responsive Design** - Mobile-first with hamburger menu
+- **SEO Optimized** - Dynamic metadata, sitemap, robots.txt
+- **Accessibility** - ARIA labels, keyboard navigation, focus states
+
+## 📁 Project Structure
+
+```
+topjester-next/
+├── src/
+│   ├── app/                    # Next.js App Router
+│   │   ├── api/trpc/[trpc]/    # tRPC API endpoint
+│   │   ├── about/              # About page
+│   │   ├── leaderboard/        # Leaderboard page
+│   │   ├── login/              # Login page
+│   │   ├── page.tsx            # Homepage (SSR)
+│   │   ├── layout.tsx          # Root layout
+│   │   ├── globals.css         # Tailwind styles
+│   │   ├── robots.ts           # Robots config
+│   │   └── sitemap.ts          # Dynamic sitemap
+│   ├── components/
+│   │   ├── Header.tsx          # Navigation with mobile menu
+│   │   └── Footer.tsx          # 4-column footer
+│   └── lib/
+│       ├── db/                 # Database setup
+│       │   ├── index.ts        # MySQL connection
+│       │   └── schema.ts       # Drizzle schema
+│       └── trpc/               # tRPC setup
+│           ├── trpc.ts         # Router definition
+│           ├── context.ts      # Context creator
+│           └── provider.tsx    # React provider
+├── drizzle.config.ts           # Drizzle Kit config
+├── next.config.ts              # Next.js config
+└── .env.local                  # Environment variables
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Set up environment variables:**
+   ```bash
+   cp .env.example .env.local
+   # Edit .env.local with your database credentials
+   ```
 
-## Learn More
+3. **Run database migrations:**
+   ```bash
+   npm run db:push
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. **Start development server:**
+   ```bash
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📊 Expected SEO Score
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Category | Expected Score |
+|----------|---------------|
+| Performance | 85+ |
+| Accessibility | 90+ |
+| Best Practices | 90+ |
+| SEO | 85+ |
+| **Overall** | **75-85** |
 
-## Deploy on Vercel
+## 🌐 Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Vercel (Recommended)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Push to GitHub
+2. Connect to Vercel
+3. Set environment variables in Vercel dashboard
+4. Deploy!
+
+### Environment Variables
+
+```env
+# Database
+DATABASE_URL=mysql://user:pass@host:3306/topjester
+
+# NextAuth
+NEXTAUTH_URL=https://your-domain.com
+NEXTAUTH_SECRET=random-secret-key
+
+# OAuth (optional)
+KICK_CLIENT_ID=your-kick-client-id
+KICK_CLIENT_SECRET=your-kick-secret
+```
+
+## 🔧 Database Schema
+
+The schema is compatible with the parent project's MySQL database:
+
+- `nominees` - Streamers/lolcows with vote counts
+- `votes` - User votes (up/down) with week tracking
+- `users` - OAuth users from Kick/Twitch/YouTube
+- `comments` - User comments on nominees
+- `notable_moments` - Key events/clips
+- `controversies` - Documented controversies
+
+## 📱 Mobile Features
+
+- Hamburger menu with slide-out drawer
+- Touch-friendly vote buttons
+- Responsive grid layouts
+- Body scroll lock when menu open
+- Escape key to close menu
+
+## ♿ Accessibility
+
+- Semantic HTML structure
+- ARIA labels on interactive elements
+- Focus visible indicators
+- Keyboard navigation support
+- Screen reader friendly
+
+## 🎨 Styling
+
+- Tailwind CSS v4
+- Custom jester theme colors
+- CSS variables for theming
+- Gradient text effects
+- Animated transitions
+
+## 📝 License
+
+MIT - Same as parent project

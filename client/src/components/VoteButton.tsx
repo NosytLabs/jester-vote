@@ -1,3 +1,5 @@
+"use client";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { ThumbsUp, ThumbsDown, Sparkles, Flame } from "lucide-react";
 import { useState, useCallback, memo } from "react";

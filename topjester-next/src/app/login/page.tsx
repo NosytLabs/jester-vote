@@ -1,8 +1,10 @@
 import { Metadata } from "next";
+import Link from "next/link";
+import { Crown } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Login - TopJester",
-  description: "Login to TopJester to vote on the biggest internet lolcows.",
+  title: "Login - TopJester | Enter the Court",
+  description: "Login to TopJester to vote on the biggest internet lolcows and jesters.",
 };
 
 export default function LoginPage() {
@@ -11,11 +13,19 @@ export default function LoginPage() {
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-md mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-black text-gradient-jester mb-2">
+            <div className="flex justify-center mb-4">
+              <Crown className="w-12 h-12 text-[#fbbf24]" />
+            </div>
+            <h1 className="text-3xl md:text-4xl font-black mb-2" style={{
+              fontFamily: "'Orbitron', sans-serif",
+              background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #fbbf24 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}>
               ENTER THE COURT
             </h1>
-            <p className="text-muted-foreground">
-              Login to cast your votes
+            <p className="text-gray-400">
+              Login to cast your votes and join the jury
             </p>
           </div>
 
@@ -34,9 +44,15 @@ export default function LoginPage() {
               </button>
             </div>
 
-            <div className="mt-6 text-center text-sm text-muted-foreground">
-              <p>OAuth integration coming with Next.js migration</p>
+            <div className="mt-6 text-center text-sm text-gray-500">
+              <p>OAuth integration coming soon</p>
             </div>
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link href="/" className="text-[#fbbf24] hover:text-[#f59e0b] transition-colors">
+              ← Back to Home
+            </Link>
           </div>
         </div>
       </main>

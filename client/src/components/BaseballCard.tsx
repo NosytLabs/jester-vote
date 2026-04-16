@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Twitch, Youtube, Flame, Crown, Skull, TrendingUp, MessageSquare, Film, Newspaper, Clock, RotateCw } from "lucide-react";
@@ -459,7 +461,7 @@ export function BaseballCard({ lolcow, stats, rank, className = "" }: BaseballCa
           handleFlip();
         }
       }}
-      aria-label={`${nominee.name} baseball card. Click to flip.`}
+      aria-label={`${lolcow.name} baseball card. Click to flip.`}
     >
       <motion.div
         className="relative w-full h-full"

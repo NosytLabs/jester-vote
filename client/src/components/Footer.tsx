@@ -1,3 +1,5 @@
+"use client";
+
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Crown, Github, Twitter, MessageCircle } from "lucide-react";

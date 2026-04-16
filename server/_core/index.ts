@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cookieParser from "cookie-parser";
+// @ts-ignore - compression types not installed
 import compression from "compression";
 import { createServer } from "http";
 import net from "net";
