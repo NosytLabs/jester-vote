@@ -55,7 +55,7 @@ export const appRouter = router({
         limit: 100,
       });
       
-      return results.map((nominee, index) => ({
+      return results.map((nominee: any, index: number) => ({
         ...nominee,
         rank: index + 1,
       }));
@@ -109,13 +109,13 @@ export const appRouter = router({
   // Get total stats
   stats: publicProcedure.query(async () => {
     const allNominees = await db.query.nominees.findMany();
-    const totalVotes = allNominees.reduce((sum, n) => sum + n.upvotes + n.downvotes, 0);
+    const totalVotes = allNominees.reduce((sum: number, n: any) => sum + n.upvotes + n.downvotes, 0);
     
     return {
       totalNominees: allNominees.length,
       totalVotes,
-      totalUpvotes: allNominees.reduce((sum, n) => sum + n.upvotes, 0),
-      totalDownvotes: allNominees.reduce((sum, n) => sum + n.downvotes, 0),
+      totalUpvotes: allNominees.reduce((sum: number, n: any) => sum + n.upvotes, 0),
+      totalDownvotes: allNominees.reduce((sum: number, n: any) => sum + n.downvotes, 0),
     };
   }),
 });

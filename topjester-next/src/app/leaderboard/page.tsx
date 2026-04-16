@@ -14,6 +14,11 @@ export const metadata: Metadata = {
 
 async function getAllNominees() {
   try {
+    // Check if db is available
+    if (!db || !db.query) {
+      throw new Error('Database not available');
+    }
+    
     const allNominees = await db.query.nominees.findMany({
       orderBy: desc(nominees.score),
       where: eq(nominees.status, 'approved'),
@@ -72,7 +77,7 @@ export default async function LeaderboardPage() {
           <span className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full text-gray-400">
             <TrendingUp className="w-4 h-4 text-[#fbbf24]" />
             <span className="text-[#fbbf24] font-bold">
-              {allNominees.reduce((sum, n) => sum + n.upvotes + n.downvotes, 0).toLocaleString()}
+              {allNominees.reduce((sum: number, n: any) => sum + n.upvotes + n.downvotes, 0).toLocaleString()}
             </span> Total Votes
           </span>
           <span className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full text-gray-400">
@@ -170,7 +175,7 @@ export default async function LeaderboardPage() {
             </div>
 
             <div className="divide-y divide-[#3f3f5f]/50">
-              {allNominees.map((nominee, index) => (
+              {allNominees.map((nominee: any, index: number) => (
                 <Link key={nominee.id} href={`/nominee/${nominee.id}`}>
                   <div className="flex items-center gap-3 md:gap-4 p-4 hover:bg-[#27273a]/50 transition-colors cursor-pointer group">
                     {/* Rank */}

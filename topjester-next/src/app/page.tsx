@@ -19,6 +19,11 @@ export const metadata: Metadata = {
 
 async function getData() {
   try {
+    // Check if db is available
+    if (!db || !db.query) {
+      throw new Error('Database not available');
+    }
+    
     // Query 1: Get top 10 approved nominees with SQL LIMIT
     const topNominees = await db.query.nominees.findMany({
       limit: 10,
@@ -39,7 +44,8 @@ async function getData() {
     };
     
     return { topNominees, stats };
-  } catch {
+  } catch (error) {
+    console.warn('Database query failed:', error);
     return {
       topNominees: [],
       stats: {
@@ -208,7 +214,7 @@ export default async function Home() {
 
             {/* Leaderboard List */}
             <div className="space-y-2">
-              {topNominees.map((nominee, index) => (
+              {topNominees.map((nominee: any, index: number) => (
                 <Link key={nominee.id} href={`/nominee/${nominee.id}`}>
                   <div className="flex items-center gap-3 p-3 rounded-lg bg-[#27273a]/50 hover:bg-[#27273a] transition-colors cursor-pointer group">
                     {/* Rank */}

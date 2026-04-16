@@ -7,7 +7,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Get all nominees for dynamic routes (with fallback for build time)
   let allNominees: { id: number | string }[] = [];
   try {
-    allNominees = await db.query.nominees.findMany();
+    if (db && db.query) {
+      allNominees = await db.query.nominees.findMany();
+    }
   } catch (error) {
     console.warn('Database not available for sitemap, using empty nominee list');
   }
