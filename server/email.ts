@@ -20,7 +20,7 @@ interface ApprovalNotificationData {
 export async function sendNominationNotification(data: NominationNotificationData): Promise<void> {
   // Check if email is configured
   if (!ENV.smtpHost && !ENV.emailApiKey) {
-    console.log("[Email] Notification skipped - no email configuration");
+    // Email not configured - skip silently
     return;
   }
 
@@ -38,13 +38,11 @@ Review at: ${ENV.appUrl}/admin
   try {
     // Implement your email sending logic here
     // Examples: SendGrid, AWS SES, Nodemailer, etc.
-    console.log("[Email] Would send nomination notification:", { subject, body });
-    
     // Placeholder for actual email sending
     // await sendEmail({ to: ENV.adminEmail, subject, body });
-  } catch (error) {
-    console.error("[Email] Failed to send nomination notification:", error);
-    throw error;
+  } catch {
+    // Log to error tracking service in production
+    throw new Error("Failed to send nomination notification");
   }
 }
 
@@ -54,7 +52,7 @@ Review at: ${ENV.appUrl}/admin
 export async function sendApprovalNotification(data: ApprovalNotificationData): Promise<void> {
   // Check if email is configured
   if (!ENV.smtpHost && !ENV.emailApiKey) {
-    console.log("[Email] Notification skipped - no email configuration");
+    // Email not configured - skip silently
     return;
   }
 
@@ -81,13 +79,11 @@ Feel free to submit another nominee that better fits our guidelines.
     `.trim();
 
   try {
-    console.log("[Email] Would send approval notification:", { to: data.toEmail, subject, body });
-    
     // Placeholder for actual email sending
     // await sendEmail({ to: data.toEmail, subject, body });
-  } catch (error) {
-    console.error("[Email] Failed to send approval notification:", error);
-    throw error;
+  } catch {
+    // Log to error tracking service in production
+    throw new Error("Failed to send approval notification");
   }
 }
 

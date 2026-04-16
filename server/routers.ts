@@ -98,7 +98,6 @@ export const appRouter = router({
           });
         } catch (e) {
           // Don't fail the submission if email fails
-          console.warn("[Email] Failed to send nomination notification:", e);
         }
 
         return { success: true, message: "Nomination submitted for review!" };
@@ -215,8 +214,8 @@ export const appRouter = router({
               }
             }
           }
-        } catch (e) {
-          console.warn("[Email] Failed to send approval notification:", e);
+        } catch {
+          // Email notification failed - continue silently
         }
 
         return { success: true, message: `\"${nominee.name}\" has been approved!` };
@@ -253,8 +252,8 @@ export const appRouter = router({
               }
             }
           }
-        } catch (e) {
-          console.warn("[Email] Failed to send rejection notification:", e);
+        } catch {
+          // Email notification failed - continue silently
         }
 
         return { success: true, message: `\"${nominee.name}\" has been rejected.` };

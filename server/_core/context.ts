@@ -39,9 +39,8 @@ export async function createContext(
         }
       }
     }
-  } catch (error) {
+  } catch {
     // Authentication is optional for public procedures
-    console.warn("[Context] Authentication error:", error);
     user = null;
   }
 
