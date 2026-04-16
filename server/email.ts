@@ -40,9 +40,8 @@ Review at: ${ENV.appUrl}/admin
     // Examples: SendGrid, AWS SES, Nodemailer, etc.
     // Placeholder for actual email sending
     // await sendEmail({ to: ENV.adminEmail, subject, body });
-  } catch {
-    // Log to error tracking service in production
-    throw new Error("Failed to send nomination notification");
+  } catch (error) {
+    throw new Error("Failed to send nomination notification", { cause: error });
   }
 }
 
@@ -81,9 +80,8 @@ Feel free to submit another nominee that better fits our guidelines.
   try {
     // Placeholder for actual email sending
     // await sendEmail({ to: data.toEmail, subject, body });
-  } catch {
-    // Log to error tracking service in production
-    throw new Error("Failed to send approval notification");
+  } catch (error) {
+    throw new Error("Failed to send approval notification", { cause: error });
   }
 }
 
