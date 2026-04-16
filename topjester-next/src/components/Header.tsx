@@ -14,6 +14,7 @@ export default function Header() {
     { href: "/categories", label: "Categories" },
     { href: "/about", label: "About" },
     { href: "/submit", label: "Submit" },
+    { href: "/contact", label: "Contact" },
   ];
 
   return (

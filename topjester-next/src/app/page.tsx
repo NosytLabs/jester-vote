@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { db } from "@/lib/db";
 import { nominees } from "@/lib/db/schema";
-import { desc, eq } from "drizzle-orm";
+import { desc, eq, sql } from "drizzle-orm";
 import { Crown, TrendingUp } from "lucide-react";
 import { TheaterIcon, JesterHatIcon, AnimatedLogo } from "@/components/icons";
 

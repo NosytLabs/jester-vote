@@ -46,6 +46,11 @@ export default function Footer() {
                   Submit a Jester
                 </Link>
               </li>
+              <li>
+                <Link href="/contact" className="text-gray-400 hover:text-[#fbbf24] transition-colors">
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 
