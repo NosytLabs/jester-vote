@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://topjester.com"),
   title: "TopJester - The Court of LOLCOWS | Streamer Rankings",
   description: "Vote for the biggest internet lolcows and jesters. Documenting the downfalls, drama, and dysfunction of online personalities. Community-driven rankings.",
   keywords: ["lolcow", "streamer rankings", "jester", "court of fools", "streaming drama", "DSP", "Wings of Redemption", "Ice Poseidon"],
@@ -14,11 +15,10 @@ export const metadata: Metadata = {
   robots: "index, follow",
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon.svg", type: "image/svg+xml", sizes: "any" },
     ],
     apple: [
-      { url: "/apple-icon.png", sizes: "180x180" },
+      { url: "/icon.svg", type: "image/svg+xml", sizes: "any" },
     ],
   },
   manifest: "/manifest.json",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: "TopJester",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.svg",
         width: 1200,
         height: 630,
         alt: "TopJester - The Court of Fools",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "TopJester - The Court of LOLCOWS",
     description: "Vote for the biggest internet lolcows and jesters.",
-    images: ["/og-image.png"],
+    images: ["/og-image.svg"],
   },
   verification: {
     google: "your-google-verification-code",
