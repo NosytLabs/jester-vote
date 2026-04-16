@@ -1,3 +1,5 @@
+"use client";
+
 import { Share2, Twitter, MessageCircle, Share, Link2, Check } from "lucide-react";
 import { toast } from "sonner";
 import { useState } from "react";

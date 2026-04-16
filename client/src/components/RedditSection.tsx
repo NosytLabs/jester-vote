@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { RedditEmbed, RedditEmbedCompact } from "./embeds";
 import { ExternalLink } from "lucide-react";

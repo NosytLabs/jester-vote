@@ -43,8 +43,8 @@ export function useRealtimeVotes({ enabled = true, onVoteUpdate }: UseRealtimeVo
         const data = JSON.parse(event.data) as VoteUpdate;
         setLastUpdate(new Date());
         onVoteUpdate?.(data);
-      } catch (e) {
-        console.error('SSE parse error:', e);
+      } catch {
+        // Silently ignore parse errors to prevent console spam
       }
     };
 
@@ -170,7 +170,7 @@ export function useAnimatedVote({ nomineeId, initialUpvotes, initialDownvotes }:
       // Invalidate related queries
       utils.nominees.list.invalidate();
       utils.votes.myVotes.invalidate();
-    } catch (error) {
+    } catch {
       // Revert on error
       setState(prev => ({
         ...prev,

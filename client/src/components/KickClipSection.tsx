@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { KickClipEmbed, KickEmbed } from "./embeds";
 import { Radio, ExternalLink } from "lucide-react";

@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { TwitterEmbed } from "./embeds";
 import { MessageSquare, ExternalLink } from "lucide-react";
