@@ -16,7 +16,6 @@ export { KickClipSection, KickLiveSection } from "./KickClipSection";
 // Social features
 export { default as SocialShareButtons } from "./SocialShareButtons";
 export { default as ShareButtons } from "./ShareButtons";
-export { default as ShareableNomineeCard } from "./ShareableNomineeCard";
 
 // Voting
 export { default as VoteButton } from "./VoteButton";

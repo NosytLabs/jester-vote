@@ -354,7 +354,7 @@ const LeaderboardRow = memo(function LeaderboardRow({
       </div>
     </motion.div>
   );
-}
+});
 
 // Skeleton loader
 function LeaderboardSkeleton() {
