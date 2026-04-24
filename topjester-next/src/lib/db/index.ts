@@ -1,23 +1,40 @@
-import { drizzle } from 'drizzle-orm/mysql2';
-import mysql from 'mysql2/promise';
+import initSqlJs, { Database } from 'sql.js';
+import { drizzle } from 'drizzle-orm/sql-js';
 import * as schema from './schema';
+import path from 'path';
+import fs from 'fs';
 
-// Create connection pool with fallback for build time
-let pool: mysql.Pool | null = null;
+const dbPath = process.env.DB_PATH || path.join(process.cwd(), 'topjester.db');
+let sqlDb: Database | null = null;
+let drizzleDb: any = null;
 
 try {
-  if (process.env.DATABASE_URL) {
-    pool = mysql.createPool({
-      uri: process.env.DATABASE_URL,
-      connectionLimit: 10,
-    });
+  const SQL = await initSqlJs();
+  
+  if (fs.existsSync(dbPath)) {
+    const fileBuffer = fs.readFileSync(dbPath);
+    sqlDb = new SQL.Database(fileBuffer);
+  } else {
+    sqlDb = new SQL.Database();
   }
+  
+  drizzleDb = drizzle(sqlDb, { schema });
 } catch (error) {
   console.warn('Database connection failed:', error);
 }
 
-// Export db with fallback for build time
-export const db = pool ? drizzle(pool, { schema, mode: 'default' }) : null as any;
+export const database = sqlDb;
+export const orm = drizzleDb;
+// Keep 'db' alias for compatibility if needed elsewhere, but rename internal to avoid clash
+export const db = drizzleDb;
+
+export function saveDatabase() {
+  if (sqlDb) {
+    const data = sqlDb.export();
+    const buffer = Buffer.from(data);
+    fs.writeFileSync(dbPath, buffer);
+  }
+}
 
 export type Nominee = typeof schema.nominees.$inferSelect;
 export type Vote = typeof schema.votes.$inferSelect;

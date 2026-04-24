@@ -1,70 +1,69 @@
-import { mysqlTable, serial, varchar, text, int, timestamp, mysqlEnum } from 'drizzle-orm/mysql-core';
+import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
 
-export const nominees = mysqlTable('nominees', {
-  id: serial('id').primaryKey(),
-  name: varchar('name', { length: 255 }).notNull(),
-  platform: varchar('platform', { length: 100 }).notNull(),
-  category: varchar('category', { length: 100 }).notNull(),
+export const nominees = sqliteTable('nominees', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  name: text('name').notNull(),
+  platform: text('platform').notNull(),
+  category: text('category').notNull(),
   bio: text('bio').notNull(),
-  imageUrl: varchar('image_url', { length: 500 }),
-  upvotes: int('upvotes').default(0).notNull(),
-  downvotes: int('downvotes').default(0).notNull(),
-  score: int('score').default(0).notNull(),
-  status: varchar('status', { length: 20 }).default('approved').notNull(),
-  submittedByUserId: int('submitted_by_user_id'),
-  createdAt: timestamp('created_at').defaultNow().notNull(),
-  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+  imageUrl: text('image_url'),
+  upvotes: integer('upvotes').default(0).notNull(),
+  downvotes: integer('downvotes').default(0).notNull(),
+  score: integer('score').default(0).notNull(),
+  status: text('status').default('approved').notNull(),
+  submittedByUserId: integer('submitted_by_user_id'),
+  createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
+  updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull(),
 });
 
-export const votes = mysqlTable('votes', {
-  id: serial('id').primaryKey(),
-  nomineeId: int('nominee_id').notNull(),
-  userId: int('user_id').notNull(),
-  voteType: mysqlEnum('vote_type', ['up', 'down']).notNull(),
-  weekKey: varchar('week_key', { length: 10 }).notNull(),
-  createdAt: timestamp('created_at').defaultNow().notNull(),
+export const votes = sqliteTable('votes', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  nomineeId: integer('nominee_id').notNull(),
+  userId: integer('user_id').notNull(),
+  voteType: text('vote_type').notNull(),
+  weekKey: text('week_key').notNull(),
+  createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
 });
 
-export const users = mysqlTable('users', {
-  id: serial('id').primaryKey(),
-  openId: varchar('open_id', { length: 255 }).notNull().unique(),
-  email: varchar('email', { length: 255 }),
-  name: varchar('name', { length: 255 }),
-  kickUsername: varchar('kick_username', { length: 255 }),
-  kickAvatarUrl: varchar('kick_avatar_url', { length: 500 }),
-  loginMethod: varchar('login_method', { length: 50 }),
-  role: varchar('role', { length: 20 }).default('user').notNull(),
-  lastSignedIn: timestamp('last_signed_in'),
-  createdAt: timestamp('created_at').defaultNow().notNull(),
+export const users = sqliteTable('users', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  openId: text('open_id').notNull().unique(),
+  email: text('email'),
+  name: text('name'),
+  kickUsername: text('kick_username'),
+  kickAvatarUrl: text('kick_avatar_url'),
+  loginMethod: text('login_method'),
+  role: text('role').default('user').notNull(),
+  lastSignedIn: integer('last_signed_in', { mode: 'timestamp' }),
+  createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
 });
 
-export const comments = mysqlTable('comments', {
-  id: serial('id').primaryKey(),
-  nomineeId: int('nominee_id').notNull(),
-  userId: int('user_id').notNull(),
+export const comments = sqliteTable('comments', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  nomineeId: integer('nominee_id').notNull(),
+  userId: integer('user_id').notNull(),
   content: text('content').notNull(),
-  createdAt: timestamp('created_at').defaultNow().notNull(),
+  createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
 });
 
-export const notableMoments = mysqlTable('notable_moments', {
-  id: serial('id').primaryKey(),
-  nomineeId: int('nominee_id').notNull(),
-  title: varchar('title', { length: 255 }).notNull(),
+export const notableMoments = sqliteTable('notable_moments', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  nomineeId: integer('nominee_id').notNull(),
+  title: text('title').notNull(),
   description: text('description').notNull(),
-  date: varchar('date', { length: 50 }),
-  type: varchar('type', { length: 50 }).notNull(),
+  date: text('date'),
+  type: text('type').notNull(),
 });
 
-export const controversies = mysqlTable('controversies', {
-  id: serial('id').primaryKey(),
-  nomineeId: int('nominee_id').notNull(),
-  title: varchar('title', { length: 255 }).notNull(),
+export const controversies = sqliteTable('controversies', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  nomineeId: integer('nominee_id').notNull(),
+  title: text('title').notNull(),
   description: text('description').notNull(),
-  date: varchar('date', { length: 50 }),
-  severity: varchar('severity', { length: 20 }).notNull(),
+  date: text('date'),
+  severity: text('severity').notNull(),
 });
 
-// Type exports
 export type Nominee = typeof nominees.$inferSelect;
 export type InsertNominee = typeof nominees.$inferInsert;
 export type Vote = typeof votes.$inferSelect;
