@@ -73,7 +73,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-[#3f3f5f]/50 mt-8 pt-8 text-center text-gray-500 text-sm">
-          © 2025 TopJester. All rights reserved. Satire/Parody site for entertainment purposes.
+          © 2026 TopJester. All rights reserved. Satire/Parody site for entertainment purposes.
         </div>
       </div>
     </footer>

@@ -1,15 +1,35 @@
-# TopJester Next.js Migration
+# TopJester / jester-vote.com
 
-A modern Next.js 16 application with server-side rendering, tRPC API, and MySQL database integration.
+A modern Next.js 15 application for [jester-vote.com](https://jester-vote.com) — the Court of Fools, a community-driven ranking site for internet lolcows and streaming jesters.
 
-## 🚀 Features
+## 🎯 What is This?
 
-- **Server-Side Rendering (SSR)** - Better SEO and initial page load
-- **tRPC API** - Type-safe API routes
-- **MySQL Database** - Via Drizzle ORM (compatible with parent project)
-- **Responsive Design** - Mobile-first with hamburger menu
-- **SEO Optimized** - Dynamic metadata, sitemap, robots.txt
-- **Accessibility** - ARIA labels, keyboard navigation, focus states
+TopJester lets users vote on the biggest lolcows (infamous internet personalities known for entertaining dysfunction) from platforms like Twitch, Kick, YouTube, and more.
+
+- **Live leaderboard** with upvote/downvote scoring
+- **Category browsing** (Gaming, IRL, YouTube Drama, Legendary, etc.)
+- **User submissions** for new nominees
+- **OAuth login** via Kick, Twitch, or YouTube (coming soon)
+
+## 🚀 Tech Stack
+
+- **Next.js 15** with App Router and server-side rendering
+- **MySQL** via Drizzle ORM
+- **Tailwind CSS v4** with custom jester/court theme
+- **Radix UI** + Lucide icons
+- **TypeScript** throughout
+
+## 🌟 Features
+
+- **Server-Side Rendering (SSR)** — Better SEO and initial page load
+- **Live Leaderboard** — Real-time ranking with upvote/downvote scoring
+- **Category System** — Gaming, IRL, YouTube Drama, Legendary, Mental Health
+- **User Submissions** — Submit new nominees for community review
+- **Responsive Design** — Mobile-first with hamburger menu
+- **SEO Optimized** — Dynamic metadata, sitemap, robots.txt, JSON-LD structured data
+- **Security Headers** — CSP, HSTS, X-Frame-Options, and more via next.config.ts
+- **Accessibility** — ARIA labels, keyboard navigation, focus states
+- **Dark Mode** — Full dark theme with custom jester/court palette
 
 ## 📁 Project Structure
 
