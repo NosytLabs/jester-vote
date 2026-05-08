@@ -111,7 +111,7 @@ body {
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 3s linear infinite;
+  animation: shimmer 2s linear infinite;
 }
 
 /* Glow pulse for important elements */
@@ -121,17 +121,17 @@ body {
 }
 
 .animate-glow-pulse {
-  animation: glow-pulse 2s ease-in-out infinite;
+  animation: glow-pulse 2.5s cubic-bezier(0.23, 1, 0.32, 1) ease-in-out infinite;
 }
 
 /* Float animation */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-6px); }
 }
 
 .animate-float {
-  animation: float 3s ease-in-out infinite;
+  animation: float 2s ease-in-out infinite;
 }
 
 /* Border shimmer */
@@ -142,7 +142,7 @@ body {
 }
 
 .animate-border-shimmer {
-  animation: border-shimmer 2s ease-in-out infinite;
+  animation: border-shimmer 3s ease-in-out infinite;
 }
 
 /* Spotlight effect for cards */
@@ -164,7 +164,7 @@ body {
     rgba(251, 191, 36, 0.1),
     transparent
   );
-  transition: left 0.5s;
+  transition: left 500ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .spotlight-card:hover::before {
@@ -235,12 +235,48 @@ body {
 }
 
 /* Reduced motion support */
+
+/* Active press state for tactile feedback */
+button:active,
+a:active,
+[role="button"]:active {
+  transform: scale(0.97) !important;
+  transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1) !important;
+}
+
+/* Disable active state on touch devices to prevent double-tap */
+@media (hover: none) {
+  button:active,
+  a:active,
+  [role="button"]:active {
+    transform: none !important;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  .animate-shimmer,
+  .animate-float,
+  .animate-glow-pulse {
+    animation: none !important;
+  }
+}
+
+/* ============================================
+   HOVER INTERACTION MEDIA QUERIES
+   Only apply hover effects on pointer devices
+   ============================================ */
+
+/* Podium cards - only hover on fine pointer devices (mouse) */
+@media (hover: hover) and (pointer: fine) {
+  .podium-2nd:hover,
+  .podium-1st:hover,
+  .podium-3rd:hover {
+    transform: scale(1.03) translateY(-3px);
+  }
+}
+
+/* Category cards - only hover on fine pointer devices */
+@media (hover: hover) and (pointer: fine) {
+  .category-card:hover {
+    transform: scale(1.03);
   }
 }

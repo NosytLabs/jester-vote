@@ -127,7 +127,7 @@ export default function CategoriesPage() {
             const Icon = cat.icon;
             return (
               <Link key={cat.id} href={`/leaderboard?category=${cat.id}`}>
-                <div className={`bg-gradient-to-br ${cat.gradient} border border-[#3f3f5f] rounded-xl p-6 hover:border-[#fbbf24]/50 transition-all cursor-pointer group h-full`}>
+                <div className={`bg-gradient-to-br ${cat.gradient} border border-[#3f3f5f] rounded-xl p-6 hover:border-[#fbbf24]/50 transition-transform cursor-pointer group h-full`}>
                   <div className="flex items-start justify-between mb-4">
                     <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: `${cat.color}20` }}>
                       <Icon className="w-6 h-6" style={{ color: cat.color }} />

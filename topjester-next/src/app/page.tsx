@@ -112,7 +112,7 @@ export default async function Home() {
             <div className="flex justify-center items-end gap-2 md:gap-4">
               {/* 2nd Place */}
               <Link href={`/nominee/${topNominees[1].id}`}>
-                <div className="flex flex-col items-center cursor-pointer hover:scale-105 hover:-translate-y-1 transition-transform">
+                <div className="flex flex-col items-center cursor-pointer podium-2nd transition-transform">
                   <div className="relative">
                     <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-gray-400 overflow-hidden bg-[#27273a]">
                       {topNominees[1].imageUrl ? (
@@ -137,7 +137,7 @@ export default async function Home() {
               
               {/* 1st Place */}
               <Link href={`/nominee/${topNominees[0].id}`}>
-                <div className="flex flex-col items-center cursor-pointer -mt-4 hover:scale-108 hover:-translate-y-2 transition-transform">
+                <div className="flex flex-col items-center cursor-pointer -mt-4 podium-1st transition-transform">
                   <div className="text-2xl md:text-3xl mb-1">
                     <AnimatedLogo size="md" />
                   </div>
@@ -165,7 +165,7 @@ export default async function Home() {
               
               {/* 3rd Place */}
               <Link href={`/nominee/${topNominees[2].id}`}>
-                <div className="flex flex-col items-center cursor-pointer hover:scale-105 hover:-translate-y-1 transition-transform">
+                <div className="flex flex-col items-center cursor-pointer podium-3rd transition-transform">
                   <div className="relative">
                     <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-amber-700 overflow-hidden bg-[#27273a]">
                       {topNominees[2].imageUrl ? (
