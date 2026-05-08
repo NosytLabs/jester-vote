@@ -7,7 +7,7 @@ import { Crown, TrendingUp } from "lucide-react";
 import { TheaterIcon, JesterHatIcon, AnimatedLogo } from "@/components/icons";
 
 export const metadata: Metadata = {
-  title: "TopJester - The Court of LOLCOWS | Streamer Rankings",
+  title: "TopJester - The Court of FOOLS | Streamer Rankings",
   description: "Vote for the biggest internet lolcows and jesters. Documenting the downfalls, drama, and dysfunction of online personalities. Community-driven rankings.",
   authors: [{ name: "TopJester Team" }],
   openGraph: {

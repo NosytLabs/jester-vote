@@ -6,7 +6,7 @@ import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://topjester.com"),
-  title: "TopJester - The Court of LOLCOWS | Streamer Rankings",
+  title: "TopJester - The Court of FOOLS | Streamer Rankings",
   description: "Vote for the biggest internet lolcows and jesters. Documenting the downfalls, drama, and dysfunction of online personalities. Community-driven rankings.",
   keywords: ["lolcow", "streamer rankings", "jester", "court of fools", "streaming drama", "DSP", "Wings of Redemption", "Ice Poseidon"],
   authors: [{ name: "TopJester" }],
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
   openGraph: {
-    title: "TopJester - The Court of LOLCOWS",
+    title: "TopJester - The Court of FOOLS",
     description: "Vote for the biggest internet lolcows and jesters. Community-driven rankings.",
     url: "https://topjester.com",
     siteName: "TopJester",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "TopJester - The Court of LOLCOWS",
+    title: "TopJester - The Court of FOOLS",
     description: "Vote for the biggest internet lolcows and jesters.",
     images: ["/og-image.svg"],
   },
@@ -66,7 +66,7 @@ export default function RootLayout({
         "@id": "https://topjester.com/#website",
         "url": "https://topjester.com",
         "name": "TopJester",
-        "description": "The Court of LOLCOWS - Community-driven streamer rankings",
+        "description": "The Court of FOOLS - Community-driven streamer rankings",
         "publisher": {
           "@id": "https://topjester.com/#organization"
         }
