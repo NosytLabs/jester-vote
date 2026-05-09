@@ -177,7 +177,7 @@ export default async function LeaderboardPage() {
             <div className="divide-y divide-[#3f3f5f]/50">
               {allNominees.map((nominee: any, index: number) => (
                 <Link key={nominee.id} href={`/nominee/${nominee.id}`}>
-                  <div className="flex items-center gap-3 md:gap-4 p-4 hover:bg-[#27273a]/50 transition-colors cursor-pointer group">
+                  <div className="flex items-center gap-3 md:gap-4 p-4 hover:bg-[#27273a]/50 transition-colors cursor-pointer group animate-fadeSlideIn" style={{ animationDelay: `${index * 40}ms` }}>
                     {/* Rank */}
                     <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0 ${
                       index === 0 ? 'bg-[#fbbf24] text-black' :

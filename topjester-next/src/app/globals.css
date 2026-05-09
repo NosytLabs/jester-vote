@@ -234,6 +234,24 @@ body {
   color: var(--foreground);
 }
 
+
+/* Fade slide in for leaderboard items */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeSlideIn {
+  animation: fadeSlideIn 300ms ease-out forwards;
+  opacity: 0;
+}
+
 /* Reduced motion support */
 
 /* Active press state for tactile feedback */
@@ -255,7 +273,9 @@ a:active,
 @media (prefers-reduced-motion: reduce) {
   .animate-shimmer,
   .animate-float,
-  .animate-glow-pulse {
+  .animate-glow-pulse,
+  .animate-border-shimmer,
+  .spotlight-card::before {
     animation: none !important;
   }
 }

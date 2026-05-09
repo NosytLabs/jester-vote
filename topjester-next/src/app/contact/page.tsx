@@ -86,7 +86,7 @@ export default function ContactPage() {
               </div>
               <button
                 type="submit"
-                className="w-full py-3 px-6 bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] text-black font-bold rounded-lg hover:from-[#f59e0b] hover:to-[#d97706] transition-[background,transform] duration-200"
+                className="w-full py-3 px-6 bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] text-black font-bold rounded-lg hover:from-[#f59e0b] hover:to-[#d97706] transition: background 200ms ease, transform 160ms ease-[var(--ease-out)]"
               >
                 Send Message
               </button>

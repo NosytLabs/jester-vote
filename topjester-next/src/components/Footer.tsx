@@ -22,32 +22,32 @@ export default function Footer() {
             <h3 className="text-white font-bold mb-4">Explore</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/" className="text-gray-400 hover:text-[#fbbf24] transition-colors">
+                <Link href="/" className="text-gray-400 hover:text-[#fbbf24] transition-colors duration-150 active:scale-[0.97] inline-block">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/leaderboard" className="text-gray-400 hover:text-[#fbbf24] transition-colors">
+                <Link href="/leaderboard" className="text-gray-400 hover:text-[#fbbf24] transition-colors duration-150 active:scale-[0.97] inline-block">
                   Leaderboard
                 </Link>
               </li>
               <li>
-                <Link href="/categories" className="text-gray-400 hover:text-[#fbbf24] transition-colors">
+                <Link href="/categories" className="text-gray-400 hover:text-[#fbbf24] transition-colors duration-150 active:scale-[0.97] inline-block">
                   Categories
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-gray-400 hover:text-[#fbbf24] transition-colors">
+                <Link href="/about" className="text-gray-400 hover:text-[#fbbf24] transition-colors duration-150 active:scale-[0.97] inline-block">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/submit" className="text-gray-400 hover:text-[#fbbf24] transition-colors">
+                <Link href="/submit" className="text-gray-400 hover:text-[#fbbf24] transition-colors duration-150 active:scale-[0.97] inline-block">
                   Submit a Jester
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-400 hover:text-[#fbbf24] transition-colors">
+                <Link href="/contact" className="text-gray-400 hover:text-[#fbbf24] transition-colors duration-150 active:scale-[0.97] inline-block">
                   Contact
                 </Link>
               </li>
@@ -59,12 +59,12 @@ export default function Footer() {
             <h3 className="text-white font-bold mb-4">Legal</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/privacy" className="text-gray-400 hover:text-[#fbbf24] transition-colors">
+                <Link href="/privacy" className="text-gray-400 hover:text-[#fbbf24] transition-colors duration-150 active:scale-[0.97] inline-block">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-gray-400 hover:text-[#fbbf24] transition-colors">
+                <Link href="/terms" className="text-gray-400 hover:text-[#fbbf24] transition-colors duration-150 active:scale-[0.97] inline-block">
                   Terms of Service
                 </Link>
               </li>

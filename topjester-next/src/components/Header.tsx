@@ -35,7 +35,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-gray-400 hover:text-[#fbbf24] transition-colors"
+                className="text-gray-400 hover:text-[#fbbf24] transition-colors duration-150"
               >
                 {link.label}
               </Link>
@@ -46,7 +46,7 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <Link
               href="/login"
-              className="hidden sm:block px-4 py-2 bg-[#fbbf24] text-[#0f0f1a] rounded-lg font-bold hover:bg-[#f59e0b] transition-colors"
+              className="hidden sm:block px-4 py-2 bg-[#fbbf24] text-[#0f0f1a] rounded-lg font-bold hover:bg-[#f59e0b] active:scale-[0.97] active:brightness-95 transition-colors duration-150"
             >
               Enter Court
             </Link>
@@ -54,7 +54,7 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-gray-400 hover:text-[#fbbf24] transition-colors"
+              className="md:hidden p-2 text-gray-400 hover:text-[#fbbf24] active:scale-95 transition-colors duration-150"
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -71,7 +71,7 @@ export default function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-gray-400 hover:text-[#fbbf24] transition-colors py-2"
+                  className="text-gray-400 hover:text-[#fbbf24] transition-colors duration-150 py-2"
                 >
                   {link.label}
                 </Link>
@@ -79,7 +79,7 @@ export default function Header() {
               <Link
                 href="/login"
                 onClick={() => setMobileMenuOpen(false)}
-                className="mt-2 px-4 py-2 bg-[#fbbf24] text-[#0f0f1a] rounded-lg font-bold hover:bg-[#f59e0b] transition-colors text-center"
+                className="mt-2 px-4 py-2 bg-[#fbbf24] text-[#0f0f1a] rounded-lg font-bold hover:bg-[#f59e0b] active:scale-[0.97] active:brightness-95 transition-colors duration-150 text-center"
               >
                 Enter Court
               </Link>

@@ -37,6 +37,11 @@
   --border: #4a4a6a;
   --input: #27273a;
   --ring: #fbbf24;
+
+  /* Emil-design easing curves */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @theme inline {
@@ -142,9 +147,9 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  transition: all 0.2s;
   position: relative;
   overflow: hidden;
+  transition: transform 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
 }
 
 .jester-btn::before {
@@ -152,16 +157,30 @@
   position: absolute;
   left: 0.5rem;
   opacity: 0;
-  transition: opacity 0.2s;
+  transition: opacity 160ms var(--ease);
 }
 
-.jester-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
+/* Touch guard: only animate hover on fine pointer devices */
+@media (hover: hover) and (pointer: fine) {
+  .jester-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
+  }
+
+  .jester-btn:hover::before {
+    opacity: 1;
+  }
 }
 
-.jester-btn:hover::before {
-  opacity: 1;
+.jester-btn:active {
+  transform: scale(0.97);
+}
+
+/* Touch guard for laugh-hover */
+@media (hover: hover) and (pointer: fine) {
+  .laugh-hover:hover {
+    animation: laugh 0.5s ease-in-out;
+  }
 }
 
 /* Honk Button Effect */
@@ -193,10 +212,6 @@
 }
 
 /* Laugh Animation */
-.laugh-hover:hover {
-  animation: laugh 0.5s ease-in-out;
-}
-
 @keyframes laugh {
   0%, 100% { transform: rotate(0deg); }
   25% { transform: rotate(-5deg) scale(1.02); }
