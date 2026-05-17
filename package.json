@@ -118,5 +118,6 @@
     "overrides": {
       "tailwindcss>nanoid": "3.3.7"
     }
-  }
+  },
+  "description": "Voting interface and ranking system for topjester.com \u2014 Twitch/YouTube/Kick streamer rankings with OAuth, leaderboards, and real-time stats"
 }
