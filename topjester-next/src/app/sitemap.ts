@@ -17,55 +17,55 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Static routes - all pages included
   const staticRoutes = [
     {
-      url: 'https://topjester.com',
+      url: 'http://192.168.2.221:3013',
       lastModified: new Date(),
       changeFrequency: 'daily' as const,
       priority: 1,
     },
     {
-      url: 'https://topjester.com/about',
+      url: 'http://192.168.2.221:3013/about',
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
     },
     {
-      url: 'https://topjester.com/leaderboard',
+      url: 'http://192.168.2.221:3013/leaderboard',
       lastModified: new Date(),
       changeFrequency: 'hourly' as const,
       priority: 0.9,
     },
     {
-      url: 'https://topjester.com/login',
+      url: 'http://192.168.2.221:3013/login',
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.5,
     },
     {
-      url: 'https://topjester.com/categories',
+      url: 'http://192.168.2.221:3013/categories',
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
     },
     {
-      url: 'https://topjester.com/submit',
+      url: 'http://192.168.2.221:3013/submit',
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.6,
     },
     {
-      url: 'https://topjester.com/privacy',
+      url: 'http://192.168.2.221:3013/privacy',
       lastModified: new Date(),
       changeFrequency: 'yearly' as const,
       priority: 0.3,
     },
     {
-      url: 'https://topjester.com/terms',
+      url: 'http://192.168.2.221:3013/terms',
       lastModified: new Date(),
       changeFrequency: 'yearly' as const,
       priority: 0.3,
     },
     {
-      url: 'https://topjester.com/contact',
+      url: 'http://192.168.2.221:3013/contact',
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.6,
@@ -74,7 +74,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Dynamic nominee routes
   const nomineeRoutes = allNominees.map((nominee) => ({
-    url: `https://topjester.com/nominee/${nominee.id}`,
+    url: `http://192.168.2.221:3013/nominee/${nominee.id}`,
     lastModified: new Date(),
     changeFrequency: 'daily' as const,
     priority: 0.7,

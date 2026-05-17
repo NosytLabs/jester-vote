@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/admin/'],
     },
-    sitemap: 'https://topjester.com/sitemap.xml',
-    host: 'https://topjester.com',
+    sitemap: 'http://192.168.2.221:3013/sitemap.xml',
+    host: 'http://192.168.2.221:3013',
   };
 }

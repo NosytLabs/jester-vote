@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://topjester.com"),
+  metadataBase: new URL("http://192.168.2.221:3013"),
   title: "TopJester - The Court of FOOLS | Streamer Rankings",
   description: "Vote for the biggest internet lolcows and jesters. Documenting the downfalls, drama, and dysfunction of online personalities. Community-driven rankings.",
   keywords: ["lolcow", "streamer rankings", "jester", "court of fools", "streaming drama", "DSP", "Wings of Redemption", "Ice Poseidon"],
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "TopJester - The Court of FOOLS",
     description: "Vote for the biggest internet lolcows and jesters. Community-driven rankings.",
-    url: "https://topjester.com",
+    url: "http://192.168.2.221:3013",
     siteName: "TopJester",
     images: [
       {
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     google: "your-google-verification-code",
   },
   alternates: {
-    canonical: "https://topjester.com",
+    canonical: "http://192.168.2.221:3013",
   },
 };
 
@@ -63,19 +63,19 @@ export default function RootLayout({
     "@graph": [
       {
         "@type": "WebSite",
-        "@id": "https://topjester.com/#website",
-        "url": "https://topjester.com",
+        "@id": "http://192.168.2.221:3013/#website",
+        "url": "http://192.168.2.221:3013",
         "name": "TopJester",
         "description": "The Court of FOOLS - Community-driven streamer rankings",
         "publisher": {
-          "@id": "https://topjester.com/#organization"
+          "@id": "http://192.168.2.221:3013/#organization"
         }
       },
       {
         "@type": "Organization",
-        "@id": "https://topjester.com/#organization",
+        "@id": "http://192.168.2.221:3013/#organization",
         "name": "TopJester",
-        "url": "https://topjester.com",
+        "url": "http://192.168.2.221:3013",
         "logo": {
           "@type": "ImageObject",
           "url": "https://topjester.com/icon.svg"
